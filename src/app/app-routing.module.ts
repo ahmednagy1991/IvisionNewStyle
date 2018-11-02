@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: 'activity-list', loadChildren: './pages/activity-list/activity-list.module#ActivityListPageModule' },
   { path: 'activity-detail/:id', loadChildren: './pages/activity-detail/activity-detail.module#ActivityDetailPageModule' },
   { path: 'activity-checkout/:tripID', loadChildren: './pages/activity-checkout/activity-checkout.module#ActivityCheckoutPageModule' },
-  { path: 'testPage', loadChildren: './test-page/test-page.module#TestPagePageModule' }
+  { path: 'testPage', loadChildren: './test-page/test-page.module#TestPagePageModule' },
+  { path: 'Dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' }
   // { path: 'walkthrough', loadChildren: './pages/walkthrough/walkthrough.module#WalkthroughPageModule' }
 ];
 

@@ -64,13 +64,6 @@ export class LoginPage implements OnInit {
   }
 
 
-
-
-
-
-
-
-
   validate(res: any) {
     debugger;
     this.tokenReponse = res as TokenModel;
@@ -92,7 +85,7 @@ export class LoginPage implements OnInit {
         this.storage.set(this.Config.Username_Key, JSON.stringify(this.account));
       }
       this.storage.set(this.Config.ConnectionParameter, JSON.stringify(this.Params));     
-      this.navCtrl.navigateRoot("DashboardPage");     
+      this.navCtrl.navigateRoot("Dashboard");     
     }
     else {
       this.helper.showMessage("Invalid Login", "Login Error");
