@@ -33,7 +33,9 @@ const routes: Routes = [
   { path: 'TimeTable', loadChildren: './pages/time-table/time-table.module#TimeTablePageModule' },
   { path: 'MyPunches', loadChildren: './pages/my-punches/my-punches.module#MyPunchesPageModule' },
   { path: 'Leaves', loadChildren: './pages/leaves/leaves.module#LeavesPageModule' },
-  { path: 'Execuses', loadChildren: './pages/execuses/execuses.module#ExecusesPageModule' }
+  { path: 'Execuses', loadChildren: './pages/execuses/execuses.module#ExecusesPageModule' },
+  { path: 'Duties', loadChildren: './pages/duties/duties.module#DutiesPageModule' },
+  { path: 'RequestStatus', loadChildren: './pages/request-status/request-status.module#RequestStatusPageModule' }
   // { path: 'walkthrough', loadChildren: './pages/walkthrough/walkthrough.module#WalkthroughPageModule' }
 ];
 

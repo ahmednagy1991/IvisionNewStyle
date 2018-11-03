@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Request Status</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col size="6" class="br bb datetime-btn" text-center>
+      <ion-item no-padding text-center>
+        <ion-label position="stacked" class="fw700 text-primary">
+          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+          From
+        </ion-label>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
+          [(ngModel)]="dateComp.from"></ion-datetime>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6" class="bb datetime-btn" text-center>
+      <ion-item no-padding text-center>
+        <ion-label position="stacked" class="fw700 text-primary">
+          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+          To
+        </ion-label>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
+          [(ngModel)]="dateComp.to"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-button full (click)="GetRequestStatus()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="search"></ion-icon>
+    View Request Status
+  </ion-button>
+
+
+  <div style="overflow-x:auto;">
+
+      <ion-grid>
+        <ion-row nowrap>
+
+          <ion-col class="thro">Ref#</ion-col>
+          <ion-col class="thro">Request Type</ion-col>
+          <ion-col class="thro">Date</ion-col>
+          <ion-col class="thro">Status</ion-col>
+          <ion-col class="thro">Handle Date</ion-col>
+          <ion-col class="thro">Handle By</ion-col>
+          <ion-col class="thro">Requester</ion-col>         
+          <!--  -->
+        </ion-row>
+
+        <ion-row nowrap *ngFor="let att of RequestList" class="ro">
+            <ion-col>{{att.REQUEST_ID}}</ion-col>
+            <ion-col>({{helper.GetRequestType(att.REQUEST_TYPE)}}) {{helper.GetPnchType(att.REQUEST_PARAM1)}} Punch - Request Note : {{att.REQUEST_NOTE}} - by : {{att.WF_NAME}}/{{att.WF_STOP_POINT}} </ion-col>  
+            <ion-col>{{helper.GetRequestStatus(att.REQUEST_STATUS)}}</ion-col>
+            <ion-col>{{att.REQUEST_DATE | date:'yyyy/MM/dd'}}</ion-col>
+            <ion-col>{{att.HANDLED_DATE | date:'yyyy/MM/dd'}}</ion-col>
+            <ion-col>{{att.HANDLED_BY}}</ion-col>
+            <ion-col>{{att.EMP_NAME}}</ion-col>
+                    
+          <!-- <ion-col>{{att.AT_DATE | date:'yyyy/MM/dd'}}</ion-col>
+          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)}}</ion-col>
+          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_WORK)}}</ion-col>
+          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_ABSENT)}}</ion-col>
+          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_OVERTIME)}}</ion-col>
+          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</ion-col>
+          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</ion-col>
+          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_DUTIES)}}</ion-col>
+          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_EXCUSE)}}</ion-col> -->
+        </ion-row>
+      </ion-grid>
+    </div>
+ 
+</ion-content>

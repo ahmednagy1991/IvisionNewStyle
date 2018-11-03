@@ -69,6 +69,21 @@ export class AppComponent {
         direct: 'forward',
         icon: 'walk'
       }
+      ,
+      {
+        title: 'Duties',
+        url: '/Duties',
+        direct: 'forward',
+        icon: 'briefcase'
+      },
+      {
+        title: 'Request Status',
+        url: '/RequestStatus',
+        direct: 'forward',
+        icon: 'trending-up'
+      }
+      
+      
 
      
       // },

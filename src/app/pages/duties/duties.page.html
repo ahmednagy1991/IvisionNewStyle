@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button color="secondary"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Execuses</ion-title>
+    <ion-title>Duites</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -31,12 +31,11 @@
     </ion-col>
   </ion-row>
 
-  <ion-button full (click)="LoadExecuses()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+  <ion-button full (click)="GetDutiesList()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
     <ion-ripple-effect></ion-ripple-effect>
     <ion-icon name="search"></ion-icon>
-    View Execuses
+    View Duites
   </ion-button>
-
 
   <div style="overflow-x:auto;">
 
@@ -49,30 +48,52 @@
       <ion-grid>
         <ion-row nowrap>
 
-          <ion-col class="thro">Execuse ID</ion-col>
-          <ion-col class="thro">Excuses Description</ion-col>
+          <ion-col class="thro">Duity ID</ion-col>
+          <ion-col class="thro">Duity Title</ion-col>
           <ion-col class="thro"></ion-col>
           <!-- <ion-col class="thro">From</ion-col>
-                    <ion-col class="thro">To</ion-col>             -->
+                <ion-col class="thro">To</ion-col>             -->
           <!--  -->
         </ion-row>
 
-        <ion-row nowrap *ngFor="let lev of exList" class="ro">
+        <ion-row nowrap *ngFor="let lev of DutiyList" class="ro">
           <ion-col>{{lev.LV_ID}}</ion-col>
           <ion-col>{{lev.LV_TITLE}}</ion-col>
           <ion-col>
-            <!-- <button ion-button full (click)="GetLeaves(lev.LV_ID)">Details</button> -->
+            <button ion-button full (click)="GetDuity(lev.LV_ID)">Details</button>
           </ion-col>
 
         </ion-row>
       </ion-grid>
     </ion-card>
   </div>
+  <ion-card>
 
+    <ion-card-header>
 
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10> Duity Details</ion-col>
+          <ion-col col-2>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
 
-
-
+    <!--       
+      <ion-grid>
+        <div>
+            <ion-row nowrap class="ro">Leave Id : {{LeavesTab.LV_ID}}</ion-row>
+            <ion-row nowrap class="ro">Leave Title : {{LeavesTab.LV_TITLE}}</ion-row>
+            <ion-row nowrap class="ro">Leave From : {{LeavesTab.START_DATE}}</ion-row>
+            <ion-row nowrap class="ro">Leave To : {{LeavesTab.END_DATE}}</ion-row>
+            <ion-row nowrap class="ro">Leave Notes : {{LeavesTab.LV_NOTE}}</ion-row>
+            <ion-row nowrap class="ro">Leave Reason : {{LeavesTab.REASON_TITLE}}</ion-row>
+            <ion-row nowrap class="ro">Leave Status : {{helper.getPayStatus(LeavesTab.PAY_STATUS)}}</ion-row>
+        </div>
+         
+      </ion-grid> -->
+  </ion-card>
 
 
 
