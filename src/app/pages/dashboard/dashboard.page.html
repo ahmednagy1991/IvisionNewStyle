@@ -7,7 +7,7 @@
       <ion-text color="light">
 <!-- [placeholder]="translate.get('userlist.search')" -->
 <!-- {{ 'app.name' | translate }} -->
-      IVisionMT <ion-text color="secondary" class="fw700"> V1</ion-text>
+      Dashboard <ion-text color="secondary" class="fw700"> </ion-text>
       </ion-text>
     </ion-title>
     <ion-buttons slot="end">
@@ -31,10 +31,10 @@
         <ion-label>Days Statistics</ion-label>
         <!--  -->
         <ion-select [(ngModel)]="Peroid" name="Peroid" (ionChange)="ReloadChart()">
-          <ion-option value="0">Today</ion-option>
-          <ion-option value="1">Yesterday</ion-option>
-          <ion-option value="29">Last 30 Days</ion-option>
-          <ion-option value="6">Last 7 Days</ion-option>
+          <ion-select-option value="0">Today</ion-select-option>
+          <ion-select-option value="1">Yesterday</ion-select-option>
+          <ion-select-option value="29">Last 30 Days</ion-select-option>
+          <ion-select-option value="6">Last 7 Days</ion-select-option>
         </ion-select>
       </ion-item>
 

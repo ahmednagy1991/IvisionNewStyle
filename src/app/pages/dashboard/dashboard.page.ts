@@ -1,7 +1,7 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
-import { NavController, MenuController, LoadingController,NavParams } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NavController, MenuController, LoadingController } from '@ionic/angular';
 import { Chart } from 'chart.js';
-import { Settings } from '../../../providers/settings/settings';
+//import { Settings } from '../../../providers/settings/settings';
 import { Storage } from '@ionic/storage';
 import { config } from '../../../providers/Config';
 import { User } from '../../../providers';
@@ -55,13 +55,15 @@ export class DashboardPage implements OnInit {
 
   constructor(public helpService: HelperService, public TTSerivce: TimeTableService, public punservice: PunchesService, public AttService: AttendanceService, public navCtrl: NavController, public Config: config,
     public storage: Storage,
-    public setStorage: Settings, public helper: Heplers, public api: Api, public navParams: NavParams
+    //public setStorage: Settings, 
+    public helper: Heplers, public api: Api,
+    // public navParams: NavParams
     //, public translateService: TranslateService
   ) {
     this.storage.get(this.Config.UserInformation).then(res => this.MapEmp(res));
     this.storage.get(this.Config.ConnectionParameter).then(res => this.MapApiParm(res));
- 
 
+    this.Peroid = 0;
     this.CurrentTab = "TimeTable";
 
 

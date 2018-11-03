@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'activity-detail/:id', loadChildren: './pages/activity-detail/activity-detail.module#ActivityDetailPageModule' },
   { path: 'activity-checkout/:tripID', loadChildren: './pages/activity-checkout/activity-checkout.module#ActivityCheckoutPageModule' },
   { path: 'testPage', loadChildren: './test-page/test-page.module#TestPagePageModule' },
-  { path: 'Dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' }
+  { path: 'Dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' },
+  { path: 'attendance', loadChildren: './pages/attendance/attendance.module#AttendancePageModule' }
   // { path: 'walkthrough', loadChildren: './pages/walkthrough/walkthrough.module#WalkthroughPageModule' }
 ];
 
