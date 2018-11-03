@@ -29,7 +29,11 @@ const routes: Routes = [
   { path: 'activity-checkout/:tripID', loadChildren: './pages/activity-checkout/activity-checkout.module#ActivityCheckoutPageModule' },
   { path: 'testPage', loadChildren: './test-page/test-page.module#TestPagePageModule' },
   { path: 'Dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' },
-  { path: 'attendance', loadChildren: './pages/attendance/attendance.module#AttendancePageModule' }
+  { path: 'attendance', loadChildren: './pages/attendance/attendance.module#AttendancePageModule' },
+  { path: 'TimeTable', loadChildren: './pages/time-table/time-table.module#TimeTablePageModule' },
+  { path: 'MyPunches', loadChildren: './pages/my-punches/my-punches.module#MyPunchesPageModule' },
+  { path: 'Leaves', loadChildren: './pages/leaves/leaves.module#LeavesPageModule' },
+  { path: 'Execuses', loadChildren: './pages/execuses/execuses.module#ExecusesPageModule' }
   // { path: 'walkthrough', loadChildren: './pages/walkthrough/walkthrough.module#WalkthroughPageModule' }
 ];
 

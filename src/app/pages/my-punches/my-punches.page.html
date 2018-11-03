@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Punches</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+
+
+      <ion-row>
+        <ion-col size="6" class="br bb datetime-btn" text-center>
+          <ion-item no-padding text-center>
+            <ion-label position="stacked" class="fw700 text-primary">
+              <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+              From
+            </ion-label>
+            <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
+              [(ngModel)]="dateComp.from"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" class="bb datetime-btn" text-center>
+          <ion-item no-padding text-center>
+            <ion-label position="stacked" class="fw700 text-primary">
+              <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+              To
+            </ion-label>
+            <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
+              [(ngModel)]="dateComp.to"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <!-- <ion-item>
+            <ion-label>From</ion-label>
+            <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="dateComp.from"></ion-datetime>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label>To</ion-label>
+            <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="dateComp.to"></ion-datetime>
+          </ion-item> -->
+
+
+    </ion-card-content>
+  </ion-card>
+  <!-- <button ion-button full (click)="GetPunches()">View Attendance</button> -->
+  <ion-button full (click)="GetPunches()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="search"></ion-icon>
+    View Punches
+  </ion-button>
+
+  <ion-card>
+    <ion-card-header>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10> Today Punching</ion-col>
+          <ion-col col-2>
+            <!-- <button ion-fab mini (click)="refreshPunches()">
+                  <ion-icon name="refresh" color="green"></ion-icon>
+                </button> -->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+
+    <div style="overflow-x:auto;">
+
+      <ion-grid>
+        <ion-row nowrap class="ro">
+          <!-- <ion-col class="thro">ENTRY_TYPE</ion-col>
+              <ion-col class="thro">PUNCH_DATETIME</ion-col>
+              <ion-col class="thro">PUNCH_TYPE</ion-col>
+              <ion-col class="thro">READER_NAME</ion-col>
+              <ion-col class="thro">float_PUNCH_DATETIME</ion-col> -->
+
+          <ion-col class="thro">Date</ion-col>
+          <ion-col class="thro">Time</ion-col>
+          <ion-col class="thro">Type</ion-col>
+          <ion-col class="thro">Reader</ion-col>
+          <!-- <ion-col class="thro">status</ion-col>
+              <ion-col class="thro">process</ion-col>
+              <ion-col class="thro">entry</ion-col> -->
+
+        </ion-row>
+
+        <ion-row nowrap *ngFor="let att of PunchTable" class="ro">
+          <ion-col>{{att.PUNCH_DATETIME | date:'yyyy/MM/dd'}}</ion-col>
+          <ion-col>{{att.PUNCH_DATETIME | date:'HH:mm'}}</ion-col>
+          <ion-col>{{helper.getPunchType(att.PUNCH_TYPE)}}</ion-col>
+          <ion-col>{{att.READER_NAME}}</ion-col>
+          <!-- <ion-col>{{att.PROCESS_STATUS}}</ion-col>
+              <ion-col>{{att.PROCESS_STATUS}}</ion-col>
+              <ion-col>{{att.ENTRY_TYPE}}</ion-col> -->
+        </ion-row>
+
+      </ion-grid>
+    </div>
+  </ion-card>
+</ion-content>

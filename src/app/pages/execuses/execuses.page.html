@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Execuses</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col size="6" class="br bb datetime-btn" text-center>
+      <ion-item no-padding text-center>
+        <ion-label position="stacked" class="fw700 text-primary">
+          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+          From
+        </ion-label>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
+          [(ngModel)]="dateComp.from"></ion-datetime>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6" class="bb datetime-btn" text-center>
+      <ion-item no-padding text-center>
+        <ion-label position="stacked" class="fw700 text-primary">
+          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+          To
+        </ion-label>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
+          [(ngModel)]="dateComp.to"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-button full (click)="GetLeaveList()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="search"></ion-icon>
+    View Execuses
+  </ion-button>
+
+
+  <div style="overflow-x:auto;">
+
+
+
+
+    <ion-card>
+
+
+      <ion-grid>
+        <ion-row nowrap>
+
+          <ion-col class="thro">Execuse ID</ion-col>
+          <ion-col class="thro">Excuses Description</ion-col>
+          <ion-col class="thro"></ion-col>
+          <!-- <ion-col class="thro">From</ion-col>
+                    <ion-col class="thro">To</ion-col>             -->
+          <!--  -->
+        </ion-row>
+
+        <ion-row nowrap *ngFor="let lev of exList" class="ro">
+          <ion-col>{{lev.LV_ID}}</ion-col>
+          <ion-col>{{lev.LV_TITLE}}</ion-col>
+          <ion-col>
+            <!-- <button ion-button full (click)="GetLeaves(lev.LV_ID)">Details</button> -->
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
+
+
+
+
+
+
+
+</ion-content>

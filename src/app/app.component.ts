@@ -38,17 +38,39 @@ export class AppComponent {
         icon: 'home'
       }
       ,
-      // {
-      //   title: 'Booking List',
-      //   url: '/booking-list',
-      //   direct: 'forward',
-      //   icon: 'book'
-      // },
-      // {
-      //   title: 'Favorites',
-      //   url: '/favorites',
-      //   direct: 'forward',
-      //   icon: 'heart'
+      {
+        title: 'Attendance',
+        url: '/attendance',
+        direct: 'forward',
+        icon: 'alarm'
+      },
+      
+      {
+        title: 'Time Table',
+        url: '/TimeTable',
+        direct: 'forward',
+        icon: 'logo-buffer'
+      },
+      {
+        title: 'My Punches',
+        url: '/MyPunches',
+        direct: 'forward',
+        icon: 'finger-print'
+      },
+      {
+        title: 'Leaves',
+        url: '/Leaves',
+        direct: 'forward',
+        icon: 'sunny'
+      },
+      {
+        title: 'Execuses',
+        url: '/Execuses',
+        direct: 'forward',
+        icon: 'walk'
+      }
+
+     
       // },
       // {
       //   title: 'Rent a Car',
