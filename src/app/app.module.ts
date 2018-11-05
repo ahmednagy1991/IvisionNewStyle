@@ -43,6 +43,8 @@ import { DecimalPipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { config } from '../providers/Config';
 //import { Device } from '@ionic-native/device';
+//import { AndroidPermissions } from '@ionic-native/android-permissions';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -80,6 +82,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AttendanceService,
     PunchesService,
     LeavesService,
+    //AndroidPermissions,
     Api,
     User,
     Heplers,

@@ -10,7 +10,11 @@ import { environment } from '../environments/environment';
 
 import { Pages } from './interfaces/pages';
 
-
+import { EmployeeModel } from '../models/EmployeeModel';
+//import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { Storage } from '@ionic/storage';
+import { config } from '../providers/Config';
+import { Heplers } from '../providers/Helper/Helpers';
 
 
 @Component({
@@ -21,8 +25,12 @@ import { Pages } from './interfaces/pages';
 export class AppComponent {
   public appPages: Array<Pages>;
   // public listing;
-
+  CurrentEmp: EmployeeModel = { EMP_ID: "", DEPT_NAME: "", DEPT_ID: "", EMP_NAME: "", ORG_NAME: "", DOJ: "", floatDOJ: "", STATE: "" };
   constructor(
+    public helper:Heplers,
+    public storage: Storage,
+    public Myconfig: config,    
+    //private androidPermissions: AndroidPermissions,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -118,10 +126,32 @@ export class AppComponent {
       //   icon: 'help-buoy'
       // }
     ];
+    // platform.ready().then(() => {
+      
+    //   this.statusBar.styleDefault();
+    //   this.splashScreen.hide();
+
+    //   this.androidPermissions.requestPermissions(
+    //     [
+    //       this.androidPermissions.PERMISSION.CAMERA,
+    //       this.androidPermissions.PERMISSION.CALL_PHONE,
+    //       this.androidPermissions.PERMISSION.GET_ACCOUNTS,
+    //       this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
+    //       this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE
+    //     ]
+    //   );
+
+
+    // });
 
     this.initializeApp();
+    this.storage.get(this.Myconfig.UserInformation).then(res => this.sh(res));
   }
+  sh(res: any) {
 
+    this.CurrentEmp = JSON.parse(res).result as EmployeeModel;
+
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -147,6 +177,7 @@ export class AppComponent {
   }
 
   logout() {
+    this.storage.remove(this.Myconfig.Username_Key);
     this.navCtrl.navigateRoot('login');
   }
 
