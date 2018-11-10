@@ -234,19 +234,19 @@ debugger;
               this.attSummary.absentWithDuity++;
               break;
           }
-          this.attSummary.workingDays = total_days - (this.attSummary.VacDays + this.attSummary.OffDays);
-          this.attSummary.workingDays_Per = (this.attSummary.workingDays / total_days) * 100;
-          this.attSummary.OffDays_Per = (this.attSummary.OffDays / total_days) * 100;
-          this.attSummary.NoTT_Per = (this.attSummary.NoTT / total_days) * 100;
-          this.attSummary.workedDays_Per = (this.attSummary.workedDays / total_days) * 100;
-          this.attSummary.workedWithDelay_Per = (this.attSummary.workedWithDelay / total_days) * 100;
-          this.attSummary.absent_Per = (this.attSummary.absent / total_days) * 100;
-          this.attSummary.VacDays_Per = (this.attSummary.VacDays / total_days) * 100;
-          this.attSummary.absentWithDuity_Per = (this.attSummary.absentWithDuity / total_days) * 100;
-          this.renderChart();
+         
 
         });
-
+        this.attSummary.workingDays = total_days - (this.attSummary.VacDays + this.attSummary.OffDays);
+        this.attSummary.workingDays_Per = (this.attSummary.workingDays / total_days) * 100;
+        //this.attSummary.OffDays_Per = (this.attSummary.OffDays / total_days) * 100;
+        this.attSummary.NoTT_Per = (this.attSummary.NoTT / total_days) * 100;
+        this.attSummary.workedDays_Per = (this.attSummary.workedDays / total_days) * 100;
+        this.attSummary.workedWithDelay_Per = (this.attSummary.workedWithDelay / total_days) * 100;
+        this.attSummary.absent_Per = (this.attSummary.absent / total_days) * 100;
+        this.attSummary.VacDays_Per = (this.attSummary.VacDays / total_days) * 100;
+        this.attSummary.absentWithDuity_Per = (this.attSummary.absentWithDuity / total_days) * 100;
+        this.renderChart();
       });
 
 
