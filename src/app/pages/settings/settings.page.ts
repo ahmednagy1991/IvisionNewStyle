@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-
+import { Platform } from '@ionic/angular';
 
 import { Settings } from '../../../providers';
 //import { File } from '@ionic-native/file';
@@ -70,6 +70,7 @@ export class SettingsPage implements OnInit {
   subSettings: any = SettingsPage;
 
   constructor(public navCtrl: NavController,
+    private platform: Platform,
    // public settings: Settings,
     //public formBuilder: FormBuilder,
    // public navParams: NavParams,
@@ -148,6 +149,8 @@ export class SettingsPage implements OnInit {
     this.helper.presentToast("Please Wait While Saving changes then restart application.....", 8000);
     this.storage.set(this.Config.MainURL_Key, this.settingItem.mainurl);
     setTimeout(() => {
+
+      //this.navCtrl.exitApp();
       //this.platform.exitApp();
        // this.navCtrl.setRoot('WelcomePage');
       // this.navCtrl.push('WelcomePage');

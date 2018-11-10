@@ -63,11 +63,12 @@ export class DashboardPage implements OnInit {
     this.storage.get(this.Config.UserInformation).then(res => this.MapEmp(res));
     this.storage.get(this.Config.ConnectionParameter).then(res => this.MapApiParm(res));
 
-    this.Peroid = 0;
+    //this.Peroid = 0;
     this.CurrentTab = "TimeTable";
 
 
-
+    this.ReloadChart();
+    //this.renderChart();
   }
   MapPunchTable(res: any) {
     this.PunchTable = res.result as PunchModel[];
@@ -197,14 +198,14 @@ export class DashboardPage implements OnInit {
   }
   ionViewDidLoad() {
 
-
+debugger;
     this.AttService.GetAttendanceSummary(this.helper.getLastDaysDate(this.Peroid), this.helper.GetCurrentDate()).then((res) => {
       // res.subscribe((ret)=>{
       //  // debugger;
       // });
       // this.SummaryModel = res.unsubscribe as AttendanceStatisticsModel;
       res.subscribe((ret) => {
-
+        debugger;
         let obj = ret as any;
         let total_days = 0;
 
