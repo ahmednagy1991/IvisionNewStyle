@@ -149,7 +149,7 @@
 
 
 
-      <div >
+      <div>
         <ion-item color="medium" tappable margin-bottom *ngFor="let att of AttendanceTab">
           <ion-thumbnail slot="start">
             <img src="assets/img/AttendanceLogo.png">
@@ -165,20 +165,27 @@
             <h3>
               <ion-badge slot="start" color="secondary" class="rooms">
                 <strong>Reg.HRS {{helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)}}</strong>
-                <br/><br/>
+                <br/>
+                <br/>
                 <strong>Absent {{helper.ToHoursString(att.AT_TOTAL_ABSENT)}}</strong>
-                <br/><br/>
-                <strong>Overtime  {{helper.ToHoursString(att.AT_TOTAL_OVERTIME)}}</strong>
-                <br/><br/>
+                <br/>
+                <br/>
+                <strong>Overtime {{helper.ToHoursString(att.AT_TOTAL_OVERTIME)}}</strong>
+                <br/>
+                <br/>
                 <strong>Duties Overtime {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}} </strong>
-                <br/><br/>
+                <br/>
+                <br/>
                 <strong>Break {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</strong>
-                <br/><br/>
+                <br/>
+                <br/>
                 <strong>Duties {{helper.ToHoursString(att.AT_TOTAL_DUTIES)}}</strong>
-                <br/><br/>
-                <strong>Excuse  {{helper.ToHoursString(att.AT_TOTAL_EXCUSE)}}</strong>
-                <br/><br/>
-               
+                <br/>
+                <br/>
+                <strong>Excuse {{helper.ToHoursString(att.AT_TOTAL_EXCUSE)}}</strong>
+                <br/>
+                <br/>
+
 
               </ion-badge>
             </h3>
@@ -236,35 +243,32 @@
         </ion-item>
       </ion-list> -->
 
-      <div >
-          <ion-item color="medium" tappable margin-bottom *ngFor="let att of PunchTable">
-            <ion-thumbnail slot="start">
-              <img src="assets/img/fingerprints.png">
-            </ion-thumbnail>
-            <ion-label>
-              <h2>
-                <strong>Punches On </strong>
-  
-              </h2>
-              <h2>
-                <strong>{{att.PUNCH_DATETIME | date:'yyyy/MM/dd'}}</strong>
-              </h2>
-              <h3>
-                <ion-badge slot="start" color="secondary" class="rooms">
-                  <strong>Punch Type {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
-                  <br/><br/>
-                  <strong>Reader {{att.READER_NAME}} </strong>
-                
-                 
-  
-                </ion-badge>
-              </h3>
-            </ion-label>
-          </ion-item>
-        </div>
+      <div>
+        <ion-item color="medium" tappable margin-bottom *ngFor="let att of PunchTable">
+          <ion-thumbnail slot="start">
+            <img src="assets/img/fingerprints.png">
+          </ion-thumbnail>
+          <ion-label>
+            <h3>
 
 
-    
+              <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='In'" slot="start" color="secondary" class="rooms">
+                <strong>Punc {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
+                <!-- <strong>Punch Type </strong>
+                    <br/><br/>
+                    <strong>Reader {{att.READER_NAME}} </strong> -->
+              </ion-badge>
+            </h3>
+            <h2>
+              <strong>On {{att.PUNCH_DATETIME | date:'yyyy/MM/dd'}}</strong>
+            </h2>
+
+          </ion-label>
+        </ion-item>
+      </div>
+
+
+
     </ion-item>
   </div>
 
