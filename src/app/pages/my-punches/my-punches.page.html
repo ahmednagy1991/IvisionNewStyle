@@ -58,37 +58,68 @@
   </ion-button>
 
   <ion-card>
-    <ion-card-header>
+    <!-- <ion-card-header>
 
       <ion-grid>
         <ion-row>
           <ion-col col-10> Today Punching</ion-col>
           <ion-col col-2>
-            <!-- <button ion-fab mini (click)="refreshPunches()">
-                  <ion-icon name="refresh" color="green"></ion-icon>
-                </button> -->
+          
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-card-header>
+    </ion-card-header> -->
 
-    <div style="overflow-x:auto;">
+
+
+
+
+    <div>
+      <ion-item color="medium" tappable margin-bottom *ngFor="let att of PunchTable">
+        <ion-thumbnail slot="start">
+          <img src="assets/img/fingerprints.png">
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <!--  -->
+
+            <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='IN'" slot="start" color="success" class="rooms">
+              <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
+            </ion-badge>
+
+            <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='OUT'" slot="start" color="danger" class="rooms">
+              <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
+            </ion-badge>
+
+          </h3>
+          <h3>
+              <ion-badge slot="start" color="secondary" class="rooms">
+                  <strong>Reader {{att.READER_NAME}}</strong>
+                </ion-badge>
+          </h3>
+          <h3></h3>
+          <h2>
+            <strong>On {{att.PUNCH_DATETIME | date:'yyyy/MM/dd'}}</strong>
+          </h2>
+
+        </ion-label>
+      </ion-item>
+    </div>
+
+
+
+
+    <!-- <div style="overflow-x:auto;">
 
       <ion-grid>
         <ion-row nowrap class="ro">
-          <!-- <ion-col class="thro">ENTRY_TYPE</ion-col>
-              <ion-col class="thro">PUNCH_DATETIME</ion-col>
-              <ion-col class="thro">PUNCH_TYPE</ion-col>
-              <ion-col class="thro">READER_NAME</ion-col>
-              <ion-col class="thro">float_PUNCH_DATETIME</ion-col> -->
+         
 
           <ion-col class="thro">Date</ion-col>
           <ion-col class="thro">Time</ion-col>
           <ion-col class="thro">Type</ion-col>
           <ion-col class="thro">Reader</ion-col>
-          <!-- <ion-col class="thro">status</ion-col>
-              <ion-col class="thro">process</ion-col>
-              <ion-col class="thro">entry</ion-col> -->
+        
 
         </ion-row>
 
@@ -97,12 +128,10 @@
           <ion-col>{{att.PUNCH_DATETIME | date:'HH:mm'}}</ion-col>
           <ion-col>{{helper.getPunchType(att.PUNCH_TYPE)}}</ion-col>
           <ion-col>{{att.READER_NAME}}</ion-col>
-          <!-- <ion-col>{{att.PROCESS_STATUS}}</ion-col>
-              <ion-col>{{att.PROCESS_STATUS}}</ion-col>
-              <ion-col>{{att.ENTRY_TYPE}}</ion-col> -->
+        
         </ion-row>
 
       </ion-grid>
-    </div>
+    </div> -->
   </ion-card>
 </ion-content>

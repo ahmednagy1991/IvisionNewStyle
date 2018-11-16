@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
   empResponse: EmployeeModel;
   Params: ApiParameters;
 
-  account: AccountModel = { empId: "", password: "", rembmerMe: false };
+  account: AccountModel = { empId: "B00004", password: "123", rembmerMe: false };
 
   // Our translated text strings
   private loginErrorString: string;

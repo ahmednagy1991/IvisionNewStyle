@@ -156,7 +156,7 @@
           </ion-thumbnail>
           <ion-label>
             <h2>
-              <strong>Attendance Summary On</strong>
+              <strong>Attendance On</strong>
 
             </h2>
             <h2>
@@ -165,30 +165,47 @@
             <h3>
               <ion-badge slot="start" color="secondary" class="rooms">
                 <strong>Reg.HRS {{helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)}}</strong>
-                <br/>
-                <br/>
-                <strong>Absent {{helper.ToHoursString(att.AT_TOTAL_ABSENT)}}</strong>
-                <br/>
-                <br/>
-                <strong>Overtime {{helper.ToHoursString(att.AT_TOTAL_OVERTIME)}}</strong>
-                <br/>
-                <br/>
-                <strong>Duties Overtime {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}} </strong>
-                <br/>
-                <br/>
-                <strong>Break {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</strong>
-                <br/>
-                <br/>
-                <strong>Duties {{helper.ToHoursString(att.AT_TOTAL_DUTIES)}}</strong>
-                <br/>
-                <br/>
-                <strong>Excuse {{helper.ToHoursString(att.AT_TOTAL_EXCUSE)}}</strong>
-                <br/>
-                <br/>
-
-
               </ion-badge>
             </h3>
+            <h3>
+              <ion-badge slot="start" color="secondary" class="rooms">
+                <strong>Absent {{helper.ToHoursString(att.AT_TOTAL_ABSENT)}}</strong>
+              </ion-badge>
+            </h3>
+            <h3>
+              <ion-badge slot="start" color="secondary" class="rooms">
+                <strong>Overtime {{helper.ToHoursString(att.AT_TOTAL_OVERTIME)}}</strong>
+              </ion-badge>
+            </h3>
+            <h3>
+              <ion-badge slot="start" color="secondary" class="rooms">
+                <strong>Duties Overtime {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}} </strong>
+              </ion-badge>
+            </h3>
+            <h3>
+              <ion-badge slot="start" color="secondary" class="rooms">
+                <strong>Break {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</strong>
+              </ion-badge>
+            </h3>
+            <h3>
+
+              <ion-badge slot="start" color="secondary" class="rooms">
+                <strong>Duties {{helper.ToHoursString(att.AT_TOTAL_DUTIES)}}</strong>
+              </ion-badge>
+            </h3>
+            <h3>
+              <ion-badge slot="start" color="secondary" class="rooms">
+                <strong>Excuse {{helper.ToHoursString(att.AT_TOTAL_EXCUSE)}}</strong>
+              </ion-badge>
+            </h3>
+
+
+
+
+
+
+
+
           </ion-label>
         </ion-item>
       </div>
@@ -250,14 +267,22 @@
           </ion-thumbnail>
           <ion-label>
             <h3>
+                <!--  -->
 
-
-              <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='In'" slot="start" color="secondary" class="rooms">
-                <strong>Punc {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
+              <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='IN'"  slot="start" color="success" class="rooms">
+                <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
                 <!-- <strong>Punch Type </strong>
                     <br/><br/>
                     <strong>Reader {{att.READER_NAME}} </strong> -->
               </ion-badge>
+
+              <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='OUT'"  slot="start" color="danger" class="rooms">
+                  <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
+                  <!-- <strong>Punch Type </strong>
+                      <br/><br/>
+                      <strong>Reader {{att.READER_NAME}} </strong> -->
+                </ion-badge>
+              
             </h3>
             <h2>
               <strong>On {{att.PUNCH_DATETIME | date:'yyyy/MM/dd'}}</strong>

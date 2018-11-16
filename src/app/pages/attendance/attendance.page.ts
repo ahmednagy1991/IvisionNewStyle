@@ -14,6 +14,7 @@ import { AttendanceTotalsModel } from '../../../models/AttendanceTotalsModel';
 })
 export class AttendancePage implements OnInit {
 
+  CurrentTab: string = "Attendance";
   AttendanceTab: AttendanceModel[];
   Attendancepunchtab: AttendancePunches;
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
