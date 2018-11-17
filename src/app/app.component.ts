@@ -90,6 +90,13 @@ export class AppComponent {
         direct: 'forward',
         icon: 'trending-up'
       }
+      ,
+      {
+        title: 'Submit Execuse',
+        url: '/submit-execuse',
+        direct: 'forward',
+        icon: 'calendar'
+      }
       
       
 

@@ -35,7 +35,8 @@ const routes: Routes = [
   { path: 'Leaves', loadChildren: './pages/leaves/leaves.module#LeavesPageModule' },
   { path: 'Execuses', loadChildren: './pages/execuses/execuses.module#ExecusesPageModule' },
   { path: 'Duties', loadChildren: './pages/duties/duties.module#DutiesPageModule' },
-  { path: 'RequestStatus', loadChildren: './pages/request-status/request-status.module#RequestStatusPageModule' }
+  { path: 'RequestStatus', loadChildren: './pages/request-status/request-status.module#RequestStatusPageModule' },
+  { path: 'submit-execuse', loadChildren: './submit-execuse/submit-execuse.module#SubmitExecusePageModule' }
   // { path: 'walkthrough', loadChildren: './pages/walkthrough/walkthrough.module#WalkthroughPageModule' }
 ];
 
