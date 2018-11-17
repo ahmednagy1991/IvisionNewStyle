@@ -97,6 +97,13 @@ export class AppComponent {
         direct: 'forward',
         icon: 'calendar'
       }
+      ,
+      {
+        title: 'Manual Adjustment Request',
+        url: '/manual-adjustment-request',
+        direct: 'forward',
+        icon: 'clock'
+      }
       
       
 

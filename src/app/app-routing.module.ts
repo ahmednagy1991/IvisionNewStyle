@@ -36,7 +36,8 @@ const routes: Routes = [
   { path: 'Execuses', loadChildren: './pages/execuses/execuses.module#ExecusesPageModule' },
   { path: 'Duties', loadChildren: './pages/duties/duties.module#DutiesPageModule' },
   { path: 'RequestStatus', loadChildren: './pages/request-status/request-status.module#RequestStatusPageModule' },
-  { path: 'submit-execuse', loadChildren: './submit-execuse/submit-execuse.module#SubmitExecusePageModule' }
+  { path: 'submit-execuse', loadChildren: './submit-execuse/submit-execuse.module#SubmitExecusePageModule' },
+  { path: 'manual-adjustment-request', loadChildren: './manual-adjustment-request/manual-adjustment-request.module#ManualAdjustmentRequestPageModule' }
   // { path: 'walkthrough', loadChildren: './pages/walkthrough/walkthrough.module#WalkthroughPageModule' }
 ];
 

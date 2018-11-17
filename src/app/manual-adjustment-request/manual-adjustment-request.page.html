@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Manual Adjustment Request</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form (submit)="submitAdjustment()">
+
+  
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="adj.punch_date" name="punch_date"></ion-datetime>
+    </ion-item>
+
+
+
+    <ion-item>
+      <ion-label>Time</ion-label>
+      <ion-datetime displayFormat="HH:MM" [(ngModel)]="adj.punch_time" name="punch_time"></ion-datetime>
+    </ion-item>
+
+    <ion-item class="item-leave-height">
+      <ion-label>Reader</ion-label>
+      <ion-select [(ngModel)]="adj.reader_id" name="reader_id">
+        <ion-select-option *ngFor="let item of readerList" value="{{item.READER_ID}}">{{item.READER_NAME}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+
+
+    <ion-item class="item-leave-height">
+      <ion-label>Reasons</ion-label>
+      <ion-select [(ngModel)]="adj.reason_id" name="reason_id">
+        <ion-select-option *ngFor="let item of resons" value="{{item.reason_id}}">{{item.reason}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="item-leave-height">
+      <ion-label>Punch Type</ion-label>
+      <ion-select [(ngModel)]="adj.Punch_type" name="Punch_type">
+        <ion-select-option value="0">OUT</ion-select-option>
+        <ion-select-option value="1">IN</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label fixed>Notes</ion-label>
+      <ion-input type="text" [(ngModel)]="adj.req_note" name="req_note"></ion-input>
+    </ion-item>
+
+
+
+    <ion-button full (click)="submitAdjustment()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+      <ion-ripple-effect></ion-ripple-effect>
+      <ion-icon name="paper"></ion-icon>
+        Submit
+    </ion-button>
+
+    <!-- <div padding>
+      <button ion-button round color="primary" block>submit</button>
+    </div> -->
+
+
+  </form>
+</ion-content>
