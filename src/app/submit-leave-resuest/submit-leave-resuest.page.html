@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Submit Leave Request</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form (submit)="submitLeave()">
+  
+    <ion-item>
+      <ion-label fixed>Description</ion-label>
+      <ion-input type="text" [(ngModel)]="leaveRequest.Description" name="Description"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+        <ion-label>Start Date</ion-label>
+        <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="leaveRequest.StartDate" name="StartDate"></ion-datetime>
+      </ion-item>
+
+    
+
+    <ion-item>
+      <ion-label>End Date</ion-label>
+      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="leaveRequest.EndDate" name="EndDate"></ion-datetime>
+    </ion-item>
+
+
+   <ion-item class="item-leave-height">
+        <ion-label>Pay Status</ion-label>
+        <ion-select [(ngModel)]="leaveRequest.Paystatus" name="Paystatus">
+            <ion-select-option value="0">Paid</ion-select-option>
+            <ion-select-option value="1">Unpaid</ion-select-option>             
+        </ion-select>
+    </ion-item> 
+
+
+    <ion-item class="item-leave-height">
+        <ion-label>Reasons</ion-label>
+        <ion-select [(ngModel)]="leaveRequest.ReasonID" name="ReasonID">
+            <ion-select-option *ngFor="let item of resons" value="{{item.reason_id}}">{{item.reason}}</ion-select-option>             
+        </ion-select>
+    </ion-item> 
+
+
+    <ion-item>
+      <ion-label fixed>Notes</ion-label>
+      <ion-input type="text" [(ngModel)]="leaveRequest.Notes" name="Notes"></ion-input>
+    </ion-item>
+
+    <ion-button full (click)="submitLeave()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+      <ion-ripple-effect></ion-ripple-effect>
+      <ion-icon name="paper"></ion-icon>
+        Submit
+    </ion-button>
+
+
+<!-- 
+    <div padding>
+      <button ion-button round color="primary" block>submit</button>
+    </div> -->
+
+
+</form>
+</ion-content>

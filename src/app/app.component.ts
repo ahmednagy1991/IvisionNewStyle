@@ -104,6 +104,13 @@ export class AppComponent {
         direct: 'forward',
         icon: 'clock'
       }
+      ,
+      {
+        title: 'Submit Leave Request',
+        url: '/submit-leave-resuest',
+        direct: 'forward',
+        icon: 'paper'
+      }
       
       
 
