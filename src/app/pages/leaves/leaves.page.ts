@@ -5,7 +5,7 @@ import { LeavesService } from '../../../Services/LeavesService';
 import { Heplers } from '../../../providers/Helper/Helpers';
 //import { TranslateService } from '@ngx-translate/core';
 import { LeavListModel } from '../../../models/LeavListModel';
-import { NavController, LoadingController, ModalController,NavParams } from '@ionic/angular';
+import { NavController, LoadingController, ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-leaves',
@@ -21,13 +21,13 @@ export class LeavesPage implements OnInit {
     //this.GetLeaves();
   }
 
-
-  MapLeavesTable(res: any) {
+  //, { leavesTab: this.LeavesTab }
+  async MapLeavesTable(res: any) {
     debugger;
     if (res.code == 0) {
       this.LeavesTab = res.result as LeaveModel;
-      //const modal = this.modalCtrl.create(ModalContentPage, { leavesTab: this.LeavesTab });
-     // modal.present();
+      const modal = await this.modalCtrl.create({ component: ModalContentPage, id: this.LeavesTab.LV_ID.toString() });
+      return await modal.present();
     }
     else {
       this.helper.ShowErrorMessage(res.code);
@@ -67,19 +67,20 @@ export class LeavesPage implements OnInit {
   }
 
 }
+
+
 @Component({
   template: `
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Leave Details
+     
     </ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">
-        <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
-      </button>
-    </ion-buttons>
+    <ion-button (click)="dismiss()" icon-left size="medium" expand="full" shape="round" color="danger" tappable>
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="close"></ion-icon>
+   Close
+  </ion-button>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -107,14 +108,28 @@ export class ModalContentPage {
 
   constructor(
     public helper: Heplers,
-   // public params: NavParams,
-    //public viewCtrl: ViewController
-  ) {
-    //this.LeavesTab = params.get("leavesTab");
+    public params: NavParams,
+    public LevService: LeavesService,
+    private modalCtrl: ModalController) {
 
+    this.GetLeaves(params.data.modal["id"]);
+    debugger;
   }
 
+  MapLeave(res: any) {
+    if (res.code == 0) {
+      this.LeavesTab = res.result as LeaveModel;
+    }
+    else {
+      this.helper.ShowErrorMessage(res.code);
+    }
+
+  }
+  GetLeaves(LeaveId: number) {
+    debugger;
+    this.LevService.GetTodayLeaves(LeaveId).subscribe(res => this.MapLeave(res));
+  }
   dismiss() {
-   // this.viewCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
 }

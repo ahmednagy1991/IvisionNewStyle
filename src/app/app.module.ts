@@ -42,6 +42,8 @@ import { Heplers } from '../providers/Helper/Helpers';
 import { DecimalPipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { config } from '../providers/Config';
+import { ModalContentPage } from './pages/leaves/leaves.page';
+import { ModalTimTablePage } from './pages/time-table/time-table.page';
 //import { Device } from '@ionic-native/device';
 //import { AndroidPermissions } from '@ionic-native/android-permissions';
 
@@ -51,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,ModalContentPage,ModalTimTablePage
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -76,6 +79,13 @@ export function HttpLoaderFactory(http: HttpClient) {
       apiKey: 'AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y'
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+  ],
+  
+  entryComponents: [
+  
+    ModalContentPage,
+    ModalTimTablePage
+   
   ],
   providers: [
     StatusBar,

@@ -33,7 +33,7 @@ export class TimeTableService {
 
     GetTimeTableDetails(TTID: number) {
         return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/gettimetable',
-            'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&ttid=' + TTID + '&fields=TT_DATE,ENTRY_STATE,FROM_DATE_TIME,TO_DATE_TIME,OVERNIGHT_STATUS,DURATION,TT_STATE,ST_ID,ST_TITLE&token=' + this.parms.ApiToken)
+            'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&ttid=' + TTID + '&fields=TT_ID,TT_DATE,ENTRY_STATE,FROM_DATE_TIME,TO_DATE_TIME,OVERNIGHT_STATUS,DURATION,TT_STATE,ST_ID,ST_TITLE&token=' + this.parms.ApiToken)
     }
 
 

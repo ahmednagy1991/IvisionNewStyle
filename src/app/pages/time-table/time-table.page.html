@@ -1,9 +1,100 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>TimeTable</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Time Table</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-row>
+    <ion-col size="6" class="br bb datetime-btn" text-center>
+      <ion-item no-padding text-center>
+        <ion-label position="stacked" class="fw700 text-primary">
+          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+          From
+        </ion-label>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
+          [(ngModel)]="dateComp.from"></ion-datetime>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6" class="bb datetime-btn" text-center>
+      <ion-item no-padding text-center>
+        <ion-label position="stacked" class="fw700 text-primary">
+          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+          To
+        </ion-label>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
+          [(ngModel)]="dateComp.to"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-button full (click)="LoadTimeTable()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="search"></ion-icon>
+    View Time Table
+  </ion-button>
+
+
+  <ion-card>   
+
+
+    <div>
+      <ion-item (click)="LoadTimeTableDetails(att.TT_ID)" color="medium" tappable margin-bottom *ngFor="let att of TTListModel">
+        <ion-thumbnail slot="start">
+          <img src="assets/img/clockLogo.png">
+
+        </ion-thumbnail>
+        <ion-label>
+          <h2>
+            <strong>{{att.TT_DATE | date:'yyyy/MM/dd'}}</strong>
+          </h2>
+          <h3>
+            <ion-badge slot="start" color="secondary" class="rooms">
+              <strong>From {{att.FROM_DATE_TIME | date:'HH:mm'}} </strong>
+              <strong>To {{att.TO_DATE_TIME | date:'HH:mm'}}</strong>
+            </ion-badge>
+            <br/>
+            <ion-badge *ngIf="helper.GetTimeTableState(att.TT_STATE)=='Off day'" slot="start" color="success" class="rooms">
+              <strong>{{helper.GetTimeTableState(att.TT_STATE)}}</strong>
+            </ion-badge>
+            <ion-badge *ngIf="helper.GetTimeTableState(att.TT_STATE)=='Working day'" slot="start" color="warning" class="rooms">
+              <strong>{{helper.GetTimeTableState(att.TT_STATE)}}</strong>
+            </ion-badge>
+          </h3>
+        </ion-label>
+      </ion-item>
+    </div>
+
+
+    <!-- <div style="overflow-x:auto;">
+
+      <ion-grid>
+        <ion-row>
+         
+          <ion-col class="thro">DATE </ion-col>
+          <ion-col class="thro">To work </ion-col>
+          <ion-col class="thro">From Time </ion-col>
+          <ion-col class="thro">To Time </ion-col>
+    
+          
+        </ion-row>
+
+        <ion-row (click)="LoadTimeTableDetails(att.TT_ID)" *ngFor="let att of TTListModel" class="ro">
+         
+              <ion-col>{{att.TT_DATE  | date:'yyyy/MM/dd'}}</ion-col>
+              <ion-col>{{att.FROM_DATE_TIME  | date:'HH:mm'}}</ion-col>
+              <ion-col>{{att.TO_DATE_TIME  | date:'HH:mm'}}</ion-col>
+              <ion-col> {{helper.GetTTStatus(att.TT_STATE)}}</ion-col>
+            
+          
+        </ion-row>
+      </ion-grid>
+    </div> -->
+  </ion-card>
+
+
 
 </ion-content>

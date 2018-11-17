@@ -31,14 +31,49 @@
     </ion-col>
   </ion-row>
 
+
   <ion-button full (click)="GetRequestStatus()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
     <ion-ripple-effect></ion-ripple-effect>
     <ion-icon name="search"></ion-icon>
     View Request Status
   </ion-button>
 
+  <!-- <ion-button full (click)="GetRequestStatus()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="search"></ion-icon>
+    View Request Status
+  </ion-button> -->
 
-  <div style="overflow-x:auto;">
+  <div>
+    <ion-item color="medium" tappable margin-bottom *ngFor="let att of RequestList">
+      <ion-thumbnail slot="start">
+        <img src="assets/img/vac.png">
+
+      </ion-thumbnail>
+      <ion-label>
+        <h2>
+          <!-- <strong>{{att.TT_DATE | date:'yyyy/MM/dd'}}</strong> -->
+        </h2>
+        <h3>
+
+          <ion-badge slot="start" color="success" class="rooms">
+            <strong>Ref# {{att.REQUEST_ID}}</strong>
+          </ion-badge>
+
+        </h3>
+        <!-- <h3>
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong>Leave Title {{lev.LV_TITLE}}</strong>
+          </ion-badge>
+        </h3> -->
+
+      </ion-label>
+    </ion-item>
+  </div>
+
+
+
+  <!-- <div style="overflow-x:auto;">
 
       <ion-grid>
         <ion-row nowrap>
@@ -50,7 +85,7 @@
           <ion-col class="thro">Handle Date</ion-col>
           <ion-col class="thro">Handle By</ion-col>
           <ion-col class="thro">Requester</ion-col>         
-          <!--  -->
+       
         </ion-row>
 
         <ion-row nowrap *ngFor="let att of RequestList" class="ro">
@@ -62,17 +97,9 @@
             <ion-col>{{att.HANDLED_BY}}</ion-col>
             <ion-col>{{att.EMP_NAME}}</ion-col>
                     
-          <!-- <ion-col>{{att.AT_DATE | date:'yyyy/MM/dd'}}</ion-col>
-          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)}}</ion-col>
-          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_WORK)}}</ion-col>
-          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_ABSENT)}}</ion-col>
-          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_OVERTIME)}}</ion-col>
-          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</ion-col>
-          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</ion-col>
-          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_DUTIES)}}</ion-col>
-          <ion-col>{{helper.ToHoursString(att.AT_TOTAL_EXCUSE)}}</ion-col> -->
+        
         </ion-row>
       </ion-grid>
-    </div>
+    </div> -->
  
 </ion-content>

@@ -37,7 +37,36 @@
     View Duites
   </ion-button>
 
-  <div style="overflow-x:auto;">
+
+  <div>
+    <ion-item color="medium" tappable margin-bottom *ngFor="let lev of DutiyList">
+      <ion-thumbnail slot="start">
+        <img src="assets/img/vac.png">
+
+      </ion-thumbnail>
+      <ion-label>
+        <h2>
+          <!-- <strong>{{att.TT_DATE | date:'yyyy/MM/dd'}}</strong> -->
+        </h2>
+        <h3>
+
+          <ion-badge slot="start" color="success" class="rooms">
+            <strong>Leave ID {{lev.LV_ID}}</strong>
+          </ion-badge>
+
+        </h3>
+        <h3>
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong>Leave Title {{lev.LV_TITLE}}</strong>
+          </ion-badge>
+        </h3>
+
+      </ion-label>
+    </ion-item>
+  </div>
+
+
+  <!-- <div style="overflow-x:auto;">
 
 
 
@@ -51,9 +80,7 @@
           <ion-col class="thro">Duity ID</ion-col>
           <ion-col class="thro">Duity Title</ion-col>
           <ion-col class="thro"></ion-col>
-          <!-- <ion-col class="thro">From</ion-col>
-                <ion-col class="thro">To</ion-col>             -->
-          <!--  -->
+       
         </ion-row>
 
         <ion-row nowrap *ngFor="let lev of DutiyList" class="ro">
@@ -80,20 +107,7 @@
       </ion-grid>
     </ion-card-header>
 
-    <!--       
-      <ion-grid>
-        <div>
-            <ion-row nowrap class="ro">Leave Id : {{LeavesTab.LV_ID}}</ion-row>
-            <ion-row nowrap class="ro">Leave Title : {{LeavesTab.LV_TITLE}}</ion-row>
-            <ion-row nowrap class="ro">Leave From : {{LeavesTab.START_DATE}}</ion-row>
-            <ion-row nowrap class="ro">Leave To : {{LeavesTab.END_DATE}}</ion-row>
-            <ion-row nowrap class="ro">Leave Notes : {{LeavesTab.LV_NOTE}}</ion-row>
-            <ion-row nowrap class="ro">Leave Reason : {{LeavesTab.REASON_TITLE}}</ion-row>
-            <ion-row nowrap class="ro">Leave Status : {{helper.getPayStatus(LeavesTab.PAY_STATUS)}}</ion-row>
-        </div>
-         
-      </ion-grid> -->
-  </ion-card>
+  </ion-card> -->
 
 
 

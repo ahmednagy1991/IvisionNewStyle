@@ -9,7 +9,7 @@ import { TimeTableListModel } from '../../../models/TimeTableListModel';
 import { TimeTableService } from '../../../Services/TimeTableService';
 import { DateComponent } from '../../../models/DateComponent';
 //import { ModalController, Platform, ViewController } from 'ionic-angular';
-import { NavController, LoadingController, ModalController,NavParams } from '@ionic/angular';
+import { NavController, LoadingController, ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-time-table',
@@ -18,12 +18,12 @@ import { NavController, LoadingController, ModalController,NavParams } from '@io
 })
 export class TimeTablePage implements OnInit {
 
-  TTableModel: TimeTableModel = { DURATION: 0, TO_DATE_TIME: new Date(), FROM_DATE_TIME: new Date(), ENTRY_STATE: 0, OVERNIGHT_STATUS: 0, ST_ID: "", ST_TITLE: "", TT_DATE: new Date(), TT_STATE: 0 };
+  TTableModel: TimeTableModel = { TT_ID:"",DURATION: 0, TO_DATE_TIME: new Date(), FROM_DATE_TIME: new Date(), ENTRY_STATE: 0, OVERNIGHT_STATUS: 0, ST_ID: "", ST_TITLE: "", TT_DATE: new Date(), TT_STATE: 0 };
   TTListModel: TimeTableListModel[];
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
 
 
-  constructor(public modalCtrl: ModalController, public helper: Heplers, public TTSerivce: TimeTableService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public modalCtrl: ModalController, public helper: Heplers, public TTSerivce: TimeTableService, public navCtrl: NavController) {
   }
 
 
@@ -39,7 +39,7 @@ export class TimeTablePage implements OnInit {
     if (res.code == 0) {
       this.TTableModel = res.result as TimeTableModel;
       //const modal =await this.modalCtrl.create(ModalTimTablePage, { TTTab: this.TTableModel });
-      const modal =await this.modalCtrl.create({component:ModalTimTablePage})
+      const modal = await this.modalCtrl.create({ component: ModalTimTablePage, id: this.TTableModel.TT_ID })
       modal.present();
     }
     else {
@@ -78,14 +78,15 @@ export class TimeTablePage implements OnInit {
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Time Table Details
+     
     </ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">
-        <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
-      </button>
-    </ion-buttons>
+
+    <ion-button full (click)="dismiss()" icon-left size="medium" expand="full" shape="round" color="danger" tappable>
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="close"></ion-icon>
+    Close
+  </ion-button>
+
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -114,17 +115,37 @@ export class ModalTimTablePage {
   TTableModel: TimeTableModel
 
   constructor(
-   // public platform: Platform,
-     public helper: Heplers,
+    // public platform: Platform,
+    public helper: Heplers,
     public params: NavParams,
+    private modalCtrl: ModalController,
+    public TTSerivce: TimeTableService
     //public viewCtrl: ViewController
   ) {
-    this.TTableModel = params.get("TTTab");
+    debugger;
+    // this.TTableModel = params.get("TTTab");
+    this.LoadTimeTableDetails(params.data.modal["id"]);
 
   }
 
+  LoadTimeTableDetails(TTID: number) {
+    debugger;
+
+    this.TTSerivce.GetTimeTableDetails(TTID).subscribe(res => this.MapTTListTableDetails(res));
+  }
+
+  MapTTListTableDetails(res: any) {
+    if (res.code == 0) {
+      this.TTableModel = res.result as TimeTableModel;
+
+    }
+    else {
+      this.helper.ShowErrorMessage(res.code);
+    }
+  }
+
   dismiss() {
-   // this.viewCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
 
   ngOnInit() {

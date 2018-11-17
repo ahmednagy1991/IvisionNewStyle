@@ -2,6 +2,7 @@
 import { Datetime } from "@ionic/angular";
 export class TimeTableModel {
 
+    TT_ID:string;
     TT_DATE:Date;
     ENTRY_STATE:number;
     FROM_DATE_TIME:Date;
