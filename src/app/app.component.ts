@@ -111,9 +111,15 @@ export class AppComponent {
         direct: 'forward',
         icon: 'paper'
       }
+      ,
+      {
+        title: 'Change Password',
+        url: '/change-password',
+        direct: 'forward',
+        icon: 'key'
+      }
       
       
-
      
       // },
       // {

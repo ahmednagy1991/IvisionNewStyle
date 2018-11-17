@@ -38,7 +38,8 @@ const routes: Routes = [
   { path: 'RequestStatus', loadChildren: './pages/request-status/request-status.module#RequestStatusPageModule' },
   { path: 'submit-execuse', loadChildren: './submit-execuse/submit-execuse.module#SubmitExecusePageModule' },
   { path: 'manual-adjustment-request', loadChildren: './manual-adjustment-request/manual-adjustment-request.module#ManualAdjustmentRequestPageModule' },
-  { path: 'submit-leave-resuest', loadChildren: './submit-leave-resuest/submit-leave-resuest.module#SubmitLeaveResuestPageModule' }
+  { path: 'submit-leave-resuest', loadChildren: './submit-leave-resuest/submit-leave-resuest.module#SubmitLeaveResuestPageModule' },
+  { path: 'change-password', loadChildren: './pages/change-password/change-password.module#ChangePasswordPageModule' }
   // { path: 'walkthrough', loadChildren: './pages/walkthrough/walkthrough.module#WalkthroughPageModule' }
 ];
 
