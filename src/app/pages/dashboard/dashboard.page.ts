@@ -21,6 +21,7 @@ import { TimeTableService } from '../../../Services/TimeTableService';
 import { AttendanceStatisticsModel } from '../../../models/AttendanceStatisticsModel';
 import { DecimalPipe } from '@angular/common';
 import { HelperService } from '../../../Services/HelperService';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 @Component({
   selector: 'app-dashboard',
@@ -53,7 +54,7 @@ export class DashboardPage implements OnInit {
   dashbrd: string;
 
 
-  constructor(public helpService: HelperService, public TTSerivce: TimeTableService, public punservice: PunchesService, public AttService: AttendanceService, public navCtrl: NavController, public Config: config,
+  constructor(public splash:SplashScreen,public helpService: HelperService, public TTSerivce: TimeTableService, public punservice: PunchesService, public AttService: AttendanceService, public navCtrl: NavController, public Config: config,
     public storage: Storage,
     //public setStorage: Settings, 
     public helper: Heplers, public api: Api,
@@ -68,6 +69,7 @@ export class DashboardPage implements OnInit {
 
 
     this.ReloadChart();
+    //this.splash.show();
     //this.renderChart();
   }
   MapPunchTable(res: any) {

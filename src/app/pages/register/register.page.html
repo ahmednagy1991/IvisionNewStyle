@@ -13,7 +13,7 @@
     </div>
 
     <!-- Register form -->
-    <form [formGroup]="onRegisterForm" class="list-form">
+    <!-- <form [formGroup]="onRegisterForm" class="list-form">
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">
           <ion-icon name="mail" item-start></ion-icon>
@@ -52,7 +52,42 @@
           This field is required
         </ion-text>
       </p>
-    </form>
+    </form> -->
+
+    <form (submit)="signUp()">
+
+ 
+
+
+        <ion-item>
+            <ion-label>Employee Id</ion-label>
+            <ion-input  [(ngModel)]="usr.emp_id" name="emp_id"></ion-input>
+          </ion-item>
+    
+    
+    
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input [(ngModel)]="usr.emp_pwd" name="emp_pwd"></ion-input>
+        </ion-item>
+    
+    
+<!--     
+        <ion-item>
+          <ion-label>Password Confirmation</ion-label>
+          <ion-input   [(ngModel)]="usr.emp_pwd" name="emp_pwd"></ion-input >
+        </ion-item> -->
+    
+    
+        <ion-button full (click)="signUp()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+          <ion-ripple-effect></ion-ripple-effect>
+          <ion-icon name="paper"></ion-icon>
+            Submit
+        </ion-button>
+        
+    
+      </form>
+
 
     <div margin-top>
       <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="signUp()" [disabled]="!onRegisterForm.valid"

@@ -31,6 +31,12 @@ export class UserService {
         'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&old_password='+OldPassword+'&new_password='+NewPassword+'&token=' + this.parms.ApiToken)
     }
 
+    RegisterUser(UUID:string,EMPID:string,PASSWORD:string) {
+        debugger;
+        return this.api.callGet('ivmtwebsdk/ivmtTrans.dll/api/v52/ivmtTrans/RegisterDevice',
+        'emp_id=' + EMPID + '&access_type=0'+'&emp_pwd='+PASSWORD+'&apikey=' + this.parms.ApiKey)
+    }
+
    
 
 

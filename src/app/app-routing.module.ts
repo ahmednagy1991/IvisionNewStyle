@@ -39,7 +39,8 @@ const routes: Routes = [
   { path: 'submit-execuse', loadChildren: './submit-execuse/submit-execuse.module#SubmitExecusePageModule' },
   { path: 'manual-adjustment-request', loadChildren: './manual-adjustment-request/manual-adjustment-request.module#ManualAdjustmentRequestPageModule' },
   { path: 'submit-leave-resuest', loadChildren: './submit-leave-resuest/submit-leave-resuest.module#SubmitLeaveResuestPageModule' },
-  { path: 'change-password', loadChildren: './pages/change-password/change-password.module#ChangePasswordPageModule' }
+  { path: 'change-password', loadChildren: './pages/change-password/change-password.module#ChangePasswordPageModule' },
+  { path: 'geo-punching', loadChildren: './pages/geo-punching/geo-punching.module#GeoPunchingPageModule' }
   // { path: 'walkthrough', loadChildren: './pages/walkthrough/walkthrough.module#WalkthroughPageModule' }
 ];
 

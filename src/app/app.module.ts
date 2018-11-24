@@ -56,7 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [AppComponent,ModalContentPage,ModalTimTablePage
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,      
     BrowserAnimationsModule,
     IonicModule.forRoot(environment.config),
     AppRoutingModule,
@@ -92,6 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AttendanceService,
     PunchesService,
     LeavesService,
+    
     //AndroidPermissions,
     Api,
     User,

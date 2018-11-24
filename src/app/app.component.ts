@@ -91,6 +91,13 @@ export class AppComponent {
         icon: 'trending-up'
       }
       ,
+      
+      {
+        title: 'Geo Punching',
+        url: '/geo-punching',
+        direct: 'forward',
+        icon: 'map'
+      },
       {
         title: 'Submit Execuse',
         url: '/submit-execuse',
@@ -158,20 +165,23 @@ export class AppComponent {
     //   this.statusBar.styleDefault();
     //   this.splashScreen.hide();
 
-    //   this.androidPermissions.requestPermissions(
-    //     [
-    //       this.androidPermissions.PERMISSION.CAMERA,
-    //       this.androidPermissions.PERMISSION.CALL_PHONE,
-    //       this.androidPermissions.PERMISSION.GET_ACCOUNTS,
-    //       this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
-    //       this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE
-    //     ]
-    //   );
+    // this.androidPermissions.requestPermissions(
+    //   [
+    //     this.androidPermissions.PERMISSION.CAMERA,
+    //     this.androidPermissions.PERMISSION.CALL_PHONE,
+    //     this.androidPermissions.PERMISSION.GET_ACCOUNTS,
+    //     this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
+    //     this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE
+    //   ]
+    // );
 
 
     // });
 
     this.initializeApp();
+
+   
+    
     this.storage.get(this.Myconfig.UserInformation).then(res => this.sh(res));
   }
   sh(res: any) {
@@ -183,6 +193,17 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      //  this.androidPermissions.requestPermissions(
+      // [
+      //   this.androidPermissions.PERMISSION.CAMERA,
+      //   this.androidPermissions.PERMISSION.CALL_PHONE,
+      //   this.androidPermissions.PERMISSION.GET_ACCOUNTS,
+      //   this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
+      //   this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE
+      // ])
+
+
       // Set language of the app.
       this.translateService.setDefaultLang(environment.language);
       this.translateService.use(environment.language);

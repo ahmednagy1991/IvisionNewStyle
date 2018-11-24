@@ -1,7 +1,7 @@
 {
-    "app.name": "ionBooking",
+    "app.name": "IVisionMT",
     "app.version": "2",
-    "app.description": "Ionic 4 Hotel Booking Theme",
+    "app.description": "IVisionMT",
 
     "app.button.search": "Search",
     "app.button.checkout": "Checkout",

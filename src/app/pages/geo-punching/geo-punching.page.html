@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Geo Punching</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- [styles]="agmStyles" -->
+<ion-content padding>
+  <ion-card-content no-padding>
+    <agm-map [latitude]="26.8357675" [longitude]="30.7956597" [zoom]="9" [zoomControl]="false" 
+      [streetViewControl]="true">
+      <agm-marker [latitude]="26.8357675" [longitude]="30.7956597"></agm-marker>
+    </agm-map>
+  </ion-card-content>
+</ion-content>
