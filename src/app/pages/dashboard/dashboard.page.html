@@ -53,11 +53,15 @@
     <ion-card-content>
       <ion-grid>
         <div>
-          <ion-row nowrap class="ro">Working Days : {{attSummary.workingDays}} ({{attSummary.workingDays_Per | number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">Worked Days : {{attSummary.workedDays}} ({{attSummary.workedDays_Per | number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">Worked With Delay : {{attSummary.workedWithDelay}} ({{attSummary.workedWithDelay_Per | number:'1.2-2' }} %)</ion-row>
+          <ion-row nowrap class="ro">Working Days : {{attSummary.workingDays}} ({{attSummary.workingDays_Per |
+            number:'1.2-2' }} %)</ion-row>
+          <ion-row nowrap class="ro">Worked Days : {{attSummary.workedDays}} ({{attSummary.workedDays_Per |
+            number:'1.2-2' }} %)</ion-row>
+          <ion-row nowrap class="ro">Worked With Delay : {{attSummary.workedWithDelay}}
+            ({{attSummary.workedWithDelay_Per | number:'1.2-2' }} %)</ion-row>
           <ion-row nowrap class="ro">Absent : {{attSummary.absent}} ({{attSummary.absent_Per | number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">Absent With Duity: {{attSummary.absentWithDuity}} ({{attSummary.absentWithDuity_Per | number:'1.2-2' }} %)</ion-row>
+          <ion-row nowrap class="ro">Absent With Duity: {{attSummary.absentWithDuity}}
+            ({{attSummary.absentWithDuity_Per | number:'1.2-2' }} %)</ion-row>
           <ion-row nowrap class="ro">Vac Days : {{attSummary.VacDays}} ({{attSummary.VacDays_Per | number:'1.2-2' }} %)</ion-row>
           <ion-row nowrap class="ro">Off Days : {{attSummary.OffDays}} ({{attSummary.OffDays_Per | number:'1.2-2' }} %)</ion-row>
           <ion-row nowrap class="ro">No T.T : {{attSummary.NoTT}} ({{attSummary.NoTT_Per | number:'1.2-2' }} %)</ion-row>
@@ -73,7 +77,7 @@
   <div padding>
     <ion-segment [(ngModel)]="CurrentTab">
       <ion-segment-button value="TimeTable">
-        Time Table
+        Timetable
       </ion-segment-button>
       <ion-segment-button value="Attendance">
         Attendance
@@ -85,7 +89,7 @@
   </div>
 
   <div [ngSwitch]="CurrentTab">
-    <ion-item *ngSwitchCase="'TimeTable'">
+    <div *ngSwitchCase="'TimeTable'">
       <!-- <ion-list>
         <ion-item *ngFor="let att of TTListModel">
           <div [ngClass]="att.TT_STATE==2 ? 'GreenBackGround': ''">
@@ -98,23 +102,33 @@
       <div>
         <ion-item color="medium" tappable margin-bottom *ngFor="let att of TTListModel">
           <ion-thumbnail slot="start">
-            <img src="assets/img/clockLogo.png">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <img src="assets/img/clockLogo.png">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
 
           </ion-thumbnail>
           <ion-label>
-            <h2>
+            <!-- EEEE, MMMM d, y, h:mm:ss a zzzz -->
+            <h2> <strong>{{att.TT_DATE | date:'EEEE'}}</strong></h2>
+            <h3>
               <strong>{{att.TT_DATE | date:'yyyy/MM/dd'}}</strong>
-            </h2>
+            </h3>
             <h3>
               <ion-badge slot="start" color="secondary" class="rooms">
                 <strong>From {{att.FROM_DATE_TIME | date:'HH:mm'}} </strong>
                 <strong>To {{att.TO_DATE_TIME | date:'HH:mm'}}</strong>
               </ion-badge>
-              <br/>
+              <br />
               <ion-badge *ngIf="helper.GetTimeTableState(att.TT_STATE)=='Off day'" slot="start" color="success" class="rooms">
                 <strong>{{helper.GetTimeTableState(att.TT_STATE)}}</strong>
               </ion-badge>
-              <ion-badge *ngIf="helper.GetTimeTableState(att.TT_STATE)=='Working day'" slot="start" color="warning" class="rooms">
+              <ion-badge *ngIf="helper.GetTimeTableState(att.TT_STATE)=='Working day'" slot="start" color="warning"
+                class="rooms">
                 <strong>{{helper.GetTimeTableState(att.TT_STATE)}}</strong>
               </ion-badge>
             </h3>
@@ -129,10 +143,10 @@
 
 
 
-    </ion-item>
+    </div>
 
 
-    <ion-item *ngSwitchCase="'Attendance'">
+    <div *ngSwitchCase="'Attendance'">
 
       <!-- <ion-list> -->
       <!-- <ion-item *ngFor="let att of AttendanceTab">
@@ -152,50 +166,67 @@
       <div>
         <ion-item color="medium" tappable margin-bottom *ngFor="let att of AttendanceTab">
           <ion-thumbnail slot="start">
-            <img src="assets/img/AttendanceLogo.png">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <img src="assets/img/AttendanceLogo.png">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+
           </ion-thumbnail>
           <ion-label>
             <h2>
-              <strong>Attendance On</strong>
+              <strong>{{att.AT_DATE | date:'EEEE'}}</strong>
 
             </h2>
-            <h2>
+            <h3>
               <strong>{{att.AT_DATE | date:'yyyy/MM/dd'}}</strong>
-            </h2>
+            </h3>
             <h3>
-              <ion-badge slot="start" color="secondary" class="rooms">
-                <strong>Reg.HRS {{helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)}}</strong>
+              <ion-badge style="width: 170px" slot="start" color="secondary" class="rooms">
+                <strong style="float:left">Reg.HRS {{helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)}}</strong>
+              </ion-badge>
+            </h3>
+
+            <h3>
+              <ion-badge style="width: 170px" slot="start" color="secondary" class="rooms">
+                <strong style="float:left">Worked Hours {{helper.GetHours(att.AT_TOTAL_WORK_DURATION)}}</strong>
+              </ion-badge>
+            </h3>
+
+
+            <h3>
+              <ion-badge style="width: 170px" slot="start" color="secondary" class="rooms">
+                <strong style="float:left">Absent {{helper.ToHoursString(att.AT_TOTAL_ABSENT)}}</strong>
               </ion-badge>
             </h3>
             <h3>
-              <ion-badge slot="start" color="secondary" class="rooms">
-                <strong>Absent {{helper.ToHoursString(att.AT_TOTAL_ABSENT)}}</strong>
+              <ion-badge style="width: 170px" slot="start" color="secondary" class="rooms">
+                <strong style="float:left">Overtime {{helper.ToHoursString(att.AT_TOTAL_OVERTIME)}}</strong>
               </ion-badge>
             </h3>
             <h3>
-              <ion-badge slot="start" color="secondary" class="rooms">
-                <strong>Overtime {{helper.ToHoursString(att.AT_TOTAL_OVERTIME)}}</strong>
+              <ion-badge style="width: 170px" slot="start" color="secondary" class="rooms">
+                <strong style="float:left">Duties Overtime {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}
+                </strong>
               </ion-badge>
             </h3>
             <h3>
-              <ion-badge slot="start" color="secondary" class="rooms">
-                <strong>Duties Overtime {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}} </strong>
-              </ion-badge>
-            </h3>
-            <h3>
-              <ion-badge slot="start" color="secondary" class="rooms">
-                <strong>Break {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</strong>
+              <ion-badge style="width: 170px" slot="start" color="secondary" class="rooms">
+                <strong style="float:left">Break {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</strong>
               </ion-badge>
             </h3>
             <h3>
 
-              <ion-badge slot="start" color="secondary" class="rooms">
-                <strong>Duties {{helper.ToHoursString(att.AT_TOTAL_DUTIES)}}</strong>
+              <ion-badge style="width: 170px" slot="start" color="secondary" class="rooms">
+                <strong style="float:left">Duties {{helper.ToHoursString(att.AT_TOTAL_DUTIES)}}</strong>
               </ion-badge>
             </h3>
             <h3>
-              <ion-badge slot="start" color="secondary" class="rooms">
-                <strong>Excuse {{helper.ToHoursString(att.AT_TOTAL_EXCUSE)}}</strong>
+              <ion-badge style="width: 170px" slot="start" color="secondary" class="rooms">
+                <strong style="float:left">Excuse {{helper.ToHoursString(att.AT_TOTAL_EXCUSE)}}</strong>
               </ion-badge>
             </h3>
 
@@ -246,8 +277,8 @@
               </ion-grid>
             </div>
             -->
-    </ion-item>
-    <ion-item *ngSwitchCase="'Punches'">
+    </div>
+    <div *ngSwitchCase="'Punches'">
 
       <!-- <ion-list>
         <ion-item *ngFor="let att of PunchTable">
@@ -263,38 +294,48 @@
       <div>
         <ion-item color="medium" tappable margin-bottom *ngFor="let att of PunchTable">
           <ion-thumbnail slot="start">
-            <img src="assets/img/fingerprints.png">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <img src="assets/img/fingerprints.png">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
           </ion-thumbnail>
           <ion-label>
-            <h3>
-                <!--  -->
 
-              <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='IN'"  slot="start" color="success" class="rooms">
+            <h2>
+              <strong>{{att.PUNCH_DATETIME | date:'EEEE'}}</strong>
+            </h2>
+            <h3>
+              <strong>{{att.PUNCH_DATETIME | date:'yyyy/MM/dd'}}</strong>
+            </h3>
+            <h3>
+              <!--  -->
+
+              <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='IN'" slot="start" color="success" class="rooms">
                 <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
                 <!-- <strong>Punch Type </strong>
                     <br/><br/>
                     <strong>Reader {{att.READER_NAME}} </strong> -->
               </ion-badge>
 
-              <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='OUT'"  slot="start" color="danger" class="rooms">
-                  <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
-                  <!-- <strong>Punch Type </strong>
+              <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='OUT'" slot="start" color="danger" class="rooms">
+                <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
+                <!-- <strong>Punch Type </strong>
                       <br/><br/>
                       <strong>Reader {{att.READER_NAME}} </strong> -->
-                </ion-badge>
-              
-            </h3>
-            <h2>
-              <strong>On {{att.PUNCH_DATETIME | date:'yyyy/MM/dd'}}</strong>
-            </h2>
+              </ion-badge>
 
+            </h3>
           </ion-label>
         </ion-item>
       </div>
 
 
 
-    </ion-item>
+    </div>
   </div>
 
 

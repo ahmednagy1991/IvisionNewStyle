@@ -6,7 +6,7 @@
       <div class="logo"></div>
       <h4 no-margin>
         <ion-text color="light">
-          {{ 'app.name' | translate }}
+         Register
           <ion-text color="secondary" class="fw700"> </ion-text>
         </ion-text>
       </h4>
@@ -57,23 +57,47 @@
     <form (submit)="signUp()">
 
  
-
         <ion-item no-padding class="animated fadeInUp">
+            <ion-label position="floating">
+
+              <h1>
+                <ion-icon name="mail" item-start></ion-icon>
+                Employee ID
+              </h1>
+            </ion-label>
+            <ion-input color="secondary" type="email" [(ngModel)]="usr.emp_id" name="empId"></ion-input>
+          </ion-item>
+
+
+        <!-- <ion-item no-padding class="animated fadeInUp">
             <ion-label position="floating">
               <ion-icon name="mail" item-start></ion-icon>
               Employee Id
             </ion-label>
             <ion-input color="secondary" type="email" [(ngModel)]="usr.emp_id" name="emp_id"></ion-input>
-          </ion-item>
+          </ion-item> -->
     
 
+          <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">
+                <h1>
+                  <ion-icon name="lock" item-start></ion-icon>
+                  Password
+                </h1>
+              
+              </ion-label>
+  
+              <ion-input color="secondary" type="password" [(ngModel)]="usr.emp_pwd" name="password"></ion-input>
+            </ion-item>
+
+<!-- 
           <ion-item no-padding class="animated fadeInUp">
             <ion-label position="floating">
               <ion-icon name="lock" item-start></ion-icon>
               Password
             </ion-label>
             <ion-input color="secondary" type="password" [(ngModel)]="usr.emp_pwd" name="emp_pwd"></ion-input>
-          </ion-item>
+          </ion-item> -->
 
     
     

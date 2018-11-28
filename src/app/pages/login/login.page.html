@@ -103,97 +103,104 @@
 
 <ion-content padding class="animated fadeIn login auth-page ">
 
-  <div >
- 
-      <!-- class="splash-bg2" -->
+  <div>
+
+    <!-- class="splash-bg2" -->
 
 
-      <div class="auth-content splash-bg2">
+    <div class="auth-content splash-bg2">
 
 
-        <!-- Logo -->
-        <div padding-horizontal text-center class="animated fadeInDown">
-          <!-- <div class="logo">
+      <!-- Logo -->
+      <div padding-horizontal text-center class="animated fadeInDown">
+        <!-- <div class="logo">
 
           </div> -->
-          <h4 no-margin>
-            <ion-text color="light">
-              <!-- IVision
+        <h4 no-margin>
+          <ion-text color="light">
+            <!-- IVision
                 <ion-text color="secondary" class="fw700">MT</ion-text>
                -->
 
-              <img src="assets/img/logo.png">
-            </ion-text>
-          </h4>
+            <img src="assets/img/logo.png">
+          </ion-text>
+        </h4>
 
-          <form (submit)="doLogin()" class="list-form ">
-              <ion-item no-padding class="animated fadeInUp">
-                <ion-label position="floating">
-                  <ion-icon name="mail" item-start></ion-icon>
-                  Employee Id
-                </ion-label>
-                <ion-input color="secondary" type="email" [(ngModel)]="account.empId" name="empId"></ion-input>
-              </ion-item>
-              <!-- <p ion-text class="text08">
+        <form (submit)="doLogin()" class="list-form ">
+          <ion-item no-padding class="animated fadeInUp">
+            <ion-label position="floating">
+
+              <h1>
+                <ion-icon name="mail" item-start></ion-icon>
+                Employee ID
+              </h1>
+            </ion-label>
+            <ion-input color="secondary" type="email" [(ngModel)]="account.empId" name="empId"></ion-input>
+          </ion-item>
+          <!-- <p ion-text class="text08">
                   <ion-text color="danger">
                     EmployeeId
                   </ion-text>
                 </p> -->
-    
-              <ion-item no-padding class="animated fadeInUp">
-                <ion-label position="floating">
-                  <ion-icon name="lock" item-start></ion-icon>
-                  Password
-                </ion-label>
-                <ion-input color="secondary" type="password" [(ngModel)]="account.password" name="password"></ion-input>
-              </ion-item>
-              <!-- <p ion-text color="danger" class="text08">
+
+          <ion-item no-padding class="animated fadeInUp">
+            <ion-label position="floating">
+              <h1>
+                <ion-icon name="lock" item-start></ion-icon>
+                Password
+              </h1>
+            
+            </ion-label>
+
+            <ion-input color="secondary" type="password" [(ngModel)]="account.password" name="password"></ion-input>
+          </ion-item>
+          <!-- <p ion-text color="danger" class="text08">
                   <ion-text color="danger">
                     Password
                   </ion-text>
                 </p> -->
-    
-              <div>
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-12>
-                      <ion-button full type="submit" icon-left size="medium" expand="" shape="round" color="dark" tappable>
-                        <ion-icon name="log-in"></ion-icon>
-                        Login
-                      </ion-button>
-                    </ion-col>
-                    <ion-col col-12>
-                      <ion-button full (click)="goToRegister()" icon-left size="medium" expand="full" shape="round" color="dark"
-                        tappable>
-                        <ion-icon name="log-in"></ion-icon>
-                        Register
-                      </ion-button>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-    
-    
-    
-              </div>
-    
-    
-    
-    
-    
-            </form>
 
-            
-        </div>
+          <div>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-button full type="submit" icon-left size="medium" expand="" shape="round" color="dark" tappable>
+                    <ion-icon name="log-in"></ion-icon>
+                    Login
+                  </ion-button>
+                </ion-col>
+                <ion-col col-12>
+                  <ion-button full (click)="goToRegister()" icon-left size="medium" expand="full" shape="round" color="dark"
+                    tappable>
+                    <ion-icon name="log-in"></ion-icon>
+                    Register
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
 
-        <!-- Login form -->
-      
+
+
+          </div>
 
 
 
 
+
+        </form>
 
 
       </div>
+
+      <!-- Login form -->
+
+
+
+
+
+
+
     </div>
+  </div>
 
 </ion-content>

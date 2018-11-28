@@ -4,7 +4,7 @@ import { RouterModule, RouteReuseStrategy, Routes } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-
+//import { Geolocation } from '@ionic-native/geolocation';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -92,7 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AttendanceService,
     PunchesService,
     LeavesService,
-    
+    //Geolocation,
     //AndroidPermissions,
     Api,
     User,

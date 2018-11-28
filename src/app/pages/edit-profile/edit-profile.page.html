@@ -29,29 +29,30 @@
               <ion-label class="fw700">Employee Information</ion-label>
             </ion-list-header>
 
-            <ion-item>
+            <ion-item *ngIf="Employee.EMP_NAME!='null'">
               <ion-label color="dark" position="stacked">Employee Name</ion-label>
-              <ion-input inputmode="text" placeholder="Ex..: Joe Doe" value="{{Employee.EMP_NAME}}"></ion-input>
+              <ion-input [readonly]="true" inputmode="text" placeholder="Ex..: Joe Doe" value="{{Employee.EMP_NAME}}"></ion-input>
             </ion-item>
     
-            <ion-item>
+            <ion-item *ngIf="Employee.DEPT_NAME!='null'">
               <ion-label color="dark" position="stacked">Department Name</ion-label>
-              <ion-input inputmode="email" placeholder="" value="{{Employee.DEPT_NAME}}"></ion-input>
+              <ion-input  [readonly]="true" inputmode="email" placeholder="" value="{{Employee.DEPT_NAME}}"></ion-input>
             </ion-item>
     
-            <ion-item>
+            <ion-item *ngIf="Employee.ORG_NAME!='null'">
               <ion-label color="dark" position="stacked">Organization</ion-label>
-              <ion-input inputmode="text" placeholder="" value="{{Employee.ORG_NAME}}"></ion-input>
+              <ion-input  [readonly]="true" inputmode="text" placeholder="" value="{{Employee.ORG_NAME}}"></ion-input>
             </ion-item>
     
-            <ion-item>
+            <ion-item *ngIf="Employee.DOJ!='null'">
               <ion-label color="dark" position="stacked">Date of join</ion-label>
-              <ion-input inputmode="text" placeholder="" value="{{Employee.DOJ}}"></ion-input>
+              <ion-input  [readonly]="true" inputmode="text" placeholder="" value="{{Employee.DOJ}}"></ion-input>
             </ion-item>
-            <ion-item>
+            
+            <!-- <ion-item>
               <ion-label color="dark" position="stacked">State</ion-label>
               <ion-input inputmode="text" placeholder="" value="{{Employee.STATE}}"></ion-input>
-            </ion-item>
+            </ion-item> -->
           
             <!-- <ion-item>
               <ion-label color="dark">{{ 'app.label.city' | translate }}</ion-label>

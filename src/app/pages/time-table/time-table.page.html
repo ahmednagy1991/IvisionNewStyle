@@ -44,7 +44,14 @@
     <div>
       <ion-item (click)="LoadTimeTableDetails(att.TT_ID)" color="medium" tappable margin-bottom *ngFor="let att of TTListModel">
         <ion-thumbnail slot="start">
-          <img src="assets/img/clockLogo.png">
+          <!-- <img src="assets/img/clockLogo.png"> -->
+          <ion-grid>
+              <ion-row>
+                <ion-col>
+                    <img src="assets/img/clockLogo.png">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
 
         </ion-thumbnail>
         <ion-label>

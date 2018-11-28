@@ -7,6 +7,7 @@ import { Heplers } from '../../../providers/Helper/Helpers';
 import { AttendancePunches } from '../../../models/AttendancePunches';
 import { AttendanceTotalsModel } from '../../../models/AttendanceTotalsModel';
 
+
 @Component({
   selector: 'app-attendance',
   templateUrl: './attendance.page.html',

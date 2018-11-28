@@ -34,29 +34,46 @@
     </ion-label>
   </ion-item> -->
 
-  <ion-list no-border>
-    <ion-list-header>
+  <!-- <ion-list no-border> -->
+  <!-- <ion-list-header>
       <ion-text color="dark">
-        <h5>General</h5>
+        <h5></h5>
       </ion-text>
-    </ion-list-header>
-    <ion-item>
-      <ion-icon name="settings" slot="start" color="primary"></ion-icon>
-      <ion-label color="primary">Service URL</ion-label>
-      <form (submit)="saveSettings()">
-        <ion-item>
-         
-          <ion-input [(ngModel)]="settingItem.mainurl" name="mainurl"></ion-input>
-        </ion-item>
-        <button ion-button round block>Save</button>
-      </form>
-    </ion-item>
-    <!-- <ion-item>
+    </ion-list-header> -->
+  <!-- <ion-item> -->
+  <!-- <ion-icon name="settings" slot="start" color="primary"></ion-icon>
+      <ion-label color="primary">Service URL</ion-label> -->
+  <form (submit)="saveSettings()">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-label>IVision Mobile Service URL :</ion-label>
+            </ion-col>         
+          </ion-row>
+      <ion-row>
+        <ion-col>
+            <ion-input [(ngModel)]="settingItem.mainurl" name="mainurl"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+ 
+
+    <ion-button full (click)="submitExecuse()" icon-left size="medium" expand="full" shape="round" color="dark"
+      tappable>
+      <ion-ripple-effect></ion-ripple-effect>
+      <ion-icon name="save"></ion-icon>
+      Save
+    </ion-button>
+
+    <!-- <button ion-button round block>Save</button> -->
+  </form>
+  <!-- </ion-item> -->
+  <!-- <ion-item>
       <ion-icon name="notifications" slot="start" color="primary"></ion-icon>
       <ion-label class="label" color="primary"> Enable notifications </ion-label>
       <ion-toggle [(ngModel)]="enableNotifications"></ion-toggle>
     </ion-item> -->
-  </ion-list>
+  <!-- </ion-list> -->
   <!-- <ion-list>
     <ion-list-header>
       <ion-text color="dark">

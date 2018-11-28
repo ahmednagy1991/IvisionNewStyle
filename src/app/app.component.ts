@@ -40,7 +40,7 @@ export class AppComponent {
   ) {
     this.appPages = [
       {
-        title: 'Home',
+        title: 'Dashboard',
         url: '/Dashboard',
         direct: 'root',
         icon: 'home'
@@ -54,7 +54,7 @@ export class AppComponent {
       },
       
       {
-        title: 'Time Table',
+        title: 'Timetable',
         url: '/TimeTable',
         direct: 'forward',
         icon: 'logo-buffer'
@@ -99,7 +99,7 @@ export class AppComponent {
         icon: 'map'
       },
       {
-        title: 'Submit Execuse',
+        title: 'Execuse Request',
         url: '/submit-execuse',
         direct: 'forward',
         icon: 'calendar'
@@ -113,7 +113,7 @@ export class AppComponent {
       }
       ,
       {
-        title: 'Submit Leave Request',
+        title: 'Leave Request',
         url: '/submit-leave-resuest',
         direct: 'forward',
         icon: 'paper'

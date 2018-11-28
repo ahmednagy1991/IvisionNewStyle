@@ -54,7 +54,7 @@ export class DashboardPage implements OnInit {
   dashbrd: string;
 
 
-  constructor(public splash:SplashScreen,public helpService: HelperService, public TTSerivce: TimeTableService, public punservice: PunchesService, public AttService: AttendanceService, public navCtrl: NavController, public Config: config,
+  constructor(public splash: SplashScreen, public helpService: HelperService, public TTSerivce: TimeTableService, public punservice: PunchesService, public AttService: AttendanceService, public navCtrl: NavController, public Config: config,
     public storage: Storage,
     //public setStorage: Settings, 
     public helper: Heplers, public api: Api,
@@ -66,7 +66,7 @@ export class DashboardPage implements OnInit {
 
     //this.Peroid = 0;
     this.CurrentTab = "TimeTable";
-
+    this.LoadDateFormat();
 
     this.ReloadChart();
     //this.splash.show();
@@ -109,6 +109,11 @@ export class DashboardPage implements OnInit {
     });
   }
 
+  LoadDateFormat() {
+    this.TTSerivce.GetDateFormat().subscribe((res) => {
+      debugger;
+    });
+  }
 
 
   GetTimeTable() {
@@ -200,7 +205,7 @@ export class DashboardPage implements OnInit {
   }
   ionViewDidLoad() {
 
-debugger;
+    debugger;
     this.AttService.GetAttendanceSummary(this.helper.getLastDaysDate(this.Peroid), this.helper.GetCurrentDate()).then((res) => {
       // res.subscribe((ret)=>{
       //  // debugger;
@@ -236,7 +241,7 @@ debugger;
               this.attSummary.absentWithDuity++;
               break;
           }
-         
+
 
         });
         this.attSummary.workingDays = total_days - (this.attSummary.VacDays + this.attSummary.OffDays);

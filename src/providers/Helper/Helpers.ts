@@ -298,6 +298,10 @@ export class Heplers {
         return date.toISOString();
     }
 
+    GetHours(mins: number): number {
+        return mins/60;
+    }
+
     ToHoursString(Mins: number): string {
         let hours = (Mins / 60);
         let rhours = Math.floor(hours);
