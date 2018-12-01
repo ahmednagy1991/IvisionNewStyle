@@ -14,7 +14,7 @@ import { NavController} from '@ionic/angular';
 })
 export class ExecusesPage implements OnInit {
 
-  excModel: ExecuseModel = { to_time: new Date(), desc: "", from_time: new Date(), reason_id: 0, excuse_date: new Date(), pay_status: 0 }
+  excModel: ExecuseModel = { to_time: new Date().toISOString(), desc: "", from_time: new Date().toISOString(), reason_id: 0, excuse_date: new Date().toISOString(), pay_status: 0 }
   resons: ReasonsModel[];
   exList: ExecuseListModel[];
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };

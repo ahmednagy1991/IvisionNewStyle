@@ -27,6 +27,13 @@ export class Api {
 
   }
 
+  callGetWithoutMainURL(endpoint: string, body: string, params?: any, reqOpts?: any) {
+debugger;
+    let headers = new Headers();
+    return this.http.post(endpoint, body)
+
+  }
+
   callGet(endpoint: string, body: string, params?: any, reqOpts?: any) {
 
     let headers = new Headers();
