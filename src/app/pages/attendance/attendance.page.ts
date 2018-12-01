@@ -18,6 +18,7 @@ export class AttendancePage implements OnInit {
   CurrentTab: string = "Attendance";
   AttendanceTab: AttendanceModel[];
   Attendancepunchtab: AttendancePunches;
+  
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
   Totals: AttendanceTotalsModel = {
     RegHoursTotal: 0,
@@ -37,6 +38,9 @@ export class AttendancePage implements OnInit {
 
   constructor(public helper: Heplers, public AttService: AttendanceService, public navCtrl: NavController) {
 
+    
+    this.dateComp.from=this.helper.SubDays(7,new Date()).toISOString();
+    debugger;
   }
 
   MapAttendanceTable(res: any) {

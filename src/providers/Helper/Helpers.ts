@@ -26,6 +26,10 @@ export class Heplers {
         this.showMessage(this.GetCodeMessage(Code), "Error");
     }
 
+    ShowMessage(Code: number,lable:string) {
+        this.showMessage(this.GetCodeMessage(Code), lable);
+    }
+
     GetCodeMessage(Code: number): string {
         switch (Code) {
             case 1:
@@ -77,7 +81,7 @@ export class Heplers {
             case 21003:
                 return "Not authorized for this call"
             case 21004:
-                return "No return records"
+                return "No Results"
             case 3301:
                 return "Error getting requested information details"
             case 21005:
@@ -133,7 +137,7 @@ export class Heplers {
             case 51008:
                 return ""
             case 51009:
-                return ""
+                return "Invalid From time or To time format or from time grater than to time"
             case 51010:
                 return ""
             case 51011:
@@ -258,6 +262,8 @@ export class Heplers {
         // d = new Date(d);
         return this.datepipe.transform(this.AddDays(6, d), 'yyyy-MM-dd');
     }
+
+  
 
     getPunchType(punch: number): string {
 

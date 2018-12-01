@@ -3,56 +3,71 @@
     <ion-buttons slot="start">
       <ion-menu-button color="secondary"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Submit Leave Request</ion-title>
+    <ion-title>Leave Request</ion-title>
   </ion-toolbar>
 
 </ion-header>
 
 <ion-content padding>
-  <form (submit)="submitLeave()">
+  <form [formGroup]="leaveForm" (submit)="submitLeave()">
   
     <ion-item>
       <ion-label fixed>Description</ion-label>
-      <ion-input [required]="true" type="text" [(ngModel)]="leaveRequest.Description" name="Description"></ion-input>
+      <ion-input [formControl]="leaveForm.controls['Description']" [required]="true" type="text" [(ngModel)]="leaveRequest.Description" name="Description"></ion-input>
     </ion-item>
-
+    <div *ngIf="!leaveForm.controls.Description.valid" class="validator-error">
+      <p style="color:red">Description field is required</p>
+    </div>
 
     <ion-item>
         <ion-label>Start Date</ion-label>
-        <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="leaveRequest.StartDate" name="StartDate"></ion-datetime>
+        <ion-datetime [formControl]="leaveForm.controls['StartDate']" displayFormat="YYYY/MM/DD" [(ngModel)]="leaveRequest.StartDate" name="StartDate"></ion-datetime>
       </ion-item>
-
+      <div *ngIf="!leaveForm.controls.StartDate.valid" class="validator-error">
+        <p style="color:red">Start Date field is required</p>
+      </div>
     
 
     <ion-item>
       <ion-label>End Date</ion-label>
-      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="leaveRequest.EndDate" name="EndDate"></ion-datetime>
+      <ion-datetime [formControl]="leaveForm.controls['EndDate']" displayFormat="YYYY/MM/DD" [(ngModel)]="leaveRequest.EndDate" name="EndDate"></ion-datetime>
     </ion-item>
+    <div *ngIf="!leaveForm.controls.EndDate.valid" class="validator-error">
+      <p style="color:red">End Date field is required</p>
+    </div>
 
 
    <ion-item class="item-leave-height">
         <ion-label>Pay Status</ion-label>
-        <ion-select [(ngModel)]="leaveRequest.Paystatus" name="Paystatus">
+        <ion-select [formControl]="leaveForm.controls['PayStatus']" [(ngModel)]="leaveRequest.Paystatus" name="Paystatus">
             <ion-select-option value="0">Paid</ion-select-option>
             <ion-select-option value="1">Unpaid</ion-select-option>             
         </ion-select>
     </ion-item> 
+    <div *ngIf="!leaveForm.controls.PayStatus.valid" class="validator-error">
+      <p style="color:red">Pay Status field is required</p>
+    </div>
 
 
     <ion-item class="item-leave-height">
         <ion-label>Reasons</ion-label>
-        <ion-select [(ngModel)]="leaveRequest.ReasonID" name="ReasonID">
+        <ion-select [formControl]="leaveForm.controls['Reasons']" [(ngModel)]="leaveRequest.ReasonID" name="ReasonID">
             <ion-select-option *ngFor="let item of resons" value="{{item.reason_id}}">{{item.reason}}</ion-select-option>             
         </ion-select>
     </ion-item> 
-
+    <div *ngIf="!leaveForm.controls.Reasons.valid" class="validator-error">
+      <p style="color:red">Reasons field is required</p>
+    </div>
 
     <ion-item>
       <ion-label fixed>Notes</ion-label>
-      <ion-input type="text" [(ngModel)]="leaveRequest.Notes" name="Notes"></ion-input>
+      <ion-input [formControl]="leaveForm.controls['Notes']" type="text" [(ngModel)]="leaveRequest.Notes" name="Notes"></ion-input>
     </ion-item>
+    <div *ngIf="!leaveForm.controls.Notes.valid" class="validator-error">
+      <p style="color:red">Notes field is required</p>
+    </div>
 
-    <ion-button full (click)="submitLeave()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+    <ion-button [disabled]="!leaveForm.valid" full (click)="submitLeave()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
       <ion-ripple-effect></ion-ripple-effect>
       <ion-icon name="paper"></ion-icon>
         Submit

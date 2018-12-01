@@ -28,7 +28,7 @@ export class TimeTableService {
 
     GetTimeTableList(FromDate: string, ToDate: string) {
         return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/gettimetablelist',
-            'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&start_date=' +FromDate + '&end_date=' + ToDate + '&fields=TT_ID,FROM_DATE_TIME,TO_DATE_TIME,TT_STATE,TT_DATE&sort=from_date_time&token=' + this.parms.ApiToken)
+            'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&start_date=' +FromDate + '&end_date=' + ToDate + '&fields=TT_ID,FROM_DATE_TIME,TO_DATE_TIME,TT_STATE,TT_DATE&sort=from_date_time desc&token=' + this.parms.ApiToken)
     }
 
     GetTimeTableDetails(TTID: number) {

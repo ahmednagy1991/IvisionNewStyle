@@ -21,7 +21,7 @@ export class RequestStatusPage implements OnInit {
   MapRequestListTable(res: any) {
     
     if (res.code == 0) {
-      this.RequestList = res.result as RequestStatusModel[];
+      this.RequestList =Array.of(res.result) as RequestStatusModel[];
       debugger;
     }
     else {

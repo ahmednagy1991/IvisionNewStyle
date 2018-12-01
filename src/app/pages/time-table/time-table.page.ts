@@ -24,6 +24,7 @@ export class TimeTablePage implements OnInit {
 
 
   constructor(public modalCtrl: ModalController, public helper: Heplers, public TTSerivce: TimeTableService, public navCtrl: NavController) {
+    this.dateComp.to=this.helper.AddDays(7,new Date()).toISOString();
   }
 
 

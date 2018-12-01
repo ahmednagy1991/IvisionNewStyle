@@ -12,21 +12,25 @@
     <ion-col size="6" class="br bb datetime-btn" text-center>
       <ion-item no-padding text-center>
         <ion-label position="stacked" class="fw700 text-primary">
-          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
-          From
+          <h2>
+            <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+            From
+          </h2>
         </ion-label>
-        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
-          [(ngModel)]="dateComp.from"></ion-datetime>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016"
+          max="2018" [(ngModel)]="dateComp.from"></ion-datetime>
       </ion-item>
     </ion-col>
     <ion-col size="6" class="bb datetime-btn" text-center>
       <ion-item no-padding text-center>
         <ion-label position="stacked" class="fw700 text-primary">
-          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
-          To
+          <h2>
+            <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+            To
+          </h2>
         </ion-label>
-        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
-          [(ngModel)]="dateComp.to"></ion-datetime>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016"
+          max="2018" [(ngModel)]="dateComp.to"></ion-datetime>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -41,25 +45,53 @@
   <div>
     <ion-item color="medium" tappable margin-bottom *ngFor="let lev of DutiyList">
       <ion-thumbnail slot="start">
-        <img src="assets/img/vac.png">
-
+        <!-- <img src="assets/img/vac.png"> -->
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/vac.png">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-thumbnail>
       <ion-label>
         <h2>
           <!-- <strong>{{att.TT_DATE | date:'yyyy/MM/dd'}}</strong> -->
         </h2>
         <h3>
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong>Title {{lev.LV_TITLE}}</strong>
+          </ion-badge>
+        </h3>
 
-          <ion-badge slot="start" color="success" class="rooms">
+        <h3>
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong>From {{lev.START_DATE | date:'yyyy/MM/dd'}}</strong>
+          </ion-badge>
+        </h3>
+
+        <h3>
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong>To {{lev.END_DATE | date:'yyyy/MM/dd'}}</strong>
+          </ion-badge>
+        </h3>
+
+        <h3>
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong>Reason {{lev.REASON_TITLE}}</strong>
+          </ion-badge>
+        </h3>
+
+
+
+        <h3>
+
+          <ion-badge slot="start" color="warning" class="rooms">
             <strong>Leave ID {{lev.LV_ID}}</strong>
           </ion-badge>
 
         </h3>
-        <h3>
-          <ion-badge slot="start" color="warning" class="rooms">
-            <strong>Leave Title {{lev.LV_TITLE}}</strong>
-          </ion-badge>
-        </h3>
+
 
       </ion-label>
     </ion-item>
@@ -80,7 +112,7 @@
           <ion-col class="thro">Duity ID</ion-col>
           <ion-col class="thro">Duity Title</ion-col>
           <ion-col class="thro"></ion-col>
-       
+
         </ion-row>
 
         <ion-row nowrap *ngFor="let lev of DutiyList" class="ro">

@@ -30,7 +30,7 @@ export class LeavesPage implements OnInit {
       return await modal.present();
     }
     else {
-      this.helper.ShowErrorMessage(res.code);
+      this.helper.ShowMessage(res.code,"Information");
     }
 
 

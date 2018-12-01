@@ -53,18 +53,38 @@
     <ion-card-content>
       <ion-grid>
         <div>
-          <ion-row nowrap class="ro">Working Days : {{attSummary.workingDays}} ({{attSummary.workingDays_Per |
-            number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">Worked Days : {{attSummary.workedDays}} ({{attSummary.workedDays_Per |
-            number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">Worked With Delay : {{attSummary.workedWithDelay}}
-            ({{attSummary.workedWithDelay_Per | number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">Absent : {{attSummary.absent}} ({{attSummary.absent_Per | number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">Absent With Duity: {{attSummary.absentWithDuity}}
-            ({{attSummary.absentWithDuity_Per | number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">Vac Days : {{attSummary.VacDays}} ({{attSummary.VacDays_Per | number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">Off Days : {{attSummary.OffDays}} ({{attSummary.OffDays_Per | number:'1.2-2' }} %)</ion-row>
-          <ion-row nowrap class="ro">No T.T : {{attSummary.NoTT}} ({{attSummary.NoTT_Per | number:'1.2-2' }} %)</ion-row>
+          <ion-row>
+            <ion-col> Working Days :</ion-col>
+            <ion-col> {{attSummary.workingDays}} ({{attSummary.workingDays_Per | number:'1.2-2' }} %)</ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col>Worked Days :</ion-col>
+            <ion-col> {{attSummary.workedDays}} ({{attSummary.workedDays_Per | number:'1.2-2' }} %)</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> Worked With Delay:</ion-col>
+            <ion-col>{{attSummary.workedWithDelay}} ({{attSummary.workedWithDelay_Per | number:'1.2-2' }} %)</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> Absent :</ion-col>
+            <ion-col> {{attSummary.absent}} ({{attSummary.absent_Per | number:'1.2-2' }} %)</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Absent With Duity:</ion-col>
+            <ion-col> {{attSummary.absentWithDuity}} ({{attSummary.absentWithDuity_Per | number:'1.2-2' }} %)</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> Vac Days :</ion-col>
+            <ion-col> {{attSummary.VacDays}} ({{attSummary.VacDays_Per | number:'1.2-2' }} %)</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Off Days :</ion-col>
+            <ion-col> {{attSummary.OffDays}} ({{attSummary.OffDays_Per | number:'1.2-2' }} %)</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> No T.T :</ion-col>
+            <ion-col> {{attSummary.NoTT}} ({{attSummary.NoTT_Per | number:'1.2-2' }} %)</ion-col>
+          </ion-row>
         </div>
 
       </ion-grid>

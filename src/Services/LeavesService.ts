@@ -37,14 +37,14 @@ export class LeavesService {
     GetLeaveList(from: Date, to: Date) {
         debugger;
         return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getleavelist',
-            'emp_id=' + this.parms.EmpId + '&start_date=' + from + '&end_date=' + to + '&apikey=' + this.parms.ApiKey + '&fields=LV_ID,LV_TITLE&sort=START_DATE&token=' + this.parms.ApiToken)
+            'emp_id=' + this.parms.EmpId + '&start_date=' + from + '&end_date=' + to + '&apikey=' + this.parms.ApiKey + '&fields=LV_ID,LV_TITLE,START_DATE,END_DATE,REASON_TITLE&sort=START_DATE&token=' + this.parms.ApiToken)
     }
 
 
     GetDutyList(from: Date, to: Date) {
         debugger;
         return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getleavelist',
-            'emp_id=' + this.parms.EmpId + '&leave_type=2&start_date=' + from + '&end_date=' + to + '&apikey=' + this.parms.ApiKey + '&fields=LV_ID,LV_TITLE&sort=START_DATE&token=' + this.parms.ApiToken)
+            'emp_id=' + this.parms.EmpId + '&leave_type=2&start_date=' + from + '&end_date=' + to + '&apikey=' + this.parms.ApiKey + '&fields=LV_ID,LV_TITLE,START_DATE,END_DATE,REASON_TITLE&sort=START_DATE&token=' + this.parms.ApiToken)
     }
 
 

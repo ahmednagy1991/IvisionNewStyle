@@ -3,58 +3,72 @@
     <ion-buttons slot="start">
       <ion-menu-button color="secondary"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Submit execuse</ion-title>
+    <ion-title> Execuse Request</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <form (submit)="submitExecuse()">
+  <form [formGroup]="execuseForm" (submit)="submitExecuse()">
 
  
 
 
     <ion-item>
         <ion-label>Execuse Date</ion-label>
-        <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="excModel.excuse_date" name="excuse_date"></ion-datetime>
+        <ion-datetime [formControl]="execuseForm.controls['execuseDate']" displayFormat="YYYY/MM/DD" [(ngModel)]="excModel.excuse_date" name="excuse_date"></ion-datetime>
       </ion-item>
-
+      <div *ngIf="!execuseForm.controls.execuseDate.valid" class="validator-error">
+        <p style="color:red">Execuse Date field is required</p>
+      </div>
 
 
     <ion-item>
       <ion-label>From Time</ion-label>
-      <ion-datetime displayFormat="HH:MM" [(ngModel)]="excModel.from_time" name="from_time"></ion-datetime>
+      <ion-datetime [formControl]="execuseForm.controls['fromTime']" displayFormat="hh:mm" [(ngModel)]="excModel.from_time" name="from_time"></ion-datetime>
     </ion-item>
-
+    <div *ngIf="!execuseForm.controls.fromTime.valid" class="validator-error">
+      <p style="color:red">From time field is required</p>
+    </div>
 
 
     <ion-item>
       <ion-label>To Time</ion-label>
-      <ion-datetime displayFormat="HH:MM" [(ngModel)]="excModel.to_time" name="to_time"></ion-datetime>
+      <ion-datetime [formControl]="execuseForm.controls['toTime']" displayFormat="hh:mm" [(ngModel)]="excModel.to_time" name="to_time"></ion-datetime>
     </ion-item>
+    <div *ngIf="!execuseForm.controls.toTime.valid" class="validator-error">
+      <p style="color:red">To time field is required</p>
+    </div>
 
 
     <ion-item class="item-leave-height">
       <ion-label>Pay Status</ion-label>
-      <ion-select [(ngModel)]="excModel.pay_status" name="pay_status">
+      <ion-select  [formControl]="execuseForm.controls['payStatus']" [(ngModel)]="excModel.pay_status" name="pay_status">
         <ion-select-option value="0">Paid</ion-select-option>
         <ion-select-option value="1">Unpaid</ion-select-option>
       </ion-select>
     </ion-item>
+    <div *ngIf="!execuseForm.controls.payStatus.valid" class="validator-error">
+      <p style="color:red">Pay status field is required</p>
+    </div>
 
 
     <ion-item class="item-leave-height">
       <ion-label>Reasons</ion-label>
-      <ion-select [(ngModel)]="excModel.reason_id" name="reason_id">
+      <ion-select  [formControl]="execuseForm.controls['rasons']" [(ngModel)]="excModel.reason_id" name="reason_id">
         <ion-select-option *ngFor="let item of resons" value="{{item.reason_id}}">{{item.reason}}</ion-select-option>
       </ion-select>
     </ion-item>
-
+    <div *ngIf="!execuseForm.controls.rasons.valid" class="validator-error">
+      <p style="color:red">Reason field is required</p>
+    </div>
 
     <ion-item>
       <ion-label fixed>Description</ion-label>
-      <ion-input type="text" [(ngModel)]="excModel.desc" name="desc"></ion-input>
+      <ion-textarea [formControl]="execuseForm.controls['description']" type="text" [(ngModel)]="excModel.desc" name="desc"></ion-textarea>
     </ion-item>
-
+    <div *ngIf="!execuseForm.controls.description.valid" class="validator-error">
+      <p style="color:red">Description field is required</p>
+    </div>
 
 
 
@@ -62,7 +76,7 @@
       <button ion-button round color="primary" block>submit</button>
     </div> -->
 
-    <ion-button full (click)="submitExecuse()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+    <ion-button [disabled]="!execuseForm.valid" full (click)="submitExecuse()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
       <ion-ripple-effect></ion-ripple-effect>
       <ion-icon name="paper"></ion-icon>
         Submit

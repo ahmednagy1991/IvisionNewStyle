@@ -15,21 +15,26 @@
         <ion-col size="6" class="br bb datetime-btn" text-center>
           <ion-item no-padding text-center>
             <ion-label position="stacked" class="fw700 text-primary">
-              <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
-              From
+              <h2>
+                <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+                From
+              </h2>
             </ion-label>
-            <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
-              [(ngModel)]="dateComp.from"></ion-datetime>
+
+            <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016"
+              max="2018" [(ngModel)]="dateComp.from"></ion-datetime>
           </ion-item>
         </ion-col>
         <ion-col size="6" class="bb datetime-btn" text-center>
           <ion-item no-padding text-center>
             <ion-label position="stacked" class="fw700 text-primary">
-              <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
-              To
+              <h2>
+                <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+                To
+              </h2>
             </ion-label>
-            <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
-              [(ngModel)]="dateComp.to"></ion-datetime>
+            <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016"
+              max="2018" [(ngModel)]="dateComp.to"></ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -80,10 +85,18 @@
               <strong>{{att.AT_DATE | date:'yyyy/MM/dd'}}</strong>
             </h2>
             <h3>
-              <ion-badge *ngIf="helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)!='-'" slot="start" color="secondary" class="rooms">
+              <ion-badge *ngIf="helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)!='-'" slot="start" color="secondary"
+                class="rooms">
                 <strong>Reg.HRS {{helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)}}</strong>
               </ion-badge>
             </h3>
+
+            <h3>
+              <ion-badge *ngIf="helper.ToHoursString(att.AT_TOTAL_WORK)!='-'" slot="start" color="secondary" class="rooms">
+                <strong> Worked hours {{helper.ToHoursString(att.AT_TOTAL_WORK)}}</strong>
+              </ion-badge>
+            </h3>
+
             <h3>
               <ion-badge *ngIf="helper.ToHoursString(att.AT_TOTAL_ABSENT)!='-'" slot="start" color="secondary" class="rooms">
                 <strong>Absent {{helper.ToHoursString(att.AT_TOTAL_ABSENT)}}</strong>
@@ -95,12 +108,14 @@
               </ion-badge>
             </h3>
             <h3>
-              <ion-badge *ngIf="helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)!='-'" slot="start" color="secondary" class="rooms">
+              <ion-badge *ngIf="helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)!='-'" slot="start" color="secondary"
+                class="rooms">
                 <strong>Duties Overtime {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}} </strong>
               </ion-badge>
             </h3>
             <h3>
-              <ion-badge *ngIf="helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)!='-'" slot="start" color="secondary" class="rooms">
+              <ion-badge *ngIf="helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)!='-'" slot="start" color="secondary"
+                class="rooms">
                 <strong>Break {{helper.ToHoursString(att.AT_TOTAL_DUTY_OVERTIME)}}</strong>
               </ion-badge>
             </h3>
@@ -120,47 +135,118 @@
 
       </div>
     </ion-item>
-    <ion-item *ngSwitchCase="'Summary'">
+    <div *ngSwitchCase="'Summary'">
       <div>
         <ion-grid>
           <ion-row>
+            <ion-col>
+              Reg. Hrs:
+            </ion-col>
+            <ion-col>
+              {{helper.ToHoursString(Totals.RegHoursTotal)}}
+            </ion-col>
 
-            Reg. Hrs: {{helper.ToHoursString(Totals.RegHoursTotal)}}
 
           </ion-row>
           <ion-row>
-            Work: {{helper.ToHoursString(Totals.WorkHoursTotal)}}
+
+            <ion-col>
+              Worked hours:
+            </ion-col>
+            <ion-col>
+              {{helper.ToHoursString(Totals.WorkHoursTotal)}}
+            </ion-col>
+
+
+
           </ion-row>
           <ion-row>
-            Absent: {{helper.ToHoursString(Totals.AbsentTotal)}}
+
+            <ion-col>
+                Absent:
+            </ion-col>
+            <ion-col>
+                {{helper.ToHoursString(Totals.AbsentTotal)}}
+            </ion-col>
+
+         
           </ion-row>
           <ion-row>
-            O.T : {{helper.ToHoursString(Totals.OTTotal)}}
+            <ion-col>
+                O.T :
+            </ion-col>
+            <ion-col>
+                {{helper.ToHoursString(Totals.OTTotal)}}
+            </ion-col>
+
+        
           </ion-row>
           <ion-row>
-            Duties O.T : {{helper.ToHoursString(Totals.DutiesOTTotal)}}
+            <ion-col>
+                Duties O.T :
+            </ion-col>
+            <ion-col>
+                {{helper.ToHoursString(Totals.DutiesOTTotal)}}
+            </ion-col>
+          
           </ion-row>
           <ion-row>
-            Break : {{helper.ToHoursString(Totals.BreakTotal)}}
+            <ion-col>
+                Break : 
+            </ion-col>
+            <ion-col>
+                {{helper.ToHoursString(Totals.BreakTotal)}}
+            </ion-col>
+         
           </ion-row>
           <ion-row>
-            Duties : {{helper.ToHoursString(Totals.DuitesTotal)}}
+            <ion-col>
+                Duties : 
+            </ion-col>
+            <ion-col>
+                {{helper.ToHoursString(Totals.DuitesTotal)}}
+            </ion-col>
+          
           </ion-row>
           <ion-row>
-            Excuse : {{helper.ToHoursString(Totals.ExecusesTotal)}}
+            <ion-col>
+                Excuse :
+            </ion-col>
+            <ion-col>
+                {{helper.ToHoursString(Totals.ExecusesTotal)}}
+            </ion-col>
+          
           </ion-row>
           <ion-row>
-            Begin Late : {{helper.ToHoursString(Totals.BeginLateTotal)}}
+            <ion-col>
+                Begin Late : 
+            </ion-col>
+            <ion-col>
+                {{helper.ToHoursString(Totals.BeginLateTotal)}}
+            </ion-col>
+          
           </ion-row>
           <ion-row>
-            Out Early : {{helper.ToHoursString(Totals.OutEarlyTotal)}}
+            <ion-col>
+                Out Early : 
+            </ion-col>
+            <ion-col>
+                {{helper.ToHoursString(Totals.OutEarlyTotal)}}
+            </ion-col>
+       
           </ion-row>
           <ion-row>
-            Gap : {{helper.ToHoursString(Totals.GapTotal)}}
+            <ion-col>
+                Gap : 
+            </ion-col>
+            <ion-col>
+                {{helper.ToHoursString(Totals.GapTotal)}}
+            </ion-col>
+          
           </ion-row>
         </ion-grid>
       </div>
-    </ion-item>
+    </div>
   </div>
 
 

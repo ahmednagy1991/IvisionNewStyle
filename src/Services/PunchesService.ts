@@ -34,7 +34,7 @@ export class PunchesService {
     GetPunches(FromDate: string, ToDate: string) {
         //.subscribe(res => this.PunchTab=res as PunchModel[]);
         return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getpunches',
-            'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&start_date=' + FromDate + '&end_date=' + ToDate + '&fields=PUNCH_DATETIME,PUNCH_TYPE,ENTRY_TYPE,READER_NAME&sort=PUNCH_DATETIME&entry_type=0,3,2&token=' + this.parms.ApiToken);
+            'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&start_date=' + FromDate + '&end_date=' + ToDate + '&fields=PUNCH_DATETIME,PUNCH_TYPE,ENTRY_TYPE,READER_NAME&sort=PUNCH_DATETIME desc&entry_type=0,3,2&token=' + this.parms.ApiToken);
     }
 
 

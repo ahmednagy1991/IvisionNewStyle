@@ -9,10 +9,12 @@
 </ion-header>
 
 <ion-content padding>
-  <form (submit)="submitAdjustment()">
+  <form [formGroup]="credentialsForm" (submit)="submitAdjustment()">
 
-  
-    <ion-item>
+
+
+
+    <!-- <ion-item>
       <ion-label>Date</ion-label>
       <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="adj.punch_date" name="punch_date"></ion-datetime>
     </ion-item>
@@ -47,20 +49,24 @@
         <ion-select-option value="0">OUT</ion-select-option>
         <ion-select-option value="1">IN</ion-select-option>
       </ion-select>
-    </ion-item>
+    </ion-item> -->
 
 
     <ion-item>
       <ion-label fixed>Notes</ion-label>
-      <ion-input type="text" [(ngModel)]="adj.req_note" name="req_note"></ion-input>
+      <ion-textarea [formControl]="credentialsForm.controls['email']" type="text" [(ngModel)]="adj.req_note" name="req_note"></ion-textarea>
+
     </ion-item>
+    <div *ngIf="!credentialsForm.controls.email.valid" class="validator-error">
+      <p style="color:red">Please enter a valid email.</p>
+    </div>
 
 
-
-    <ion-button full (click)="submitAdjustment()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+    <ion-button  [disabled]="!credentialsForm.valid" full (click)="submitAdjustment()" icon-left size="medium" expand="full" shape="round" color="dark"
+      tappable>
       <ion-ripple-effect></ion-ripple-effect>
       <ion-icon name="paper"></ion-icon>
-        Submit
+      Submit
     </ion-button>
 
     <!-- <div padding>
