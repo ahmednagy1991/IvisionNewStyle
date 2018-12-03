@@ -5,7 +5,7 @@ import { TranslateProvider, HotelProvider } from '../../providers';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import {  ViewChild, ElementRef } from '@angular/core';
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {Observable} from 'rxjs/Observable';
 import { Platform } from '@ionic/angular';
 
@@ -44,8 +44,29 @@ export class GeoPunchingPage implements OnInit {
  
   constructor(private geolocation: Geolocation,private platform: Platform,public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
    
-   
-   }
+    platform.ready().then(() => {
+
+      // get position
+      geolocation.getCurrentPosition().then(pos => {
+        debugger;
+        console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
+      });
+
+
+      // watch position
+      const watch = geolocation.watchPosition().subscribe(pos => {
+        console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
+        let temp = pos;
+        debugger;
+      });
+
+      // to stop watching
+      watch.unsubscribe();
+    });
+
+  }
+
+
 
    
   

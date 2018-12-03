@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import { IonicModule } from '@ionic/angular';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { GeoPunchingPage } from './geo-punching.page';
 
 const routes: Routes = [
@@ -15,6 +15,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
+ providers:[
+  Geolocation
+ ],
   imports: [
     CommonModule,
     FormsModule,
