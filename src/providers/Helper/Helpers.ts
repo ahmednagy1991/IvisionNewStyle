@@ -109,7 +109,7 @@ export class Heplers {
             case 41001:
                 return "Geo Punching Not Authorized"
             case 41002:
-                return ""
+                return "Invalid GeoLocation"
             case 41003:
                 return ""
             case 41004:

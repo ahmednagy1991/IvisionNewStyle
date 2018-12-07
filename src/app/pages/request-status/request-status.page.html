@@ -12,8 +12,10 @@
     <ion-col size="6" class="br bb datetime-btn" text-center>
       <ion-item no-padding text-center>
         <ion-label position="stacked" class="fw700 text-primary">
+            <h2>
           <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
           From
+        </h2>
         </ion-label>
         <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2018"
           [(ngModel)]="dateComp.from"></ion-datetime>

@@ -32,7 +32,7 @@
         <h1>Attendance Summary</h1>
         <ion-label>Days Statistics</ion-label>
 
-        <ion-select [(ngModel)]="Peroid" name="Peroid" (ionChange)="ReloadChart()">
+        <ion-select value="29" [(ngModel)]="Peroid" name="Peroid" (ionChange)="ReloadChart()">
           <ion-select-option value="0">Today</ion-select-option>
           <ion-select-option value="1">Yesterday</ion-select-option>
           <ion-select-option value="6">Last 7 Days</ion-select-option>

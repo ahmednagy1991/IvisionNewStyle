@@ -77,10 +77,14 @@
             <img src="assets/img/AttendanceLogo.png">
           </ion-thumbnail>
           <ion-label>
-            <h2>
+              <h2>
+                  <strong>{{att.AT_DATE | date:'EEEE'}}</strong>
+    
+                </h2>
+            <!-- <h2>
               <strong>Attendance Summary On</strong>
 
-            </h2>
+            </h2> -->
             <h2>
               <strong>{{att.AT_DATE | date:'yyyy/MM/dd'}}</strong>
             </h2>

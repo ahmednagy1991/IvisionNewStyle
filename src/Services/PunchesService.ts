@@ -40,6 +40,8 @@ export class PunchesService {
 
     PunchIn(punch: SubmitGeoPunchModel) {    
         //punch type 1 for IN 0 for Out
+        let temp= 'emp_id=' + this.parms.EmpId + '&Punch_type=1&punch_date=' + punch.punch_date + '&punch_time=' + punch.punch_time + '&lat=' + punch.lat + '&lng=' + punch.lng + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken;
+        debugger;
         return this.api.callGet('ivmtwebsdk/ivmtTrans.dll/api/v52/ivmtTrans/geopunch',
             'emp_id=' + this.parms.EmpId + '&Punch_type=1&punch_date=' + punch.punch_date + '&punch_time=' + punch.punch_time + '&lat=' + punch.lat + '&lng=' + punch.lng + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken)
     }

@@ -15,7 +15,7 @@
 
     <ion-item>
         <ion-label>Execuse Date</ion-label>
-        <ion-datetime [formControl]="execuseForm.controls['execuseDate']" displayFormat="YYYY/MM/DD" [(ngModel)]="excModel.excuse_date" name="excuse_date"></ion-datetime>
+        <ion-datetime [formControl]="execuseForm.controls['execuseDate']" displayFormat="YYYY-MM-DD" [(ngModel)]="excModel.excuse_date" name="excuse_date"></ion-datetime>
       </ion-item>
       <div *ngIf="!execuseForm.controls.execuseDate.valid" class="validator-error">
         <p style="color:red">Execuse Date field is required</p>
@@ -54,7 +54,11 @@
 
     <ion-item class="item-leave-height">
       <ion-label>Reasons</ion-label>
-      <ion-select  [formControl]="execuseForm.controls['rasons']" [(ngModel)]="excModel.reason_id" name="reason_id">
+      <!-- <ion-select  [formControl]="execuseForm.controls['rasons']" [(ngModel)]="excModel.reason_id" name="reason_id">
+        <ion-select-option *ngFor="let item of resons" value="{{item.reason_id}}">{{item.reason}}</ion-select-option>
+      </ion-select> -->
+    
+      <ion-select [(ngModel)]="excModel.reason_id" name="excModel.reason_id">
         <ion-select-option *ngFor="let item of resons" value="{{item.reason_id}}">{{item.reason}}</ion-select-option>
       </ion-select>
     </ion-item>

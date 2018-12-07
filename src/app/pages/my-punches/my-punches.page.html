@@ -91,6 +91,15 @@
             </ion-grid>
         </ion-thumbnail>
         <ion-label>
+            <h2>
+                <strong>{{att.PUNCH_DATETIME | date:'EEEE'}}</strong>
+              </h2>
+            <h2>
+                <strong> {{att.PUNCH_DATETIME | date:'yyyy/MM/dd'}}</strong>
+              </h2>
+              <h2>
+                  <strong>At {{att.PUNCH_DATETIME | date:'hh:mm'}}</strong>
+                </h2>
           <h3>
             <!--  -->
 
@@ -109,12 +118,7 @@
                 </ion-badge>
           </h3>
           <h3></h3>
-          <h2>
-            <strong>On {{att.PUNCH_DATETIME | date:'yyyy/MM/dd'}}</strong>
-          </h2>
-          <h2>
-              <strong>At {{att.PUNCH_DATETIME | date:'hh:mm'}}</strong>
-            </h2>
+          
 
         </ion-label>
       </ion-item>
