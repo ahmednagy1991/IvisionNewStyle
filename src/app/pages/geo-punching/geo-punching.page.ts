@@ -14,7 +14,7 @@ import { PunchesService } from '../../../Services/PunchesService';
 import { Heplers } from '../../../providers/Helper/Helpers';
 
 import { environment } from '../../../environments/environment'
-
+import { LoadingController } from '@ionic/angular';
 
 import {
   trigger,
@@ -43,8 +43,9 @@ export class GeoPunchingPage implements OnInit {
   geoPunch: SubmitGeoPunchModel = { lat: "", lng: "", punch_date: "", punch_time: "", Punch_type: 0 };
 
  
-  constructor(private geolocation: Geolocation,private platform: Platform,public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
+  constructor(public loadingController: LoadingController,private geolocation: Geolocation,private platform: Platform,public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
    
+    this.presentLoading();
     platform.ready().then(() => {
 
       // get position
@@ -54,6 +55,7 @@ export class GeoPunchingPage implements OnInit {
         this.MyLocation.Latitude=pos.coords.latitude;
         this.MyLocation.Longitude=pos.coords.longitude;
         this.enablePunchingButtons = true;
+        this.DismissLoadingSpinner();
         console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
       });
 
@@ -74,6 +76,29 @@ export class GeoPunchingPage implements OnInit {
     });
 
     
+  }
+
+  // async presentLoadingWithOptions() {
+  //   const loading = await this.loadingController.create({
+  //     spinner: null,
+  //     duration: 5000,
+  //     message: 'Please wait...',
+  //     translucent: true,
+  //     cssClass: 'custom-class custom-loading'
+  //   });
+  //   return await loading.present();
+  // }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait while loading your location'
+    });
+    return await loading.present();
+  }
+
+  
+  async DismissLoadingSpinner() {    
+    return await this.loadingController.dismiss();
   }
 
 
