@@ -45,9 +45,9 @@ export class GeoPunchingPage implements OnInit {
  
   constructor(public loadingController: LoadingController,private geolocation: Geolocation,private platform: Platform,public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
    
-    this.presentLoading();
+   
     platform.ready().then(() => {
-
+      this.presentLoading();
       // get position
       geolocation.getCurrentPosition().then(pos => {
         debugger;
