@@ -33,6 +33,7 @@ import {
 export class GeoPunchingPage implements OnInit {
 
   CurrentAddress: string;
+  
   CurrentTime: string;
   enablePunchingButtons: boolean = false;
   EnableButtons: boolean = false;
@@ -49,7 +50,10 @@ export class GeoPunchingPage implements OnInit {
       // get position
       geolocation.getCurrentPosition().then(pos => {
         debugger;
-        this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
+        //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
+        this.MyLocation.Latitude=pos.coords.latitude;
+        this.MyLocation.Longitude=pos.coords.longitude;
+        this.enablePunchingButtons = true;
         console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
       });
 
@@ -58,7 +62,10 @@ export class GeoPunchingPage implements OnInit {
       const watch = geolocation.watchPosition().subscribe(pos => {
         console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
         let temp = pos;
-        this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
+        this.MyLocation.Latitude=pos.coords.latitude;
+        this.MyLocation.Longitude=pos.coords.longitude;
+        this.enablePunchingButtons = true;
+        //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
         debugger;
       });
 
@@ -66,12 +73,33 @@ export class GeoPunchingPage implements OnInit {
       watch.unsubscribe();
     });
 
+    
   }
 
 
 
-   
-  
+  punchIn() {
+    this.geoPunch.Punch_type = 1;
+    this.punchSer.PunchIn(this.geoPunch).subscribe((res: any) => {
+      if (res.code == 0) {
+        this.helper.showMessage("Geo Punching Successfully submited", "Done");
+      }
+      else {
+        this.helper.ShowErrorMessage(res.code);
+      }    
+    });
+  }
+  punchOut() {
+    this.geoPunch.Punch_type = 0;
+    this.punchSer.PunchOut(this.geoPunch).subscribe((res:any) => {
+      if (res.code == 0) {
+        this.helper.showMessage("Geo Punching Successfully submited", "Done");
+      }
+      else {
+        this.helper.ShowErrorMessage(res.code);
+      }
+    });
+  }
 
  
   ngOnInit() {

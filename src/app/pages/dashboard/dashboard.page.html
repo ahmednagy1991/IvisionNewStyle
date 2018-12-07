@@ -37,31 +37,25 @@
               {{attSummary.workedWithDelay_Per | number:'1.2-2' }}%</div>
             <round-progress [color]="'#f4e542'" [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
               [current]="attSummary.workedWithDelay_Per" [max]="100"> test</round-progress>
-          </ion-col>
-          <ion-col>
-            <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Absent<br /> {{attSummary.absent_Per |
-              number:'1.2-2' }}%</div>
-            <round-progress [color]="'#ed4025'" [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
-              [current]="attSummary.absent_Per" [max]="100"> test</round-progress>
-          </ion-col>
-          <ion-col>
-            <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Delay<br />
-              {{attSummary.workedWithDelay_Per | number:'1.2-2' }}%</div>
-            <round-progress [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
-              [current]="attSummary.workedWithDelay_Per" [max]="100"> test</round-progress>
-          </ion-col>
+          </ion-col>      
 
         </ion-row>
-        <!-- <ion-row>
+        <ion-row>
               <ion-col>
-               
+                <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Absent<br /> {{attSummary.absent_Per |
+                  number:'1.2-2' }}%</div>
+                <round-progress [color]="'#ed4025'" [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
+                  [current]="attSummary.absent_Per" [max]="100"> test</round-progress>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-               
+                <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Delay<br />
+                  {{attSummary.workedWithDelay_Per | number:'1.2-2' }}%</div>
+                <round-progress [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
+                  [current]="attSummary.workedWithDelay_Per" [max]="100"> test</round-progress>
               </ion-col>
-            </ion-row> -->
+            </ion-row>
 
       </ion-grid>
 
