@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { WalkthroughPage } from './walkthrough.page';
 // import { TabsPage } from '../tabs/tabs.page';
 
@@ -22,8 +22,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  providers:[
+    Geolocation
+   ],
   imports: [
-    CommonModule,
+    CommonModule,  
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)
