@@ -25,8 +25,88 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-      Attendance Summary
+      <h1>Attendance Summary</h1>
     </ion-card-header>
+    <ion-card-content>
+
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Delay<br />
+              {{attSummary.workedWithDelay_Per | number:'1.2-2' }}%</div>
+            <round-progress [color]="'#f4e542'" [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
+              [current]="attSummary.workedWithDelay_Per" [max]="100"> test</round-progress>
+          </ion-col>
+          <ion-col>
+            <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Absent<br /> {{attSummary.absent_Per |
+              number:'1.2-2' }}%</div>
+            <round-progress [color]="'#ed4025'" [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
+              [current]="attSummary.absent_Per" [max]="100"> test</round-progress>
+          </ion-col>
+          <ion-col>
+            <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Delay<br />
+              {{attSummary.workedWithDelay_Per | number:'1.2-2' }}%</div>
+            <round-progress [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
+              [current]="attSummary.workedWithDelay_Per" [max]="100"> test</round-progress>
+          </ion-col>
+
+        </ion-row>
+        <!-- <ion-row>
+              <ion-col>
+               
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+               
+              </ion-col>
+            </ion-row> -->
+
+      </ion-grid>
+
+
+      <!-- <div padding>
+        <ion-segment [(ngModel)]="Currentchart">
+          <ion-segment-button value="Present">
+            Present
+          </ion-segment-button>
+          <ion-segment-button value="Absent">
+            Absent
+          </ion-segment-button>
+          <ion-segment-button value="Delay">
+            Delay
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      <div [ngSwitch]="Currentchart">
+        <div *ngSwitchCase="'Present'">
+       
+        </div>
+
+        <div *ngSwitchCase="'Absent'">
+          <ion-grid>
+            <ion-row>
+
+
+            </ion-row>
+
+          </ion-grid>
+        </div>
+        <div *ngSwitchCase="'Delay'">
+          <ion-grid>
+            <ion-row>
+
+
+            </ion-row>
+
+          </ion-grid>
+        </div>
+      </div> -->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
     <ion-card-content>
       <ion-item class="item-leave-height">
         <ion-label>Days Statistics</ion-label>
@@ -45,7 +125,6 @@
 
 
 
-
   <ion-card>
     <ion-card-header>
       Statistical Information
@@ -57,7 +136,7 @@
             <ion-col> Working Days :</ion-col>
             <ion-col> {{attSummary.workingDays}} ({{attSummary.workingDays_Per | number:'1.2-2' }} %)</ion-col>
           </ion-row>
-          <ion-row >
+          <ion-row>
             <ion-col>Worked Days :</ion-col>
             <ion-col> {{attSummary.workedDays}} ({{attSummary.workedDays_Per | number:'1.2-2' }} %)</ion-col>
           </ion-row>

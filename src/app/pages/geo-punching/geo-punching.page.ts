@@ -49,6 +49,7 @@ export class GeoPunchingPage implements OnInit {
       // get position
       geolocation.getCurrentPosition().then(pos => {
         debugger;
+        this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
         console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
       });
 
@@ -57,6 +58,7 @@ export class GeoPunchingPage implements OnInit {
       const watch = geolocation.watchPosition().subscribe(pos => {
         console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
         let temp = pos;
+        this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
         debugger;
       });
 

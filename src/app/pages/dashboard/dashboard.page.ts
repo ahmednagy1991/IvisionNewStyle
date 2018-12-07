@@ -30,6 +30,16 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 })
 export class DashboardPage implements OnInit {
 
+  public radius       =    250;
+    public stroke       =    "20" ;
+    public semicircle   =    false;
+    public rounded      =    true;
+    public clockwise    =    false;
+    public responsive   =    true;
+    public duration     =    "800";
+    public animation    =    'easeInOutQuart';
+
+  
   account: { emp_id: string, emp_pwd: string, uuid: string, apikey: string, hash_ver: string } = {
     emp_id: "B00004",
     emp_pwd: "123",
@@ -39,6 +49,7 @@ export class DashboardPage implements OnInit {
   };
 
   CurrentTab: string = "TimeTable";
+  Currentchart: string = "Present";
   Peroid: number = 29;
   TTableModel: TimeTableModel[];
   AttendanceTab: AttendanceModel[];
@@ -155,7 +166,7 @@ export class DashboardPage implements OnInit {
     this.dashbrd = "Reports";
 
     let options = {
-      circumference: 7,
+      circumference: 15,
       rotation: 1.0 * Math.PI,
       percentageInnerCutout: 1,
       legend: {
@@ -275,5 +286,23 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
   }
+
+
+  getOverlayStyle() {
+    let isSemi = this.semicircle;
+    let transform = (isSemi ? '' : 'translateY(180%) ') + 'translateX(0%)';
+
+    return {
+      'top': isSemi ? 'auto' : '50%',
+      'bottom': isSemi ? '5%' : 'auto',
+      'left': '50%',
+      'text-align': 'center',
+      'transform': transform,
+      '-moz-transform': transform,
+      '-webkit-transform': transform,
+      'font-size': this.radius / 7 + 'px'
+    };
+}
+
 
 }

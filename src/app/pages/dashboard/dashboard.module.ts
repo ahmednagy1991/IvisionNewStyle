@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { DashboardPage } from './dashboard.page';
+import {RoundProgressModule} from 'angular-svg-round-progressbar';
 
 const routes: Routes = [
   {
@@ -18,9 +19,17 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    RoundProgressModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
   declarations: [DashboardPage]
 })
-export class DashboardPageModule {}
+export class DashboardPageModule {
+
+  
+ 
+
+  
+
+}
