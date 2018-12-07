@@ -111,6 +111,8 @@ export class GeoPunchingPage implements OnInit {
     this.geoPunch.Punch_type = 1;
     this.geoPunch.punch_date=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
     this.geoPunch.punch_time=this.datepipe.transform(new Date(), 'hh:mm:ss');
+    this.geoPunch.lat=this.MyLocation.Latitude.toString();
+    this.geoPunch.lng=this.MyLocation.Longitude.toString();
     this.punchSer.PunchIn(this.geoPunch).subscribe((res: any) => {
       if (res.code == 0) {
         this.helper.showMessage("Geo Punching Successfully submited", "Done");
@@ -124,6 +126,8 @@ export class GeoPunchingPage implements OnInit {
     this.geoPunch.Punch_type = 0;
     this.geoPunch.punch_date=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
     this.geoPunch.punch_time=this.datepipe.transform(new Date(), 'hh:mm:ss');
+    this.geoPunch.lat=this.MyLocation.Latitude.toString();
+    this.geoPunch.lng=this.MyLocation.Longitude.toString();
     this.punchSer.PunchOut(this.geoPunch).subscribe((res:any) => {
       if (res.code == 0) {
         this.helper.showMessage("Geo Punching Successfully submited", "Done");
