@@ -33,7 +33,7 @@ import {
 export class GeoPunchingPage implements OnInit {
 
   CurrentAddress: string;
-  
+  loading: HTMLIonLoadingElement;
   CurrentTime: string;
   enablePunchingButtons: boolean = false;
   EnableButtons: boolean = false;
@@ -45,9 +45,10 @@ export class GeoPunchingPage implements OnInit {
  
   constructor(public loadingController: LoadingController,private geolocation: Geolocation,private platform: Platform,public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
    
-   
+    this.presentLoading();
     platform.ready().then(() => {
-      this.presentLoading();
+     
+      //this.loading.dismiss();
       // get position
       geolocation.getCurrentPosition().then(pos => {
         debugger;
@@ -55,7 +56,8 @@ export class GeoPunchingPage implements OnInit {
         this.MyLocation.Latitude=pos.coords.latitude;
         this.MyLocation.Longitude=pos.coords.longitude;
         this.enablePunchingButtons = true;
-        this.DismissLoadingSpinner();
+        this.loading.dismiss();
+        //this.DismissLoadingSpinner();
         console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
       });
 
@@ -67,7 +69,8 @@ export class GeoPunchingPage implements OnInit {
         this.MyLocation.Latitude=pos.coords.latitude;
         this.MyLocation.Longitude=pos.coords.longitude;
         this.enablePunchingButtons = true;
-        this.DismissLoadingSpinner();
+        //this.DismissLoadingSpinner();
+        this.loading.dismiss();
         //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
         debugger;
       });
@@ -91,10 +94,10 @@ export class GeoPunchingPage implements OnInit {
   // }
 
   async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: 'Please wait while loading your location'
+    this.loading = await this.loadingController.create({
+      message: 'Please wait while loading your location',id:'loadspnr'
     });
-    return await loading.present();
+    return await this.loading.present();
   }
 
   
