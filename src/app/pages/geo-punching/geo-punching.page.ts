@@ -95,7 +95,7 @@ export class GeoPunchingPage implements OnInit {
 
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Please wait while loading your location',id:'loadspnr'
+      message: 'Please wait while loading your location',  duration: 5000
     });
     return await this.loading.present();
   }

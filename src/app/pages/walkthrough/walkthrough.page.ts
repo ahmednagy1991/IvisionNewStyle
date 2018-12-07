@@ -3,14 +3,14 @@ import { Router } from '@angular/router';
 import { NavController, Slides, MenuController } from '@ionic/angular';
 
 import { Storage } from '@ionic/storage';
-
+import { Platform } from '@ionic/angular';
 import { Heplers } from '../../../providers/Helper/Helpers';
 //import { Device } from '@ionic-native/device';
 import { config } from '../../../providers/Config';
 import { Api } from '../../../providers/api/api';
 import { TokenModel } from '../../../models/TokenModel';
 import { EmployeeModel } from '../../../models/EmployeeModel';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 @Component({
   selector: 'app-walkthrough',
   templateUrl: './walkthrough.page.html',
@@ -27,12 +27,30 @@ export class WalkthroughPage implements OnInit {
   CurrentPassword: string
   tokenReponse: TokenModel;
 //, private device: Device
-  constructor(public navCtrl: NavController, public Config: config, public api: Api, public helper: Heplers, public config: config, public storage: Storage) {
+  constructor(private platform: Platform,private geolocation: Geolocation,public navCtrl: NavController, public Config: config, public api: Api, public helper: Heplers, public config: config, public storage: Storage) {
     debugger;
    
     this.LoadMainURL();
 
-   
+    platform.ready().then(() => {
+     
+      //this.loading.dismiss();
+      // get position
+      geolocation.getCurrentPosition().then(pos => {
+        debugger;
+       
+      });
+
+
+      // watch position
+      const watch = geolocation.watchPosition().subscribe(pos => {
+        console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
+       
+      });
+
+      // to stop watching
+      watch.unsubscribe();
+    });
 
     //this.storage.set(this.config.UUID_Key, this.device.uuid);
    
