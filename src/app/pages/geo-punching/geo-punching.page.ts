@@ -67,6 +67,7 @@ export class GeoPunchingPage implements OnInit {
         this.MyLocation.Latitude=pos.coords.latitude;
         this.MyLocation.Longitude=pos.coords.longitude;
         this.enablePunchingButtons = true;
+        this.DismissLoadingSpinner();
         //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
         debugger;
       });
