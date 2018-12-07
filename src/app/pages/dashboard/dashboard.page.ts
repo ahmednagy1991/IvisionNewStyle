@@ -287,20 +287,26 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
   }
 
-
+getcenterStyle()
+{
+  return {  
+    'text-align':'center'
+  };
+}
   getOverlayStyle() {
     let isSemi = this.semicircle;
-    let transform = (isSemi ? '' : 'translateY(180%) ') + 'translateX(0%)';
+    let transform = (isSemi ? '' : 'translateY(150%) ') + 'translateX(0%)';
 
     return {
-      'top': isSemi ? 'auto' : '50%',
-      'bottom': isSemi ? '5%' : 'auto',
-      'left': '50%',
-      'text-align': 'center',
+      // 'top': isSemi ? 'auto' : '50%',
+      // 'bottom': isSemi ? '5%' : 'auto',
+      // 'left': '50%',
+      // 'text-align': 'center',
       'transform': transform,
-      '-moz-transform': transform,
-      '-webkit-transform': transform,
-      'font-size': this.radius / 7 + 'px'
+      // '-moz-transform': transform,
+      // '-webkit-transform': transform,
+      // 'font-size': this.radius / 7 + 'px'
+      'text-align':'center'
     };
 }
 

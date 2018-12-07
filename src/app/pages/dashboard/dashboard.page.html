@@ -25,37 +25,54 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-      <h1>Attendance Summary</h1>
+
     </ion-card-header>
     <ion-card-content>
+      <div [ngStyle]="getcenterStyle()">
+        <h1>Attendance Summary</h1>
+        <ion-label>Days Statistics</ion-label>
 
+        <ion-select [(ngModel)]="Peroid" name="Peroid" (ionChange)="ReloadChart()">
+          <ion-select-option value="0">Today</ion-select-option>
+          <ion-select-option value="1">Yesterday</ion-select-option>
+          <ion-select-option value="6">Last 7 Days</ion-select-option>
+          <ion-select-option value="29">Last 30 Days</ion-select-option>
+
+        </ion-select>
+
+      </div>
 
       <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col col-4>
             <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Delay<br />
               {{attSummary.workedWithDelay_Per | number:'1.2-2' }}%</div>
-            <round-progress [color]="'#f4e542'" [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
+            <round-progress [color]="'#f4e542'" [background]="'#4f24ac'" style="display: initial !important;" [radius]="90"
+              [rounded]="true" [current]="attSummary.workedWithDelay_Per" [max]="100"> test</round-progress>
+          </ion-col>
+          <ion-col col-4>
+            <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Absent<br /> {{attSummary.absent_Per |
+              number:'1.2-2' }}%</div>
+            <round-progress [color]="'#ed4025'" [background]="'#4f24ac'" style="display: initial !important;" [radius]="90"
+              [rounded]="true" [current]="attSummary.absent_Per" [max]="100"> test</round-progress>
+          </ion-col>
+          <ion-col col-4>
+            <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Delay<br />
+              {{attSummary.workedWithDelay_Per | number:'1.2-2' }}%</div>
+            <round-progress [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
               [current]="attSummary.workedWithDelay_Per" [max]="100"> test</round-progress>
-          </ion-col>      
-
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row>
+          <ion-col>
+           
+          </ion-col>
         </ion-row>
         <ion-row>
-              <ion-col>
-                <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Absent<br /> {{attSummary.absent_Per |
-                  number:'1.2-2' }}%</div>
-                <round-progress [color]="'#ed4025'" [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
-                  [current]="attSummary.absent_Per" [max]="100"> test</round-progress>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <div class="current mat-headline" [ngStyle]="getOverlayStyle()">Delay<br />
-                  {{attSummary.workedWithDelay_Per | number:'1.2-2' }}%</div>
-                <round-progress [background]="'#4f24ac'" style="display: initial !important;" [radius]="90" [rounded]="true"
-                  [current]="attSummary.workedWithDelay_Per" [max]="100"> test</round-progress>
-              </ion-col>
-            </ion-row>
+          <ion-col>
+           
+          </ion-col>
+        </ion-row> -->
 
       </ion-grid>
 
@@ -100,11 +117,11 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <!-- <ion-card>
     <ion-card-content>
       <ion-item class="item-leave-height">
         <ion-label>Days Statistics</ion-label>
-        <!--  -->
+      
         <ion-select [(ngModel)]="Peroid" name="Peroid" (ionChange)="ReloadChart()">
           <ion-select-option value="0">Today</ion-select-option>
           <ion-select-option value="1">Yesterday</ion-select-option>
@@ -115,7 +132,7 @@
 
       <canvas #doughnutCanvas></canvas>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
 
 

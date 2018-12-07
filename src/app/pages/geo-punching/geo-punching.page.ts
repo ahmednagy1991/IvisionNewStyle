@@ -12,7 +12,7 @@ import { Platform } from '@ionic/angular';
 import { SubmitGeoPunchModel } from '../../../models/SubmitGeoPunchModel';
 import { PunchesService } from '../../../Services/PunchesService';
 import { Heplers } from '../../../providers/Helper/Helpers';
-
+import { DatePipe } from '@angular/common';
 import { environment } from '../../../environments/environment'
 import { LoadingController } from '@ionic/angular';
 
@@ -43,7 +43,7 @@ export class GeoPunchingPage implements OnInit {
   geoPunch: SubmitGeoPunchModel = { lat: "", lng: "", punch_date: "", punch_time: "", Punch_type: 0 };
 
  
-  constructor(public loadingController: LoadingController,private geolocation: Geolocation,private platform: Platform,public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
+  constructor(public datepipe: DatePipe,public loadingController: LoadingController,private geolocation: Geolocation,private platform: Platform,public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
    
     this.presentLoading();
     platform.ready().then(() => {
@@ -109,6 +109,8 @@ export class GeoPunchingPage implements OnInit {
 
   punchIn() {
     this.geoPunch.Punch_type = 1;
+    this.geoPunch.punch_date=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.geoPunch.punch_time=this.datepipe.transform(new Date(), 'hh:mm:ss');
     this.punchSer.PunchIn(this.geoPunch).subscribe((res: any) => {
       if (res.code == 0) {
         this.helper.showMessage("Geo Punching Successfully submited", "Done");
@@ -120,6 +122,8 @@ export class GeoPunchingPage implements OnInit {
   }
   punchOut() {
     this.geoPunch.Punch_type = 0;
+    this.geoPunch.punch_date=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.geoPunch.punch_time=this.datepipe.transform(new Date(), 'hh:mm:ss');
     this.punchSer.PunchOut(this.geoPunch).subscribe((res:any) => {
       if (res.code == 0) {
         this.helper.showMessage("Geo Punching Successfully submited", "Done");
