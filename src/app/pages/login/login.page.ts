@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController, MenuController, ToastController, AlertController, LoadingController } from '@ionic/angular';
+import { NavController, MenuController, ToastController, AlertController } from '@ionic/angular';
 import { TranslateProvider } from '../../providers';
 
 
@@ -17,7 +17,7 @@ import { AccountModel } from '../../../models/AccountModel';
 import { EmployeeModel } from '../../../models/EmployeeModel';
 
 import { Heplers } from '../../../providers/Helper/Helpers';
-
+import { LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -36,18 +36,22 @@ export class LoginPage implements OnInit {
   private loginErrorString: string;
   private stval: string;
   public chachPassword: boolean;
+  loading: HTMLIonLoadingElement;
 
-  constructor(public navCtrl: NavController,
+  constructor(public loadingController: LoadingController,public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
     public storage: Storage,
     public alertCtrl: AlertController,
     public Config: config, public api: Api, public helper: Heplers) {
     this.storage.get(this.Config.Username_Key).then((res) => {
-      debugger;
+     
+      this.presentLoading();
       if (res != "" && res != null && res != "null" && res != undefined) {
+        debugger;
         this.account = JSON.parse(res) as AccountModel;
-        this.doLogin();
+        this.loading.dismiss();
+        //this.doLogin();
       }
 
     });
@@ -106,6 +110,17 @@ export class LoginPage implements OnInit {
 
   }
 
+async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Please wait....', duration: 5000
+    });
+    return await this.loading.present();
+  }
+
+
+  async DismissLoadingSpinner() {
+    return await this.loadingController.dismiss();
+  }
 
 
   goToRegister() {

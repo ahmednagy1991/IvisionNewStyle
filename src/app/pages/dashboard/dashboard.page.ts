@@ -77,7 +77,7 @@ export class DashboardPage implements OnInit {
 
     //this.Peroid = 0;
     this.CurrentTab = "TimeTable";
-    this.LoadDateFormat();
+    //this.LoadDateFormat();
 
     this.ReloadChart();
     //this.splash.show();
@@ -114,17 +114,17 @@ export class DashboardPage implements OnInit {
 
   }
 
-  LoadTTFormat() {
-    this.helpService.GetDateFormat().subscribe((res) => {
-      debugger;
-    });
-  }
+  // LoadTTFormat() {
+  //   this.helpService.GetDateFormat().subscribe((res) => {
+  //     debugger;
+  //   });
+  // }
 
-  LoadDateFormat() {
-    this.TTSerivce.GetDateFormat().subscribe((res) => {
-      debugger;
-    });
-  }
+  // LoadDateFormat() {
+  //   this.TTSerivce.GetDateFormat().subscribe((res) => {
+  //     debugger;
+  //   });
+  // }
 
 
   GetTimeTable() {
