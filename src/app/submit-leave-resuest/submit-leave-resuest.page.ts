@@ -16,7 +16,7 @@ export class SubmitLeaveResuestPage implements OnInit {
   leaveForm: FormGroup;
  
   resons: ReasonsModel[];
-  leaveRequest: SubmitLeavModel = { Description: "", EndDate: new Date(), Notes: "", Paystatus: 0, ReasonID: 0, StartDate: new Date() };
+  leaveRequest: SubmitLeavModel = { Description: "", EndDate: new Date().toISOString(), Notes: "", Paystatus: 0, ReasonID: 0, StartDate: new Date().toISOString() };
 
   constructor(private formBuilder: FormBuilder, public helper: Heplers, public leavService: LeavesService, public navCtrl: NavController) {
     this.LoadResons();

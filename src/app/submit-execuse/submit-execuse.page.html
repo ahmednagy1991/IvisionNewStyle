@@ -15,7 +15,7 @@
 
     <ion-item>
         <ion-label>Execuse Date</ion-label>
-        <ion-datetime [formControl]="execuseForm.controls['execuseDate']" displayFormat="YYYY-MM-DD" [(ngModel)]="excModel.excuse_date" name="excuse_date"></ion-datetime>
+        <ion-datetime max="2050-01-01" [formControl]="execuseForm.controls['execuseDate']" displayFormat="YYYY-MM-DD" [(ngModel)]="excModel.excuse_date" name="excuse_date"></ion-datetime>
       </ion-item>
       <div *ngIf="!execuseForm.controls.execuseDate.valid" class="validator-error">
         <p style="color:red">Execuse Date field is required</p>
