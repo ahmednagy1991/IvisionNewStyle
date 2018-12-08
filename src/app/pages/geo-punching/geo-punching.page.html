@@ -16,7 +16,7 @@
 <!-- [styles]="agmStyles" -->
 <ion-content padding>
   <ion-card-content no-padding>
-    <agm-map [ngStyle]="GetMapStyle()" [latitude]="MyLocation.Latitude" [longitude]="MyLocation.Longitude" [zoom]="5"
+    <agm-map [ngStyle]="GetMapStyle()" [latitude]="MyLocation.Latitude" [longitude]="MyLocation.Longitude" [zoom]="12"
       [zoomControl]="false" [streetViewControl]="true">
       <agm-marker [latitude]="MyLocation.Latitude" [longitude]="MyLocation.Longitude"></agm-marker>
     </agm-map>
