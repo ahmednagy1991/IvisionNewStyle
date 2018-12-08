@@ -6,6 +6,7 @@ import { AgmCoreModule } from '@agm/core';
 import { IonicModule } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { GeoPunchingPage } from './geo-punching.page';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
 
 @NgModule({
  providers:[
-  Geolocation
+  Geolocation,
+  NativeGeocoder
  ],
   imports: [
     CommonModule,
