@@ -4,9 +4,9 @@ import { NavController, ActionSheetController, ToastController, ModalController 
 import { TranslateProvider, HotelProvider } from '../../providers';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import {  ViewChild, ElementRef } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { Platform } from '@ionic/angular';
 
 import { SubmitGeoPunchModel } from '../../../models/SubmitGeoPunchModel';
@@ -15,6 +15,7 @@ import { Heplers } from '../../../providers/Helper/Helpers';
 import { DatePipe } from '@angular/common';
 import { environment } from '../../../environments/environment'
 import { LoadingController } from '@ionic/angular';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 import {
   trigger,
@@ -32,6 +33,7 @@ import {
 })
 export class GeoPunchingPage implements OnInit {
 
+
   CurrentAddress: string;
   loading: HTMLIonLoadingElement;
   CurrentTime: string;
@@ -39,24 +41,35 @@ export class GeoPunchingPage implements OnInit {
   EnableButtons: boolean = false;
   MyLocation: { Latitude: number, Longitude: number } = { Latitude: 0, Longitude: 0 };
   Address: { countryCode: string, countryName: string, administrativeArea: string, subAdministrativeArea: string, locality: string, thoroughfare: string }
- 
+
   geoPunch: SubmitGeoPunchModel = { lat: "", lng: "", punch_date: "", punch_time: "", Punch_type: 0 };
 
- 
-  constructor(public datepipe: DatePipe,public loadingController: LoadingController,private geolocation: Geolocation,private platform: Platform,public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
-   
+
+  constructor(private nativeGeocoder: NativeGeocoder, public datepipe: DatePipe, public loadingController: LoadingController, private geolocation: Geolocation, private platform: Platform, public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
+
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5
+    };
+
+
     this.presentLoading();
     platform.ready().then(() => {
-     
+
       //this.loading.dismiss();
       // get position
       geolocation.getCurrentPosition().then(pos => {
         debugger;
         //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
-        this.MyLocation.Latitude=pos.coords.latitude;
-        this.MyLocation.Longitude=pos.coords.longitude;
+        this.MyLocation.Latitude = pos.coords.latitude;
+        this.MyLocation.Longitude = pos.coords.longitude;
         this.enablePunchingButtons = true;
         this.loading.dismiss();
+        this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
+          .then((result: NativeGeocoderReverseResult[]) =>{
+            this.helper.showMessage(JSON.stringify(result[0]), "Done");
+          })
+          .catch((error: any) => console.log(error));
         //this.DismissLoadingSpinner();
         console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
       });
@@ -66,9 +79,14 @@ export class GeoPunchingPage implements OnInit {
       const watch = geolocation.watchPosition().subscribe(pos => {
         console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
         let temp = pos;
-        this.MyLocation.Latitude=pos.coords.latitude;
-        this.MyLocation.Longitude=pos.coords.longitude;
+        this.MyLocation.Latitude = pos.coords.latitude;
+        this.MyLocation.Longitude = pos.coords.longitude;
         this.enablePunchingButtons = true;
+        this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
+          .then((result: NativeGeocoderReverseResult[]) =>{
+            this.helper.showMessage(JSON.stringify(result[0]), "Done");
+          })
+          .catch((error: any) => console.log(error));
         //this.DismissLoadingSpinner();
         this.loading.dismiss();
         //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
@@ -79,7 +97,9 @@ export class GeoPunchingPage implements OnInit {
       watch.unsubscribe();
     });
 
-    
+
+
+
   }
 
   // async presentLoadingWithOptions() {
@@ -95,13 +115,13 @@ export class GeoPunchingPage implements OnInit {
 
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Please wait while loading your location',  duration: 5000
+      message: 'Please wait while loading your location', duration: 5000
     });
     return await this.loading.present();
   }
 
-  
-  async DismissLoadingSpinner() {    
+
+  async DismissLoadingSpinner() {
     return await this.loadingController.dismiss();
   }
 
@@ -109,26 +129,26 @@ export class GeoPunchingPage implements OnInit {
 
   punchIn() {
     this.geoPunch.Punch_type = 1;
-    this.geoPunch.punch_date=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
-    this.geoPunch.punch_time=this.datepipe.transform(new Date(), 'hh:mm:ss');
-    this.geoPunch.lat=this.MyLocation.Latitude.toString();
-    this.geoPunch.lng=this.MyLocation.Longitude.toString();
+    this.geoPunch.punch_date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.geoPunch.punch_time = this.datepipe.transform(new Date(), 'hh:mm:ss');
+    this.geoPunch.lat = this.MyLocation.Latitude.toString();
+    this.geoPunch.lng = this.MyLocation.Longitude.toString();
     this.punchSer.PunchIn(this.geoPunch).subscribe((res: any) => {
       if (res.code == 0) {
         this.helper.showMessage("Geo Punching Successfully submited", "Done");
       }
       else {
         this.helper.ShowErrorMessage(res.code);
-      }    
+      }
     });
   }
   punchOut() {
     this.geoPunch.Punch_type = 0;
-    this.geoPunch.punch_date=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
-    this.geoPunch.punch_time=this.datepipe.transform(new Date(), 'hh:mm:ss');
-    this.geoPunch.lat=this.MyLocation.Latitude.toString();
-    this.geoPunch.lng=this.MyLocation.Longitude.toString();
-    this.punchSer.PunchOut(this.geoPunch).subscribe((res:any) => {
+    this.geoPunch.punch_date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.geoPunch.punch_time = this.datepipe.transform(new Date(), 'hh:mm:ss');
+    this.geoPunch.lat = this.MyLocation.Latitude.toString();
+    this.geoPunch.lng = this.MyLocation.Longitude.toString();
+    this.punchSer.PunchOut(this.geoPunch).subscribe((res: any) => {
       if (res.code == 0) {
         this.helper.showMessage("Geo Punching Successfully submited", "Done");
       }
@@ -138,11 +158,18 @@ export class GeoPunchingPage implements OnInit {
     });
   }
 
- 
-  ngOnInit() {
-   
+
+  GetMapStyle() {
+    return {
+      "height": "400px"
+    }
 
   }
-  
+
+  ngOnInit() {
+
+
+  }
+
 
 }
