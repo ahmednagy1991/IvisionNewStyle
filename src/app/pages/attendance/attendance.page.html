@@ -70,7 +70,7 @@
   </div>
 
   <div [ngSwitch]="CurrentTab">
-    <ion-item *ngSwitchCase="'Attendance'">
+    <div *ngSwitchCase="'Attendance'">
       <div>
         <ion-item color="medium" tappable margin-bottom *ngFor="let att of AttendanceTab">
           <ion-thumbnail slot="start">
@@ -138,7 +138,7 @@
         </ion-item>
 
       </div>
-    </ion-item>
+    </div>
     <div *ngSwitchCase="'Summary'">
       <div>
         <ion-grid>
