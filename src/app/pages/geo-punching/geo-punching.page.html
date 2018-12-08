@@ -4,33 +4,58 @@
   </ion-toolbar>
 </ion-header> -->
 <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-menu-button color="secondary"></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Geo Punching</ion-title>
-    </ion-toolbar>
-  
-  </ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Geo Punching</ion-title>
+  </ion-toolbar>
+
+</ion-header>
 
 <!-- [styles]="agmStyles" -->
 <ion-content padding>
   <ion-card-content no-padding>
-    <agm-map [ngStyle]="GetMapStyle()" [latitude]="MyLocation.Latitude" [longitude]="MyLocation.Longitude" [zoom]="9" [zoomControl]="false" [streetViewControl]="true">
+    <agm-map [ngStyle]="GetMapStyle()" [latitude]="MyLocation.Latitude" [longitude]="MyLocation.Longitude" [zoom]="9"
+      [zoomControl]="false" [streetViewControl]="true">
       <agm-marker [latitude]="MyLocation.Latitude" [longitude]="MyLocation.Longitude"></agm-marker>
     </agm-map>
 
     <!-- *ngIf="enablePunchingButtons" -->
-    <ion-grid>     
+    <ion-grid>
+      <ion-row>
+        <ion-col>Country Code</ion-col>
+        <ion-col>{{MyAddress.countryCode}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Country Name</ion-col>
+        <ion-col>{{MyAddress.countryName}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Administrative Area</ion-col>
+        <ion-col>{{MyAddress.administrativeArea}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Sub Administrative Area</ion-col>
+        <ion-col>{{MyAddress.subAdministrativeArea}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Locality</ion-col>
+        <ion-col>{{MyAddress.locality}}</ion-col>
+      </ion-row>
+
+
+
+
       <ion-row>
         <ion-col>
           <ion-button expand="full" shape="round" color="success" (click)="punchIn()">Punch In</ion-button>
         </ion-col>
-       
+
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button expand="full" shape="round" color="danger"  (click)="punchIn()">Punch Out</ion-button>
+          <ion-button expand="full" shape="round" color="danger" (click)="punchIn()">Punch Out</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

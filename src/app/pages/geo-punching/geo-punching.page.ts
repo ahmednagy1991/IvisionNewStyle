@@ -34,6 +34,7 @@ import {
 export class GeoPunchingPage implements OnInit {
 
 
+  MyAddress:any;
   CurrentAddress: string;
   loading: HTMLIonLoadingElement;
   CurrentTime: string;
@@ -67,7 +68,7 @@ export class GeoPunchingPage implements OnInit {
         this.loading.dismiss();
         this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
           .then((result: NativeGeocoderReverseResult[]) =>{
-            this.helper.showMessage(JSON.stringify(result[0]), "Done");
+            this.MyAddress=JSON.stringify(result[0]);          
           })
           .catch((error: any) => console.log(error));
         //this.DismissLoadingSpinner();
@@ -84,7 +85,7 @@ export class GeoPunchingPage implements OnInit {
         this.enablePunchingButtons = true;
         this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
           .then((result: NativeGeocoderReverseResult[]) =>{
-            this.helper.showMessage(JSON.stringify(result[0]), "Done");
+            this.MyAddress=JSON.stringify(result[0]);
           })
           .catch((error: any) => console.log(error));
         //this.DismissLoadingSpinner();
