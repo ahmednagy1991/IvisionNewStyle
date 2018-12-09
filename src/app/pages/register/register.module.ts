@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
-
+import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { RegisterPage } from './register.page';
 
 const routes: Routes = [
@@ -15,6 +15,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  providers: [
+    UniqueDeviceID
+  ],
   imports: [
     CommonModule,
     FormsModule,

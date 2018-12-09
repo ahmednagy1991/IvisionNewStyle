@@ -9,21 +9,21 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="credentialsForm" (submit)="submitAdjustment()">
+  <form (submit)="submitAdjustment()">
 
-
+    <!-- [formGroup]="credentialsForm" -->
 
 
     <ion-item>
       <ion-label>Date</ion-label>
-      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="adj.punch_date" name="punch_date"></ion-datetime>
+      <ion-datetime max="2050" displayFormat="YYYY-MM-DD" [(ngModel)]="adj.punch_date" name="punch_date"></ion-datetime>
     </ion-item>
 
 
 
     <ion-item>
       <ion-label>Time</ion-label>
-      <ion-datetime displayFormat="HH:MM" [(ngModel)]="adj.punch_time" name="punch_time"></ion-datetime>
+      <ion-datetime displayFormat="hh:mm" [(ngModel)]="adj.punch_time" name="punch_time"></ion-datetime>
     </ion-item>
 
     <ion-item class="item-leave-height">
@@ -52,17 +52,18 @@
     </ion-item>
 
 
+    <!-- [formControl]="credentialsForm.controls['email']" -->
     <ion-item>
       <ion-label fixed>Notes</ion-label>
-      <ion-textarea [formControl]="credentialsForm.controls['email']" type="text" [(ngModel)]="adj.req_note" name="req_note"></ion-textarea>
+      <ion-textarea  type="text" [(ngModel)]="adj.req_note" name="req_note"></ion-textarea>
 
     </ion-item>
-    <div *ngIf="!credentialsForm.controls.email.valid" class="validator-error">
+    <!-- <div *ngIf="!credentialsForm.controls.email.valid" class="validator-error">
       <p style="color:red">Please enter a valid email.</p>
-    </div>
+    </div> -->
 
-
-    <ion-button  [disabled]="!credentialsForm.valid" full (click)="submitAdjustment()" icon-left size="medium" expand="full" shape="round" color="dark"
+    <!-- [disabled]="!credentialsForm.valid" -->
+    <ion-button   full (click)="submitAdjustment()" icon-left size="medium" expand="full" shape="round" color="dark"
       tappable>
       <ion-ripple-effect></ion-ripple-effect>
       <ion-icon name="paper"></ion-icon>

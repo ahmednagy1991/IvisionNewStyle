@@ -1,5 +1,52 @@
 :host {
   ion-content {
-    --background: linear-gradient(135deg, var(--ion-color-dark), var(--ion-color-primary))
+      // --background: linear-gradient(135deg, var(--ion-color-dark), var(--ion-color-primary));
+     // --background: url('../../../assets/img/slider02.png') no-repeat transparent;
+     // position: relative;
+    
+     --background: url('../../../assets/img/slider03.png') no-repeat transparent;
+   
   }
+}
+
+.opsplash-bg2 {
+  opacity: 0.2;
+}
+.splash-bg2 {
+  position: relative;
+  //background: url('../../../assets/img/slider02.png') no-repeat transparent;
+  background-size: 100%;
+   height:105%;
+  // width:100%;
+ 
+  z-index: 1;
+  background-repeat: repeat-x;
+  
+  animation: animatedBackground 40s linear infinite;
+}
+
+.video-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  opacity: .12;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  // --background: linear-gradient(135deg, var(--ion-color-dark), var(--ion-color-primary));
+  --background: url('../../../assets/img/slider02.png') no-repeat transparent;
+  background-size: cover;
+  object-fit: cover;
+}
+
+.paz {
+  position: relative;
+  z-index: 10;
 }

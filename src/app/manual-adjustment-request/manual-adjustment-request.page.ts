@@ -19,7 +19,7 @@ export class ManualAdjustmentRequestPage implements OnInit {
 
   readerList: ReaderModel[];
   resons: ReasonsModel[];
-  adj: SubmitAdjustmentModel = { punch_date: new Date(), punch_time: new Date(), Punch_type: 0, reader_id: 0, reason_id: 0, req_note: "" };
+  adj: SubmitAdjustmentModel = { punch_date: new Date().toISOString(), punch_time: new Date().toISOString(), Punch_type: 0, reader_id: 0, reason_id: 0, req_note: "" };
 
   constructor( public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
     this.LoadResons();
