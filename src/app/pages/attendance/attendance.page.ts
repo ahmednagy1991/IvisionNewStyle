@@ -18,7 +18,8 @@ export class AttendancePage implements OnInit {
   CurrentTab: string = "Attendance";
   AttendanceTab: AttendanceModel[];
   Attendancepunchtab: AttendancePunches;
-  
+  DefaultDateFormat:string;
+  DefaultTimeFormat:string;
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
   Totals: AttendanceTotalsModel = {
     RegHoursTotal: 0,
@@ -37,8 +38,13 @@ export class AttendancePage implements OnInit {
 
 
   constructor(public helper: Heplers, public AttService: AttendanceService, public navCtrl: NavController) {
-
     
+    helper.GetDateFormat().then((res)=>{
+      this.DefaultDateFormat=res;
+    });
+    helper.GetTimeFormat().then((res)=>{
+      this.DefaultTimeFormat=res;
+    });
     this.dateComp.from=this.helper.SubDays(7,new Date()).toISOString();
     debugger;
   }

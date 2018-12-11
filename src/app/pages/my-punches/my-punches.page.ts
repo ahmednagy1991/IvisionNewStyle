@@ -18,10 +18,14 @@ export class MyPunchesPage implements OnInit {
   }
 
   PunchTable: PunchModel[];
+  DefaultDateFormat:string;
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
 
   constructor(public helper: Heplers,public punchService: PunchesService, public navCtrl: NavController) {
     this.dateComp.from=this.helper.SubDays(7,new Date()).toISOString();
+    helper.GetDateFormat().then((res)=>{
+      this.DefaultDateFormat=res;
+    });
   }
 
 

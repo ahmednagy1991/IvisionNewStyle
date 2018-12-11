@@ -18,10 +18,13 @@ export class ExecusesPage implements OnInit {
   resons: ReasonsModel[];
   exList: ExecuseListModel[];
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
-
+  DefaultDateFormat:string;
 
   constructor(public helper: Heplers, public excService: ExecuseService, public navCtrl: NavController) {
     //this.LoadResons();
+    helper.GetDateFormat().then((res)=>{
+      this.DefaultDateFormat=res;
+    });
   }
 
   LoadExecuses() {

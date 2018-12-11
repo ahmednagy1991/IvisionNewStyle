@@ -21,10 +21,18 @@ export class TimeTablePage implements OnInit {
   TTableModel: TimeTableModel = { TT_ID:"",DURATION: 0, TO_DATE_TIME: new Date(), FROM_DATE_TIME: new Date(), ENTRY_STATE: 0, OVERNIGHT_STATUS: 0, ST_ID: "", ST_TITLE: "", TT_DATE: new Date(), TT_STATE: 0 };
   TTListModel: TimeTableListModel[];
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
-
-
+  DefaultDateFormat:string;
+  DefaultTimeFormat:string;
   constructor(public modalCtrl: ModalController, public helper: Heplers, public TTSerivce: TimeTableService, public navCtrl: NavController) {
     this.dateComp.to=this.helper.AddDays(7,new Date()).toISOString();
+    helper.GetDateFormat().then((res)=>{
+      this.DefaultDateFormat=res;
+    });
+
+    helper.GetTimeFormat().then((res)=>{
+      this.DefaultTimeFormat=res;
+    });
+
   }
 
 
@@ -92,29 +100,123 @@ export class TimeTablePage implements OnInit {
 </ion-header>
 <ion-content>
 
+<ion-grid>
+<ion-row>
+  <ion-col>
+    
+    <ion-list>
+      <ion-item-sliding>
+        <ion-item tappable>
+          <ion-label>
+            <h2>             
+              <ion-text color="primary">Date : {{TTableModel.TT_DATE | date:DefaultDateFormat}}</ion-text>
+            </h2>         
+          </ion-label>
+        </ion-item>
+        
+      </ion-item-sliding>
+
+
+
+
+      <ion-item-sliding>
+      <ion-item tappable>
+        <ion-label>
+          <h2>             
+            <ion-text color="primary">Reg. HRS : {{helper.ToHoursString(TTableModel.DURATION)}}</ion-text>
+          </h2>         
+        </ion-label>
+      </ion-item>
+      
+    </ion-item-sliding>
+
+
+
+    <ion-item-sliding>
+    <ion-item tappable>
+      <ion-label>
+        <h2>             
+          <ion-text color="primary">From Time : {{TTableModel.FROM_DATE_TIME | date:DefaultTimeFormat}}</ion-text>
+        </h2>         
+      </ion-label>
+    </ion-item>
+    
+  </ion-item-sliding>
+
+
+  <ion-item-sliding>
+  <ion-item tappable>
+    <ion-label>
+      <h2>             
+        <ion-text color="primary">To Time : {{TTableModel.TO_DATE_TIME | date:DefaultTimeFormat}}</ion-text>
+      </h2>         
+    </ion-label>
+  </ion-item>
+  
+</ion-item-sliding>
+
+
+<ion-item-sliding>
+<ion-item tappable>
+  <ion-label>
+    <h2>             
+      <ion-text color="primary">Calc. Type : {{TTableModel.ST_ID}}</ion-text>
+    </h2>         
+  </ion-label>
+</ion-item>
+
+</ion-item-sliding>
+
+
+<ion-item-sliding>
+<ion-item tappable>
+  <ion-label>
+    <h2>             
+      <ion-text color="primary">Tpl. Used : {{TTableModel.ST_TITLE}}</ion-text>
+    </h2>         
+  </ion-label>
+</ion-item>
+
+</ion-item-sliding>
+
+
+
+  
+    </ion-list>
+
+  </ion-col>
+</ion-row>
+</ion-grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <ion-card>
 
            
       
-<ion-grid>
-  <div>
-      <ion-row nowrap class="ro">Date : {{TTableModel.TT_DATE | date:'yyyy/MM/dd'}}</ion-row>
-      <ion-row nowrap class="ro">Reg. HRS : {{helper.ToHoursString(TTableModel.DURATION)}}</ion-row>
-      <ion-row nowrap class="ro">From Time : {{TTableModel.FROM_DATE_TIME | date:'HH:MM'}}</ion-row>
-      <ion-row nowrap class="ro">To Time : {{TTableModel.TO_DATE_TIME | date:'HH:MM'}}</ion-row>
-      <ion-row nowrap class="ro">Calc. Type : {{TTableModel.ST_ID}}</ion-row>
-      <ion-row nowrap class="ro">Tpl. Used : {{TTableModel.ST_TITLE}}</ion-row>
-     
-  </div>
-   
-</ion-grid>
+
 </ion-card>
 </ion-content>
 `
 })
 export class ModalTimTablePage {
   TTableModel: TimeTableModel
-
+  DefaultDateFormat:string;
+  DefaultTimeFormat:string;
   constructor(
     // public platform: Platform,
     public helper: Heplers,
@@ -126,7 +228,14 @@ export class ModalTimTablePage {
     debugger;
     // this.TTableModel = params.get("TTTab");
     this.LoadTimeTableDetails(params.data.modal["id"]);
+  
+    helper.GetDateFormat().then((res)=>{
+      this.DefaultDateFormat=res;
+    });
 
+    helper.GetTimeFormat().then((res)=>{
+      this.DefaultTimeFormat=res;
+    });
   }
 
   LoadTimeTableDetails(TTID: number) {

@@ -14,11 +14,15 @@ import { NavController, LoadingController, ModalController, NavParams } from '@i
 })
 export class LeavesPage implements OnInit {
 
+  DefaultDateFormat:string;
   LeavesTab: LeaveModel = { LV_ID: 0, LV_TITLE: "", START_DATE: new Date(), END_DATE: new Date(), LV_NOTE: "", PAY_STATUS: 0, REASON_TITLE: "" };
   LeavList: LeavListModel[];
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
   constructor(public modalCtrl: ModalController, public helper: Heplers, public LevService: LeavesService, public navCtrl: NavController) {
     //this.GetLeaves();
+    helper.GetDateFormat().then((res)=>{
+      this.DefaultDateFormat=res;
+    });
   }
 
   //, { leavesTab: this.LeavesTab }
@@ -87,24 +91,121 @@ export class LeavesPage implements OnInit {
 
 <ion-card>
 
+
+
 <ion-grid>
-<div>
-    <ion-row nowrap class="ro">Leave Id : {{LeavesTab.LV_ID}}</ion-row>
-    <ion-row nowrap class="ro">Leave Title : {{LeavesTab.LV_TITLE}}</ion-row>
-    <ion-row nowrap class="ro">Leave From : {{LeavesTab.START_DATE}}</ion-row>
-    <ion-row nowrap class="ro">Leave To : {{LeavesTab.END_DATE}}</ion-row>
-    <ion-row nowrap class="ro">Leave Notes : {{LeavesTab.LV_NOTE}}</ion-row>
-    <ion-row nowrap class="ro">Leave Reason : {{LeavesTab.REASON_TITLE}}</ion-row>
-    <ion-row nowrap class="ro">Leave Status : {{helper.getPayStatus(LeavesTab.PAY_STATUS)}}</ion-row>
-</div>
- 
+<ion-row>
+  <ion-col>
+    
+    <ion-list>
+      <ion-item-sliding>
+        <ion-item tappable>
+          <ion-label>
+            <h2>             
+              <ion-text color="primary">Leave Id : {{LeavesTab.LV_ID}}</ion-text>
+            </h2>         
+          </ion-label>
+        </ion-item>
+        
+      </ion-item-sliding>
+
+
+
+
+      <ion-item-sliding>
+      <ion-item tappable>
+        <ion-label>
+          <h2>             
+            <ion-text color="primary">Leave Title : {{LeavesTab.LV_TITLE}}</ion-text>
+          </h2>         
+        </ion-label>
+      </ion-item>
+      
+    </ion-item-sliding>
+
+
+
+    <ion-item-sliding>
+    <ion-item tappable>
+      <ion-label>
+        <h2>             
+          <ion-text color="primary">Leave From : {{LeavesTab.START_DATE | date:DefaultDateFormat}}</ion-text>
+        </h2>         
+      </ion-label>
+    </ion-item>
+    
+  </ion-item-sliding>
+
+
+  <ion-item-sliding>
+  <ion-item tappable>
+    <ion-label>
+      <h2>             
+        <ion-text color="primary">Leave To : {{LeavesTab.END_DATE | date:DefaultDateFormat}}</ion-text>
+      </h2>         
+    </ion-label>
+  </ion-item>
+  
+</ion-item-sliding>
+
+
+<ion-item-sliding>
+<ion-item tappable>
+  <ion-label>
+    <h2>             
+      <ion-text color="primary">Leave Notes : {{LeavesTab.LV_NOTE}}</ion-text>
+    </h2>         
+  </ion-label>
+</ion-item>
+
+</ion-item-sliding>
+
+
+<ion-item-sliding>
+<ion-item tappable>
+  <ion-label>
+    <h2>             
+      <ion-text color="primary">Leave Reason : {{LeavesTab.REASON_TITLE}}</ion-text>
+    </h2>         
+  </ion-label>
+</ion-item>
+
+</ion-item-sliding>
+
+<ion-item-sliding>
+<ion-item tappable>
+  <ion-label>
+    <h2>             
+      <ion-text color="primary">Leave Status : {{helper.getPayStatus(LeavesTab.PAY_STATUS)}}</ion-text>
+    </h2>         
+  </ion-label>
+</ion-item>
+
+</ion-item-sliding>
+
+
+
+
+  
+    </ion-list>
+
+  </ion-col>
+</ion-row>
 </ion-grid>
+
+
+
+
+
+
 </ion-card>
 </ion-content>
 `
 })
 export class ModalContentPage {
   LeavesTab: LeaveModel;
+  DefaultDateFormat:string;
+  DefaultTimeFormat:string;
 
   constructor(
     public helper: Heplers,
@@ -114,6 +215,13 @@ export class ModalContentPage {
 
     this.GetLeaves(params.data.modal["id"]);
     debugger;
+    helper.GetDateFormat().then((res)=>{
+      this.DefaultDateFormat=res;
+    });
+
+    helper.GetTimeFormat().then((res)=>{
+      this.DefaultTimeFormat=res;
+    });
   }
 
   MapLeave(res: any) {

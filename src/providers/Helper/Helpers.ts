@@ -22,6 +22,16 @@ export class Heplers {
         //return temp;
     }
 
+    GetDateFormat():Promise<string>
+    {
+        return this.storage.get("DateFormat");
+    }
+
+    GetTimeFormat():Promise<string>
+    {
+        return this.storage.get("TimeFormat");
+    }
+
     ShowErrorMessage(Code: number) {
         this.showMessage(this.GetCodeMessage(Code), "Error");
     }

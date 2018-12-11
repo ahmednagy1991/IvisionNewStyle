@@ -16,8 +16,12 @@ export class DutiesPage implements OnInit {
 
   DutiyList: DutiesListModel[];
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
-
+  DefaultDateFormat:string;
+  
   constructor(public helper: Heplers, public LevService: LeavesService, public navCtrl: NavController) {
+    helper.GetDateFormat().then((res)=>{
+      this.DefaultDateFormat=res;
+    });
   }
 
 

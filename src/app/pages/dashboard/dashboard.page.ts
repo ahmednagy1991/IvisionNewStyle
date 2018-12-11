@@ -47,7 +47,8 @@ export class DashboardPage implements OnInit {
     apikey: "8b50486998244ae4965678671206bbf3",
     hash_ver: "sha1"
   };
-
+  DefaultDateFormat:string;
+  DefaultTimeFormat:string;
   CurrentTab: string = "TimeTable";
   Currentchart: string = "Present";
   Peroid: number = 29;
@@ -80,6 +81,19 @@ export class DashboardPage implements OnInit {
     //this.LoadDateFormat();
 
     this.ReloadChart();
+
+    this.helpService.GetDateFormat().subscribe((res)=>{
+     
+      this.DefaultDateFormat=(res as any).result[0].Date_Format;
+      this.storage.set("DateFormat",this.DefaultDateFormat);
+    });
+
+    this.helpService.GetTimeFormat().subscribe((res)=>{
+    
+      this.DefaultTimeFormat=(res as any).result[0].Time_Format;
+      this.storage.set("TimeFormat",this.DefaultTimeFormat);
+    });
+
     //this.splash.show();
     //this.renderChart();
   }
@@ -88,7 +102,7 @@ export class DashboardPage implements OnInit {
   }
 
   MapAttendanceTable(res: any) {
-    debugger;
+  
     this.AttendanceTab = res.result as AttendanceModel[];
   }
 
@@ -154,7 +168,7 @@ export class DashboardPage implements OnInit {
 
 
   ReloadChart() {
-    debugger;
+  
     this.attSummary = { absent: 0, absentWithDuity: 0, NoTT: 0, OffDays: 0, VacDays: 0, workedDays: 0, workedWithDelay: 0, workingDays: 0, absent_Per: 0, workedDays_Per: 0, absentWithDuity_Per: 0, VacDays_Per: 0, workedWithDelay_Per: 0, NoTT_Per: 0, OffDays_Per: 0, workingDays_Per: 0 };
     this.ionViewDidLoad();
   }
@@ -216,14 +230,14 @@ export class DashboardPage implements OnInit {
   }
   ionViewDidLoad() {
 
-    debugger;
+  
     this.AttService.GetAttendanceSummary(this.helper.getLastDaysDate(this.Peroid), this.helper.GetCurrentDate()).then((res) => {
       // res.subscribe((ret)=>{
       //  // debugger;
       // });
       // this.SummaryModel = res.unsubscribe as AttendanceStatisticsModel;
       res.subscribe((ret) => {
-        debugger;
+  
         let obj = ret as any;
         let total_days = 0;
 

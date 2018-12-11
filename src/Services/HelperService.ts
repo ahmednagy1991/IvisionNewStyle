@@ -26,13 +26,13 @@ export class HelperService {
     }
 
     GetTimeFormat() {
-        debugger;
+        
         return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetTimeFormat',
         'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken)
     }
 
     GetDateFormat() {
-        debugger;
+    
         //                       ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetTimeFormat
         return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetDateFormat',
         'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken)

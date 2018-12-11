@@ -86,7 +86,7 @@
 
             </h2> -->
             <h2>
-              <strong>{{att.AT_DATE | date:'yyyy/MM/dd'}}</strong>
+              <strong>{{att.AT_DATE | date:DefaultDateFormat}}</strong>
             </h2>
             <h3>
               <ion-badge *ngIf="helper.ToHoursString(att.AT_TOTAL_WORK_DURATION)!='-'" slot="start" color="secondary"
