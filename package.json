@@ -1,5 +1,5 @@
 {
-  "name": "IVisionMT",
+  "name": "iVisionMT",
   "version": "2.0.2",
   "homepage": "https://market.ionicframework.com/themes/ionbooking2",
   "author": {
@@ -89,7 +89,7 @@
     "ts-node": "~7.0.1",
     "typescript": "~2.9.2"
   },
-  "description": "IVisionMT",
+  "description": "iVisionMT",
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},

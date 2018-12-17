@@ -1,7 +1,7 @@
 {
-    "app.name": "IVisionMT",
+    "app.name": "iVisionMT",
     "app.version": "2",
-    "app.description": "IVisionMT",
+    "app.description": "iVisionMT",
 
     "app.button.search": "Search",
     "app.button.checkout": "Checkout",

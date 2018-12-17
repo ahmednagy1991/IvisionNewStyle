@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionictheme.ionbooking.v2" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>IVisionMT</name>
+    <name>iVisionMT</name>
     <description>Time Attendance Applicatoin</description>
     <author email="firminoata@gmail.com" href="https://ionictheme.com">Ionic Theme</author>
     <content src="index.html" />
