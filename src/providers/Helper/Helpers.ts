@@ -91,7 +91,7 @@ export class Heplers {
             case 21003:
                 return "Not authorized for this call"
             case 21004:
-                return "No Results"
+                return "No records return"
             case 3301:
                 return "Error getting requested information details"
             case 21005:

@@ -34,7 +34,7 @@ export class SettingsPage implements OnInit {
   // constructor(public navCtrl: NavController) { }
 
   ngOnInit() {
-   
+
   }
 
   // editProfile() {
@@ -69,23 +69,24 @@ export class SettingsPage implements OnInit {
 
   subSettings: any = SettingsPage;
 
-  constructor(public navCtrl: NavController,public helperService:HelperService,
+  constructor(public navCtrl: NavController, public helperService: HelperService,
     private platform: Platform,
-   // public settings: Settings,
+    
+    // public settings: Settings,
     //public formBuilder: FormBuilder,
-   // public navParams: NavParams,
-   // public translate: TranslateService,
+    // public navParams: NavParams,
+    // public translate: TranslateService,
     //private qrScanner: QRScanner,
     //private file: File,
-   // public platform: Platform,
+    // public platform: Platform,
     //public alertCtrl: AlertController,
-     public helper: Heplers, public Config: config, public storage: Storage) {
-  
+    public helper: Heplers, public Config: config, public storage: Storage) {
+
     this.storage.get(this.Config.MainURL_Key).then(res => this.settingItem.mainurl = res);
 
   }
 
- 
+
 
 
   // scanServiceURL() {
@@ -141,40 +142,43 @@ export class SettingsPage implements OnInit {
   // }
 
 
-  CheckURL(res:any)
-  {
-    if (res.code == 0) {
-     
+  CheckURL(res: any) {
+    debugger;
+    if (res.code == 0||res.code == 8) {
+      this.helper.presentToast("Please Wait While Saving changes then restart application.....", 8000);
+      this.storage.set(this.Config.MainURL_Key, this.settingItem.mainurl);
+      setTimeout(() => {
+        debugger;
+
+        this.navCtrl.navigateRoot('login');
+        //this.platform.
+        //this.platform.exitApp();
+        //this.platform.
+        //this.navCtrl.navigateRoot();
+        //this.platform.exitApp();
+        // this.navCtrl.setRoot('WelcomePage');
+        // this.navCtrl.push('WelcomePage');
+        //this.storage.get(this.config.MainURL_Key).then(res=> console.log('Main URL VAlue', res)); 
+      }, 9000);
     }
-    else
-    {
+    else {
       this.helper.presentToast("Invalid URL", 1000);
     }
   }
 
-  showErr()
-  {
+  showErr() {
     this.helper.presentToast("Invalid URL", 1000);
   }
   saveSettings() {
 
-    this.helper.presentToast("Please Wait While Saving changes then restart application.....", 8000);
-    this.storage.set(this.Config.MainURL_Key, this.settingItem.mainurl);
-    setTimeout(() => {
 
-      //this.navCtrl.exitApp();
-      //this.platform.exitApp();
-       // this.navCtrl.setRoot('WelcomePage');
-      // this.navCtrl.push('WelcomePage');
-      //this.storage.get(this.config.MainURL_Key).then(res=> console.log('Main URL VAlue', res)); 
-    }, 9000);
-    
-    //this.helperService.CheckTimeFormat(this.settingItem.mainurl).subscribe(res => this.CheckURL(res), err =>this.showErr());
+
+    this.helperService.CheckTimeFormat(this.settingItem.mainurl).subscribe(res => this.CheckURL(res), err => this.showErr());
     //debugger;
     //var temp2222=this.config.MainURL_Key;
     //  let temp = this.settingItem.mainurl;
     //this.storage.remove(this.config.MainURL_Key); 
-   
+
 
     //this.storage.get(this.config.MainURL_Key).then(res=> console.log('Main URL VAlue', res));
     //window.location.reload();

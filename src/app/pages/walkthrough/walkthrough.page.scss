@@ -18,10 +18,18 @@
     z-index: 1;
     background-repeat: repeat-x;
   }
+  .swiper-pagination
+  {
+    visibility: hidden !important;
+  }
+  .swiper-pagination-bullet-active
+  {
+    visibility: hidden !important;
+  }
   .bgnd2{
   
     background: url('../../../assets/img/slider03.png') no-repeat transparent;
-    background-size: 100%;
+    background-size: 108%;
   }
   .slide-zoom {
     height: 99vh;

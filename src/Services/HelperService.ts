@@ -41,7 +41,8 @@ export class HelperService {
     CheckTimeFormat(mainURL:string) {
         debugger;
         return this.api.callGetWithoutMainURL(mainURL+'/ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetTimeFormat',
-        'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken)
+       '')
+       // 'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken
     }
 
 

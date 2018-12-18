@@ -29,8 +29,10 @@
     <ion-item class="item-leave-height">
       <ion-label>Reader</ion-label>
       <ion-select [(ngModel)]="adj.reader_id" name="reader_id">
-        <ion-select-option *ngFor="let item of readerList" value="{{item.READER_ID}}">{{item.READER_NAME}}</ion-select-option>
+        <ion-select-option  *ngFor="let item of readerList" value="{{item.READER_ID}}">{{item.READER_NAME}}</ion-select-option>
       </ion-select>
+
+      
     </ion-item>
 
 

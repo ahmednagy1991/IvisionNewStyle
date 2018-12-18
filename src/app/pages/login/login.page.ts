@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
       if (res != "" && res != null && res != "null" && res != undefined) {
         debugger;
         this.account = JSON.parse(res) as AccountModel;
-        this.loading.dismiss();
+       
         //this.doLogin();
       }
 
@@ -58,7 +58,7 @@ export class LoginPage implements OnInit {
   }
 
   checkURL(res: string) {
-    this.presentLoading();
+   
     if (res == null || res == undefined) {
       this.helper.showMessage("null","");
       this.enableLogin = false;
@@ -89,7 +89,8 @@ export class LoginPage implements OnInit {
       if (this.account.rembmerMe == true) {
         this.storage.set(this.Config.Username_Key, JSON.stringify(this.account));
       }
-      this.storage.set(this.Config.ConnectionParameter, JSON.stringify(this.Params));     
+      this.storage.set(this.Config.ConnectionParameter, JSON.stringify(this.Params)); 
+      this.loading.dismiss();   
       this.navCtrl.navigateRoot("Dashboard");     
     }
     else {
@@ -98,6 +99,7 @@ export class LoginPage implements OnInit {
   }
   doLogin() {
     debugger;
+    this.presentLoading();
     if (this.account.empId != undefined || this.account.empId != "") {
       this.api.callGet('ivmtwebsdk/ea.dll/api/v52/emxauth2/gettoken?emp_id=' + this.account.empId
         + '&emp_pwd=' + this.account.password + '&uuid=1213&apikey=' + config.APIKEY + '&hash_ver=sha1', "")

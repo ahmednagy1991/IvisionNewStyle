@@ -82,17 +82,7 @@ export class DashboardPage implements OnInit {
 
     this.ReloadChart();
 
-    this.helpService.GetDateFormat().subscribe((res)=>{
-     
-      this.DefaultDateFormat=(res as any).result[0].Date_Format;
-      this.storage.set("DateFormat",this.DefaultDateFormat);
-    });
-
-    this.helpService.GetTimeFormat().subscribe((res)=>{
     
-      this.DefaultTimeFormat=(res as any).result[0].Time_Format;
-      this.storage.set("TimeFormat",this.DefaultTimeFormat);
-    });
 
     //this.splash.show();
     //this.renderChart();
@@ -116,6 +106,19 @@ export class DashboardPage implements OnInit {
 
   MapEmp(res: any) {
     this.Employee = JSON.parse(res).result as EmployeeModel;
+
+    this.helpService.GetDateFormat().subscribe((res)=>{
+     
+      this.DefaultDateFormat=(res as any).result[0].Date_Format;
+      this.storage.set("DateFormat",this.DefaultDateFormat);
+    });
+
+    this.helpService.GetTimeFormat().subscribe((res)=>{
+    
+      this.DefaultTimeFormat=(res as any).result[0].Time_Format;
+      this.storage.set("TimeFormat",this.DefaultTimeFormat);
+    });
+
   }
 
   MapTimeTable(res: any) {
@@ -176,58 +179,58 @@ export class DashboardPage implements OnInit {
   refreshPunches() {
     //this.helper.showMessage("refresh","refresh");
   }
-  renderChart() {
-    this.dashbrd = "Reports";
+  // renderChart() {
+  //   this.dashbrd = "Reports";
 
-    let options = {
-      circumference: 15,
-      rotation: 1.0 * Math.PI,
-      percentageInnerCutout: 1,
-      legend: {
-        display: true,
-        position: "bottom",
-        labels: {
-          boxWidth: 10,
-          padding: 5
-        }
-      },
-      layout: {
-        padding: 0
-      },
-    }
+  //   let options = {
+  //     circumference: 15,
+  //     rotation: 1.0 * Math.PI,
+  //     percentageInnerCutout: 1,
+  //     legend: {
+  //       display: true,
+  //       position: "bottom",
+  //       labels: {
+  //         boxWidth: 10,
+  //         padding: 5
+  //       }
+  //     },
+  //     layout: {
+  //       padding: 0
+  //     },
+  //   }
 
 
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: 'pie',
-      options: options,
-      data: {
-        labels: ["Total Absence" + "(" + this.attSummary.absent + ")", "Total Delay" + "(" + this.attSummary.workedWithDelay + ")", "Total Leaves" + "(" + this.attSummary.VacDays + ")", "Total Working" + "(" + this.attSummary.workingDays + ")", "Worker Days" + "(" + this.attSummary.workedDays + ")", "Off Days" + "(" + this.attSummary.OffDays + ")", "No T.T" + "(" + this.attSummary.NoTT + ")"],
-        datasets: [{
-          label: '',
-          data: [this.attSummary.absent_Per, this.attSummary.workedWithDelay_Per, this.attSummary.VacDays_Per, this.attSummary.workingDays_Per, this.attSummary.workedDays_Per, this.attSummary.OffDays_Per, this.attSummary.NoTT_Per],
-          backgroundColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(35, 142, 112, 1)',
-            'rgba(195, 60, 43, 1)',
-            'rgba(105, 200, 200, 1)',
-            'rgba(99, 74, 80, 1)',
-          ],
-          hoverBackgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56",
-            "#FF6384",
-            "#FF6383",
-            "#FF6381",
-          ]
-        }]
-      }
+  //   this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+  //     type: 'pie',
+  //     options: options,
+  //     data: {
+  //       labels: ["Total Absence" + "(" + this.attSummary.absent + ")", "Total Delay" + "(" + this.attSummary.workedWithDelay + ")", "Total Leaves" + "(" + this.attSummary.VacDays + ")", "Total Working" + "(" + this.attSummary.workingDays + ")", "Worker Days" + "(" + this.attSummary.workedDays + ")", "Off Days" + "(" + this.attSummary.OffDays + ")", "No T.T" + "(" + this.attSummary.NoTT + ")"],
+  //       datasets: [{
+  //         label: '',
+  //         data: [this.attSummary.absent_Per, this.attSummary.workedWithDelay_Per, this.attSummary.VacDays_Per, this.attSummary.workingDays_Per, this.attSummary.workedDays_Per, this.attSummary.OffDays_Per, this.attSummary.NoTT_Per],
+  //         backgroundColor: [
+  //           'rgba(255, 99, 132, 1)',
+  //           'rgba(54, 162, 235, 1)',
+  //           'rgba(255, 206, 86, 1)',
+  //           'rgba(35, 142, 112, 1)',
+  //           'rgba(195, 60, 43, 1)',
+  //           'rgba(105, 200, 200, 1)',
+  //           'rgba(99, 74, 80, 1)',
+  //         ],
+  //         hoverBackgroundColor: [
+  //           "#FF6384",
+  //           "#36A2EB",
+  //           "#FFCE56",
+  //           "#FF6384",
+  //           "#FF6383",
+  //           "#FF6381",
+  //         ]
+  //       }]
+  //     }
 
-    });
+  //   });
 
-  }
+  // }
   ionViewDidLoad() {
 
   
@@ -278,7 +281,7 @@ export class DashboardPage implements OnInit {
         this.attSummary.absent_Per = (this.attSummary.absent / total_days) * 100;
         this.attSummary.VacDays_Per = (this.attSummary.VacDays / total_days) * 100;
         this.attSummary.absentWithDuity_Per = (this.attSummary.absentWithDuity / total_days) * 100;
-        this.renderChart();
+        //this.renderChart();
       });
 
 
@@ -299,6 +302,9 @@ export class DashboardPage implements OnInit {
 
 
   ngOnInit() {
+
+   
+
   }
 
 getcenterStyle()
