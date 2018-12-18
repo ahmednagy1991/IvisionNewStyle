@@ -33,7 +33,7 @@ export class Heplers {
     }
 
     ShowErrorMessage(Code: number) {
-        this.showMessage(this.GetCodeMessage(Code), "Error");
+        this.showMessage(this.GetCodeMessage(Code), "");
     }
 
     ShowMessage(Code: number,lable:string) {
@@ -125,7 +125,7 @@ export class Heplers {
             case 41004:
                 return ""
             case 41005:
-                return ""
+                return "Invalid Punch Type "
             case 41006:
                 return ""
             case 41007:

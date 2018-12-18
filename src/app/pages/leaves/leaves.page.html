@@ -90,11 +90,33 @@
 
       </ion-thumbnail>
       <ion-label>
-        <h2>
-          <!-- <strong>{{att.TT_DATE | date:'yyyy/MM/dd'}}</strong> -->
+
+        <h2> <strong>{{lev.START_DATE | date:'EEEE'}} </strong>
+          <strong *ngIf="lev.END_DATE!='null'">To {{lev.END_DATE | date:'EEEE'}}</strong>
         </h2>
 
-        <ion-badge slot="start" color="warning" class="rooms">
+        <h2 *ngIf="lev.LV_TITLE!='null' && lev.LV_TITLE!=''"><strong>Leave Title {{lev.LV_TITLE}}</strong></h2>
+        <h3 *ngIf="lev.START_TIME!='null' && lev.START_TIME!=''">
+          <strong>From {{lev.START_TIME | date:DefaultTimeFormat}} To {{lev.END_TIME | date:DefaultTimeFormat}}</strong>
+        </h3>
+        <h3>
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong>Reason {{lev.REASON_TITLE}}</strong>
+          </ion-badge>
+        </h3>
+        <h3>
+
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong>Leave ID {{lev.LV_ID}}</strong>
+          </ion-badge>
+
+        </h3>
+
+
+        <!-- <strong>{{att.TT_DATE | date:'yyyy/MM/dd'}}</strong> -->
+
+
+        <!-- <ion-badge slot="start" color="warning" class="rooms">
           <strong>Leave Title {{lev.LV_TITLE}}</strong>
         </ion-badge>
        
@@ -113,21 +135,11 @@
           </ion-badge>
         </h3>
 
-        <h3>
-            <ion-badge slot="start" color="warning" class="rooms">
-              <strong>Reason {{lev.REASON_TITLE}}</strong>
-            </ion-badge>
-          </h3>
+      
 
 
         
-        <h3>
-
-          <ion-badge slot="start" color="warning" class="rooms">
-            <strong>Leave ID {{lev.LV_ID}}</strong>
-          </ion-badge>
-
-        </h3>
+        -->
 
 
       </ion-label>

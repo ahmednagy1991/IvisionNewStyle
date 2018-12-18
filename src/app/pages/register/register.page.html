@@ -1,21 +1,26 @@
-<ion-content padding class="animated fadeIn login auth-page">
+<ion-content>
+    <!-- padding class="animated fadeIn login auth-page" -->
+  <ion-slides class="bgn FullHeight" pager="true" dir="ltr" options="slideOpts">
+
+    <ion-slide class="bgnd2">
+
+      <div class="w100">
+
+        <!-- <div class="auth-content"> -->
 
 
-  <div class="auth-content splash-bg2">
-
-
-    <!-- Logo -->
-    <div padding-horizontal text-center class="animated fadeInDown">     
-      <h4 no-margin>
+        <!-- Logo -->
+        <div padding-horizontal text-center class="animated fadeInDown">
+          <!-- <h4 no-margin>
         <ion-text color="light">        
           <img src="assets/img/logo.png">
         </ion-text>
-      </h4>
+      </h4> -->
 
 
-      <form (submit)="signUp()">
+          <form (submit)="signUp()">
 
-        <!-- <ion-item no-padding class="animated fadeInUp">
+            <!-- <ion-item no-padding class="animated fadeInUp">
           <ion-label position="floating">
 
             <h1>
@@ -39,58 +44,62 @@
           <ion-input color="secondary" type="password" [(ngModel)]="usr.emp_pwd" name="password"></ion-input>
         </ion-item> -->
 
-        <ion-item no-padding class="animated fadeInUp">
-          <ion-label position="floating">
+            <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating" class="wcLabel">
 
-            <h1>
-              <ion-icon name="mail" item-start></ion-icon>
-              Employee ID
-            </h1>
-          </ion-label>
-          <ion-input color="secondary" type="email" [(ngModel)]="usr.emp_id" name="usr.emp_id"></ion-input>
-        </ion-item>
-        <!-- <p ion-text class="text08">
+                <h3>
+                  <ion-icon name="mail" item-start></ion-icon>
+                  Employee ID
+                </h3>
+              </ion-label>
+              <ion-input color="secondary" type="email" [(ngModel)]="usr.emp_id" name="usr.emp_id"></ion-input>
+            </ion-item>
+            <!-- <p ion-text class="text08">
                 <ion-text color="danger">
                   EmployeeId
                 </ion-text>
               </p> -->
 
-        <ion-item no-padding class="animated fadeInUp">
-          <ion-label position="floating">
-            <h1>
-              <ion-icon name="lock" item-start></ion-icon>
-              Password
-            </h1>
-          
-          </ion-label>
+            <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating" class="wcLabel">
+                <h3>
+                  <ion-icon name="lock" item-start></ion-icon>
+                  Password
+                </h3>
 
-          <ion-input color="secondary" type="password" [(ngModel)]="usr.emp_pwd" name="usr.emp_pwd"></ion-input>
-        </ion-item>
+              </ion-label>
 
-
-        <ion-item no-padding class="animated fadeInUp">
-          <ion-label position="floating">
-            <h1>
-              <ion-icon name="lock" item-start></ion-icon>
-              Confirm Password
-            </h1>
-          
-          </ion-label>
-
-          <ion-input color="secondary" type="password" [(ngModel)]="passwordConfirm" name="passwordConfirm"></ion-input>
-        </ion-item>
+              <ion-input color="secondary" type="password" [(ngModel)]="usr.emp_pwd" name="usr.emp_pwd"></ion-input>
+            </ion-item>
 
 
-        <ion-button full (click)="signUp()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
-          <ion-ripple-effect></ion-ripple-effect>
-          <ion-icon name="paper"></ion-icon>
-          Submit
-        </ion-button>
+            <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating" class="wcLabel">
+                <h3>
+                  <ion-icon name="lock" item-start></ion-icon>
+                  Confirm Password
+                </h3>
+
+              </ion-label>
+
+              <ion-input color="secondary" type="password" [(ngModel)]="passwordConfirm" name="passwordConfirm"></ion-input>
+            </ion-item>
 
 
-      </form>
-    </div>
-  </div>
+            <ion-button full (click)="signUp()" icon-left size="medium" expand="full" shape="round" color="dark"
+              tappable>
+              <ion-ripple-effect></ion-ripple-effect>
+              <ion-icon name="paper"></ion-icon>
+              Submit
+            </ion-button>
+
+
+          </form>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <!-- </div> -->
   <!-- <div class="auth-content">
 
     <div padding-horizontal text-center class="animated fadeInDown">

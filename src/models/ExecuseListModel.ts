@@ -6,4 +6,6 @@ export class ExecuseListModel {
     LV_NOTE:string;
     REASON_TITLE:string;
     PAY_STATUS:number;
+    START_TIME:Date;
+    END_TIME:Date;
 }

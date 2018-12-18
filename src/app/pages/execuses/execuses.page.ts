@@ -19,11 +19,15 @@ export class ExecusesPage implements OnInit {
   exList: ExecuseListModel[];
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
   DefaultDateFormat:string;
+  DefaultTimeFormat:string;
 
   constructor(public helper: Heplers, public excService: ExecuseService, public navCtrl: NavController) {
     //this.LoadResons();
     helper.GetDateFormat().then((res)=>{
       this.DefaultDateFormat=res;
+    });
+    helper.GetTimeFormat().then((res)=>{
+      this.DefaultTimeFormat=res;
     });
   }
 
@@ -31,6 +35,7 @@ export class ExecusesPage implements OnInit {
     this.excService.GetExecuseList(this.dateComp.from, this.dateComp.to).subscribe((res: any) => {
       debugger;
       if (res.code == 0) {
+        debugger;
         this.exList = res.result as ExecuseListModel[];
       }
       else {

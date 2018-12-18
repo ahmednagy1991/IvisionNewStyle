@@ -43,6 +43,7 @@
 
 .bg-main {
     background-image: linear-gradient(-135deg, var(--ion-color-medium), var(--ion-color-light))
+    
 }
 
 // Helpers //
@@ -138,9 +139,10 @@ ion-card {
   }
 
   .auth-content {
-    margin: 0 5%;
+    margin: 0 0%;
     //background: url("assets/img/slider02.jpg");
     //z-index: -1;
+    width: 100%;
     .logo {
       width: 60px;
       height: 60px;

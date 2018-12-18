@@ -42,6 +42,20 @@
     animation: animatedBackground 40s linear infinite;
   }
 
+  .dim{
+    background:
+    /* top, transparent black, faked with gradient */ 
+    linear-gradient(
+      rgba(0, 0, 0, 0.7), 
+      rgba(0, 0, 0, 0.7)
+    )
+  }
+  .bgn{
+    height:100%;
+  }
+  .wcLabel{
+    color:white;
+  }
 .video-bg {
     position: fixed;
     top: 50%;

@@ -17,9 +17,14 @@ export class SubmitExecusePage implements OnInit {
   excModel: ExecuseModel = { to_time: new Date().toISOString(), desc: "", from_time: new Date().toISOString(), reason_id: 0, excuse_date: new Date().toISOString(), pay_status: 0 }
   resons: ReasonsModel[];
   response: any;
+  submited:boolean=false;
   constructor(private formBuilder: FormBuilder, public helper: Heplers, public excService: ExecuseService, public navCtrl: NavController) {
     this.LoadResons();
 
+    var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+    this.excModel.from_time=localISOTime;
+    this.excModel.to_time=localISOTime;
     this.execuseForm = this.formBuilder.group({
       description: ['', Validators.required],
       execuseDate:['', Validators.required],
@@ -31,24 +36,29 @@ export class SubmitExecusePage implements OnInit {
 
   }
   submitExecuse() {
-    if(this.excModel.from_time<=this.excModel.to_time)
-    {
-      this.helper.showMessage("From time must be less than to time","Error");
-    }
-    else if (this.execuseForm.valid) {
-      this.excService.RequestExecuse(this.excModel).subscribe((res: any) => {
+    // if(this.excModel.from_time>=this.excModel.to_time)
+    // {
+    //   this.helper.showMessage("From time must be less than to time","Error");
+    // }
+    // else if (this.execuseForm.valid) {
+      this.submited=true;
+      if(this.execuseForm.valid)
+      {
+        this.excService.RequestExecuse(this.excModel).subscribe((res: any) => {
 
-        this.response = res;
-        debugger;
-        if (this.response.code == 0) {
-          this.helper.showMessage("The request has been submited successfully", "Done");
-        }
-        else {
-          this.helper.ShowErrorMessage(res.code);
-        }
-
-      });
-    }
+          this.response = res;
+          debugger;
+          if (this.response.code == 0) {
+            this.helper.showMessage("The request has been submited successfully", "Done");
+          }
+          else {
+            this.helper.ShowErrorMessage(res.code);
+          }
+  
+        });
+      }
+     
+    //}
   }
 
   LoadResons() {

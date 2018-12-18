@@ -102,11 +102,11 @@
             <!--  -->
 
             <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='IN'" slot="start" color="success" class="rooms">
-              <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}  {{att.PUNCH_DATETIME | date:'hh:mm'}}</strong>
+              <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}  {{att.PUNCH_DATETIME | date:DefaultTimeFormat}}</strong>
             </ion-badge>
 
             <ion-badge *ngIf="helper.getPunchType(att.PUNCH_TYPE)=='OUT'" slot="start" color="danger" class="rooms">
-              <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}  {{att.PUNCH_DATETIME | date:'hh:mm'}}</strong>
+              <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}  {{att.PUNCH_DATETIME | date:DefaultTimeFormat}}</strong>
             </ion-badge>
 
           </h3>

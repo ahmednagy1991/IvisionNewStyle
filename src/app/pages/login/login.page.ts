@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
     public Config: config, public api: Api, public helper: Heplers) {
     this.storage.get(this.Config.Username_Key).then((res) => {
      
-      this.presentLoading();
+     
       if (res != "" && res != null && res != "null" && res != undefined) {
         debugger;
         this.account = JSON.parse(res) as AccountModel;
@@ -58,6 +58,7 @@ export class LoginPage implements OnInit {
   }
 
   checkURL(res: string) {
+    this.presentLoading();
     if (res == null || res == undefined) {
       this.helper.showMessage("null","");
       this.enableLogin = false;
