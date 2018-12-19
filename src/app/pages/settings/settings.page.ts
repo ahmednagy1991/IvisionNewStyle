@@ -144,7 +144,7 @@ export class SettingsPage implements OnInit {
 
   CheckURL(res: any) {
     debugger;
-    if (res.code == 0||res.code == 8) {
+    if (res.code == 0 || res.code == 8) {
       this.helper.presentToast("Please Wait While Saving changes then restart application.....", 8000);
       this.storage.set(this.Config.MainURL_Key, this.settingItem.mainurl);
       setTimeout(() => {
