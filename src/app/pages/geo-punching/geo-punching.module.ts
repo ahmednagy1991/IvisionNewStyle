@@ -11,26 +11,36 @@ import { LAZY_MAPS_API_CONFIG, LazyMapsAPILoaderConfigLiteral } from '@agm/core'
 import { Inject, Injectable } from '@angular/core';
 import { PunchesService } from '../../../Services/PunchesService';
 import { MapKeyModel } from '../../../models/MapKeyModel';
+import {AppSettings} from '../../config/globals';
+
 @Injectable()
 export class GoogleMapsConfig implements LazyMapsAPILoaderConfigLiteral {
   apiKey: string;
+  // apiPromise: Promise<string>;
+  // GetKey(res: any): Promise<string> | string {
+    
+  
+  
+  //   //this.apiKey=res.result[0].mobile_gmap_api_key;
+  //   //this.apiKey='AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y';
+  //   //this.apiKey='AIzaSyBkcD1poGSDHoHf8HwQRbCCYI5KQAhBQno';
+  //   //AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y
+  //   return 'AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y';
+  //   debugger;
+  // }
 
-  GetKey(res: any) {
-    debugger;
-    // this.apiKey=res.result[0].mobile_gmap_api_key;
-    this.apiKey='AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y';
-    //AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y
-    debugger;
-  }
-
-  constructor(private punchser:PunchesService) {
+  constructor(private punchser: PunchesService) {
     //this.apiKey = 'AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y';  
     // this.punchser.GetMapAPIKEY().subscribe((res)=>{     
-    //   this.GetKey(res);     
-         
+    //   // this.GetKey(res);              
+    //   this.apiPromise.then((res)=>{
+    //     this.apiKey=res;
+    //   });
     // })
-
-    this.punchser.GetMapAPIKEY().toPromise
+    //this.apiKey = 'AIzaSyD9BxeSvt3u--Oj-_GD-qG2nPr1uODrR0Y';
+    this.apiKey=AppSettings.MAPS_API;
+    debugger;
+    //this.punchser.GetMapAPIKEY().toPromise
   }
 }
 

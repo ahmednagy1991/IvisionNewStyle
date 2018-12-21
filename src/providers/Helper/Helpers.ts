@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { config } from '../../providers/Config';
 import { DecimalPipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import {AppSettings} from '../../app/config/globals';
 
 @Injectable()
 export class Heplers {
@@ -20,6 +21,15 @@ export class Heplers {
         return await this.storage.get(Key);
 
         //return temp;
+    }
+
+    getEmpName()
+    {
+        return AppSettings.USERNAME;
+    }
+    getDepartmentName()
+    {
+        return AppSettings.DEPARTMENT;
     }
 
     GetDateFormat():Promise<string>

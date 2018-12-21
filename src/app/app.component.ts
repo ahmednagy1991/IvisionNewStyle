@@ -16,7 +16,7 @@ import { Storage } from '@ionic/storage';
 import { config } from '../providers/Config';
 import { Heplers } from '../providers/Helper/Helpers';
 
-
+import {AppSettings} from '../app/config/globals';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -38,6 +38,7 @@ export class AppComponent {
     private translateService: TranslateService,
     public navCtrl: NavController
   ) {
+   
     this.appPages = [
       {
         title: 'Dashboard',
@@ -180,13 +181,16 @@ export class AppComponent {
 
     this.initializeApp();
 
-   
-    
+    this.CurrentEmp.EMP_NAME=AppSettings.USERNAME;
+    this.CurrentEmp.DEPT_NAME=AppSettings.DEPARTMENT;
+    debugger;
     this.storage.get(this.Myconfig.UserInformation).then(res => this.sh(res));
   }
   sh(res: any) {
 
-    this.CurrentEmp = JSON.parse(res).result as EmployeeModel;
+    //this.CurrentEmp = JSON.parse(res).result as EmployeeModel;
+   
+    debugger;
 
   }
   initializeApp() {

@@ -18,6 +18,8 @@ import { EmployeeModel } from '../../../models/EmployeeModel';
 
 import { Heplers } from '../../../providers/Helper/Helpers';
 import { LoadingController } from '@ionic/angular';
+import {AppSettings} from '../../config/globals';
+import { PunchesService } from '../../../Services/PunchesService';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -38,7 +40,7 @@ export class LoginPage implements OnInit {
   public chachPassword: boolean;
   loading: HTMLIonLoadingElement;
 
-  constructor(public loadingController: LoadingController,public navCtrl: NavController,
+  constructor(public punchse:PunchesService,public loadingController: LoadingController,public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
     public storage: Storage,
@@ -55,6 +57,11 @@ export class LoginPage implements OnInit {
       }
 
     });
+    
+  
+  }
+  GetKey(res: any) {
+    AppSettings.MAPS_API=res.result[0].mobile_gmap_api_key;  
   }
 
   checkURL(res: string) {
@@ -75,7 +82,13 @@ export class LoginPage implements OnInit {
     if (this.tokenReponse.code == '0') {
 
       this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtreader/GetEmpInf?emp_id=' + this.account.empId
-        + '&uuid=1213&apikey=' + config.APIKEY + '&fields=EMP_NAME,EMP_ID,DEPT_NAME,DEPT_ID,ORG_NAME,DOJ,STATUS&token=' + this.tokenReponse.result, "").subscribe(res => this.storage.set(this.Config.UserInformation, JSON.stringify(res as EmployeeModel)))
+        + '&uuid=1213&apikey=' + config.APIKEY + '&fields=EMP_NAME,EMP_ID,DEPT_NAME,DEPT_ID,ORG_NAME,DOJ,STATUS&token=' + this.tokenReponse.result, "").subscribe((res) => {
+          this.empResponse=((res as any).result) as EmployeeModel;
+          this.storage.set(this.Config.UserInformation, JSON.stringify(res as EmployeeModel))
+          AppSettings.USERNAME=this.empResponse.EMP_NAME;
+          AppSettings.DEPARTMENT=this.empResponse.DEPT_NAME;
+          debugger;
+        });
 
       this.Params = {
         ApiToken: this.tokenReponse.result,
@@ -90,7 +103,10 @@ export class LoginPage implements OnInit {
         this.storage.set(this.Config.Username_Key, JSON.stringify(this.account));
       }
       this.storage.set(this.Config.ConnectionParameter, JSON.stringify(this.Params)); 
-      this.loading.dismiss();   
+      this.punchse.GetMapAPIKEY().subscribe((res)=>{     
+        this.GetKey(res);                    
+     })
+      this.loading.dismiss();  
       this.navCtrl.navigateRoot("Dashboard");     
     }
     else {

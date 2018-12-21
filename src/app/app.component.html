@@ -10,11 +10,11 @@
             </ion-avatar>
             <ion-label>
               <ion-text color="tertiary">
-                <h2><strong>{{CurrentEmp.EMP_NAME}}</strong></h2>
+                <h2><strong>{{helper.getEmpName()}}</strong></h2>
               </ion-text>
               <ion-text color="secondary">
                 <h3>
-                  {{CurrentEmp.DEPT_NAME}}
+                  {{helper.getDepartmentName()}}
                 </h3>
               </ion-text>
               <ion-menu-toggle class="mto" auto-hide="false">
