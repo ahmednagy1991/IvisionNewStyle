@@ -203,7 +203,7 @@ export class SettingsPage implements OnInit {
 
       setTimeout(() => {
         debugger;
-
+        this.loading.dismiss();
         this.navCtrl.navigateRoot('login');
         //this.platform.
         //this.platform.exitApp();
