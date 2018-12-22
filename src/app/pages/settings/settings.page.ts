@@ -13,13 +13,16 @@ import { Heplers } from '../../../providers/Helper/Helpers';
 //import { Platform } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 //import { NavParams } from '@ionic/angular';
-
+import { AppSettings } from '../../config/globals';
+import { LoadingController } from '@ionic/angular';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
+  loading: HTMLIonLoadingElement;
   // lang: any;
   // enableNotifications: any;
   // paymentMethod: any;
@@ -69,9 +72,9 @@ export class SettingsPage implements OnInit {
 
   subSettings: any = SettingsPage;
 
-  constructor(public navCtrl: NavController, public helperService: HelperService,
+  constructor(private qrScanner: QRScanner,public loadingController: LoadingController, public navCtrl: NavController, public helperService: HelperService,
     private platform: Platform,
-    
+
     // public settings: Settings,
     //public formBuilder: FormBuilder,
     // public navParams: NavParams,
@@ -117,6 +120,40 @@ export class SettingsPage implements OnInit {
   //     .catch((e: any) => this.helper.showMessage(e, 'Error is'));
   // }
 
+  scanQRCode() {
+    try
+    {
+
+   
+    this.qrScanner.prepare()
+      .then((status: QRScannerStatus) => {
+        if (status.authorized) {
+          // camera permission was granted
+
+
+          // start scanning
+          let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+            //console.log('Scanned something', text);
+            this.helper.showMessage(text,"from scanner");
+            this.qrScanner.hide(); // hide camera preview
+            scanSub.unsubscribe(); // stop scanning
+          });
+
+        } else if (status.denied) {
+          // camera permission was permanently denied
+          // you must use QRScanner.openSettings() method to guide the user to the settings page
+          // then they can grant the permission from there
+        } else {
+          // permission was denied, but not permanently. You can ask for permission again at a later time.
+        }
+      })
+      .catch((e: any) =>  this.helper.showMessage(e,"Error"));
+    }
+    catch(Error)
+    {
+      this.helper.showMessage(Error.message,"Error")
+    }
+  }
   ionViewDidLoad() {
     // Build an empty form for the template to render
     //this.form = this.formBuilder.group({});
@@ -141,12 +178,29 @@ export class SettingsPage implements OnInit {
   //   });
   // }
 
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Please wait....', duration: 900000
+    });
+    return await this.loading.present();
+  }
+
+
+  async DismissLoadingSpinner() {
+    return await this.loadingController.dismiss();
+  }
+
 
   CheckURL(res: any) {
     debugger;
+
     if (res.code == 0 || res.code == 8) {
-      this.helper.presentToast("Please Wait While Saving changes then restart application.....", 8000);
+      this.helper.presentToast("Saving changes .....", 2000);
+      AppSettings.API_ENDPOINT = this.settingItem.mainurl;
       this.storage.set(this.Config.MainURL_Key, this.settingItem.mainurl);
+      //this.navCtrl.navigateRoot('login');
+
+
       setTimeout(() => {
         debugger;
 
@@ -159,19 +213,21 @@ export class SettingsPage implements OnInit {
         // this.navCtrl.setRoot('WelcomePage');
         // this.navCtrl.push('WelcomePage');
         //this.storage.get(this.config.MainURL_Key).then(res=> console.log('Main URL VAlue', res)); 
-      }, 9000);
+      }, 2000);
     }
     else {
+      this.loading.dismiss();
       this.helper.presentToast("Invalid URL", 1000);
     }
   }
 
   showErr() {
+    this.loading.dismiss();
     this.helper.presentToast("Invalid URL", 1000);
   }
   saveSettings() {
 
-
+    this.presentLoading();
 
     this.helperService.CheckTimeFormat(this.settingItem.mainurl).subscribe(res => this.CheckURL(res), err => this.showErr());
     //debugger;

@@ -37,7 +37,12 @@ export class UserService {
         'emp_id=' + EMPID + '&access_type=0'+'&emp_pwd='+PASSWORD+'&apikey=' + this.parms.ApiKey)
     }
 
-   
+    Login(EMPID:string,PASSWORD:string) {
+        debugger;
+        return this.api.callGet('ivmtwebsdk/ea.dll/api/v52/emxauth2/gettoken',
+        'emp_id=' + EMPID
+        + '&emp_pwd=' + PASSWORD + '&uuid=1213&apikey=' + config.APIKEY + '&hash_ver=sha1')
+    }
 
 
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { IonicModule } from '@ionic/angular';
 
 import { SettingsPage } from './settings.page';
@@ -17,10 +17,11 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule,   
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SettingsPage]
+  declarations: [SettingsPage],
+  providers: [QRScanner]
 })
 export class SettingsPageModule {}

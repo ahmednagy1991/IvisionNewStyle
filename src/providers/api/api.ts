@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { config } from '../../providers/Config';
 import { Heplers } from '../../providers/Helper/Helpers';
+import { AppSettings } from '../../app/config/globals';
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
@@ -19,8 +20,12 @@ export class Api {
 
   constructor(public http: HttpClient, public httpclient: Http, public helper: Heplers, public config: config, public storage: Storage) {
 
-    this.storage.get(this.config.MainURL_Key).then(res => this.url = res)
-      .catch(err => helper.showMessage(err, "Error"));
+    // this.storage.get(this.config.MainURL_Key).then(res => this.url = res)
+    //   .catch(err => helper.showMessage(err, "Error"));
+
+    this.url = AppSettings.API_ENDPOINT;
+
+    debugger;
 
 
     //this.storage.get(this.config.MainURL_Key).then(res => this.url = res)
@@ -28,14 +33,15 @@ export class Api {
   }
 
   callGetWithoutMainURL(endpoint: string, body: string, params?: any, reqOpts?: any) {
-debugger;
+    debugger;
     let headers = new Headers();
     return this.http.post(endpoint, body)
 
   }
 
   callGet(endpoint: string, body: string, params?: any, reqOpts?: any) {
-
+    this.url = AppSettings.API_ENDPOINT;
+debugger;
     let headers = new Headers();
     return this.http.post(this.url + '/' + endpoint, body)
 

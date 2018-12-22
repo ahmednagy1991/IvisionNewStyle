@@ -16,7 +16,7 @@ import { DatePipe } from '@angular/common';
 import { environment } from '../../../environments/environment'
 import { LoadingController } from '@ionic/angular';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-
+import {LocationAddressModel} from '../../../models/LocationAddressModel';
 import {
   trigger,
   style,
@@ -34,7 +34,7 @@ import {
 export class GeoPunchingPage implements OnInit {
 
 
-  MyAddress:any;
+  MyAddress:LocationAddressModel={administrativeArea:"",countryCode:"",countryName:"",locality:"",subAdministrativeArea:""};
   CurrentAddress: string;
   loading: HTMLIonLoadingElement;
   CurrentTime: string;
@@ -47,11 +47,19 @@ export class GeoPunchingPage implements OnInit {
 
 
   constructor(private nativeGeocoder: NativeGeocoder, public datepipe: DatePipe, public loadingController: LoadingController, private geolocation: Geolocation, private platform: Platform, public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
-
     let options: NativeGeocoderOptions = {
       useLocale: true,
       maxResults: 5
     };
+
+    this.nativeGeocoder.reverseGeocode(30.048819,31.243666, options)
+    // this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
+      .then((result: NativeGeocoderReverseResult[]) =>{
+        this.MyAddress=result[0] as LocationAddressModel;          
+      })
+      .catch((error: any) => console.log(error));
+
+  
 
 
     this.presentLoading();
@@ -66,7 +74,8 @@ export class GeoPunchingPage implements OnInit {
         this.MyLocation.Longitude = pos.coords.longitude;
         this.enablePunchingButtons = true;
         this.loading.dismiss();
-        this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
+        this.nativeGeocoder.reverseGeocode(30.048819,31.243666, options)
+        // this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
           .then((result: NativeGeocoderReverseResult[]) =>{
             this.MyAddress=result[0];          
           })
@@ -85,7 +94,7 @@ export class GeoPunchingPage implements OnInit {
         this.enablePunchingButtons = true;
         this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
           .then((result: NativeGeocoderReverseResult[]) =>{
-            this.MyAddress=result[0];
+            this.MyAddress=result[0] as LocationAddressModel;
           })
           .catch((error: any) => console.log(error));
         //this.DismissLoadingSpinner();

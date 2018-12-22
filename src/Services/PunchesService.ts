@@ -78,9 +78,12 @@ export class PunchesService {
 
     
   
-    GetMapAPIKEY() {     
+    GetMapAPIKEY(empId:string,Apki:string,ApiToken:string) {     
+        // return this.api.callGet('/ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetGMapAPIKey',
+        //     'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey +"&token="+ this.parms.ApiToken);
+
         return this.api.callGet('/ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetGMapAPIKey',
-            'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey +"&token="+ this.parms.ApiToken);
+        'emp_id=' +empId + '&apikey=' + Apki +"&token="+ ApiToken);
     }
 
 }

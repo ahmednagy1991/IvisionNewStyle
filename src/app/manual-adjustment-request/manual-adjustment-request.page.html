@@ -28,7 +28,7 @@
 
     <ion-item class="item-leave-height">
       <ion-label>Reader</ion-label>
-      <ion-select [(ngModel)]="adj.reader_id" name="reader_id">
+      <ion-select interface="action-sheet" [(ngModel)]="adj.reader_id" name="reader_id">
         <ion-select-option  *ngFor="let item of readerList" value="{{item.READER_ID}}">{{item.READER_NAME}}</ion-select-option>
       </ion-select>
 
@@ -46,7 +46,7 @@
 
     <ion-item class="item-leave-height">
       <ion-label>Reasons</ion-label>
-      <ion-select [(ngModel)]="adj.reason_id" name="reason_id">
+      <ion-select interface="action-sheet" [(ngModel)]="adj.reason_id" name="reason_id">
         <ion-select-option *ngFor="let item of resons" value="{{item.reason_id}}">{{item.reason}}</ion-select-option>
       </ion-select>
     </ion-item>

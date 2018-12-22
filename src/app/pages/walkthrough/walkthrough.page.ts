@@ -11,6 +11,7 @@ import { Api } from '../../../providers/api/api';
 import { TokenModel } from '../../../models/TokenModel';
 import { EmployeeModel } from '../../../models/EmployeeModel';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {AppSettings} from '../../config/globals';
 @Component({
   selector: 'app-walkthrough',
   templateUrl: './walkthrough.page.html',
@@ -30,6 +31,12 @@ export class WalkthroughPage implements OnInit {
   constructor(private platform: Platform,private geolocation: Geolocation,public navCtrl: NavController, public Config: config, public api: Api, public helper: Heplers, public config: config, public storage: Storage) {
     debugger;
    
+    // this.storage.get(this.config.MainURL_Key).then((res) => {
+    //   //this.url = res
+ 
+    // })
+    // .catch(err => helper.showMessage(err, "Error"));
+
     this.LoadMainURL();
 
     platform.ready().then(() => {
@@ -58,7 +65,11 @@ export class WalkthroughPage implements OnInit {
  
 
   LoadMainURL() {
-    this.storage.get(this.config.MainURL_Key).then(res => this.ValidateUrl(res))
+    this.storage.get(this.config.MainURL_Key).then((res) => {
+      AppSettings.API_ENDPOINT=res;
+      this.ValidateUrl(res);
+
+    })
       .catch(err => this.helper.showMessage(err, "error Message"));
   }
 
@@ -76,7 +87,7 @@ export class WalkthroughPage implements OnInit {
     debugger;
     this.tokenReponse = res as TokenModel;
     if (this.tokenReponse.code == '0') {
-
+     
       this.storage.set(this.Config.Username_Key, config.EmpID);
       this.storage.set(this.Config.Password_Key, config.CurrentPassword);
      

@@ -18,8 +18,10 @@ import { EmployeeModel } from '../../../models/EmployeeModel';
 
 import { Heplers } from '../../../providers/Helper/Helpers';
 import { LoadingController } from '@ionic/angular';
-import {AppSettings} from '../../config/globals';
+import { AppSettings } from '../../config/globals';
 import { PunchesService } from '../../../Services/PunchesService';
+import { UserService } from '../../../Services/UserService';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -40,96 +42,117 @@ export class LoginPage implements OnInit {
   public chachPassword: boolean;
   loading: HTMLIonLoadingElement;
 
-  constructor(public punchse:PunchesService,public loadingController: LoadingController,public navCtrl: NavController,
+  constructor(public usrSer: UserService, public punchse: PunchesService, public loadingController: LoadingController, public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
     public storage: Storage,
     public alertCtrl: AlertController,
     public Config: config, public api: Api, public helper: Heplers) {
-    this.storage.get(this.Config.Username_Key).then((res) => {
-     
-     
-      if (res != "" && res != null && res != "null" && res != undefined) {
-        debugger;
-        this.account = JSON.parse(res) as AccountModel;
-       
-        //this.doLogin();
-      }
 
-    });
-    
-  
+    // this.storage.get(this.Config.MainURL_Key).then((res) => {
+    //   AppSettings.API_ENDPOINT = res;
+    // })
+    //   .catch(err => this.helper.showMessage(err, "error Message"));
+
+    // this.storage.get(this.Config.Username_Key).then((res) => {
+
+
+
+    //   if (res != "" && res != null && res != "null" && res != undefined) {
+    //     debugger;
+    //     this.account = JSON.parse(res) as AccountModel;
+
+    //     //this.doLogin();
+    //   }
+
+    // });
+
+
   }
   GetKey(res: any) {
-    AppSettings.MAPS_API=res.result[0].mobile_gmap_api_key;  
+    AppSettings.MAPS_API = res.result[0].mobile_gmap_api_key;
   }
 
   checkURL(res: string) {
-   
-    if (res == null || res == undefined) {
-      this.helper.showMessage("null","");
-      this.enableLogin = false;
-      return;
+    try {
+      if (res == null || res == undefined) {
+        this.helper.showMessage("null", "");
+        this.enableLogin = false;
+        return;
+      }
+      this.enableLogin = true;
+      this.helper.showMessage(res, "");
     }
-    this.enableLogin = true;
-    this.helper.showMessage(res,"");
+    catch (Error) {
+      this.helper.showMessage(Error.message, "Login Error");
+    }
   }
 
 
-  validate(res: any) {
-    debugger;
-    this.tokenReponse = res as TokenModel;
-    if (this.tokenReponse.code == '0') {
+  validate(res: any,empId:string,Password:string) {
 
-      this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtreader/GetEmpInf?emp_id=' + this.account.empId
-        + '&uuid=1213&apikey=' + config.APIKEY + '&fields=EMP_NAME,EMP_ID,DEPT_NAME,DEPT_ID,ORG_NAME,DOJ,STATUS&token=' + this.tokenReponse.result, "").subscribe((res) => {
-          this.empResponse=((res as any).result) as EmployeeModel;
-          this.storage.set(this.Config.UserInformation, JSON.stringify(res as EmployeeModel))
-          AppSettings.USERNAME=this.empResponse.EMP_NAME;
-          AppSettings.DEPARTMENT=this.empResponse.DEPT_NAME;
-          debugger;
-        });
+    try {
 
-      this.Params = {
-        ApiToken: this.tokenReponse.result,
-        ApiKey: config.APIKEY,
-        EmpId: this.account.empId
-      }
-      this.storage.set(this.Config.ConnectionParameter, JSON.stringify(this.Params));
 
-      let temp = this.account.rembmerMe;
       debugger;
-      if (this.account.rembmerMe == true) {
-        this.storage.set(this.Config.Username_Key, JSON.stringify(this.account));
+      this.tokenReponse = res as TokenModel;
+      if (this.tokenReponse.code == '0') {
+
+        this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtreader/GetEmpInf?emp_id=' + empId
+          + '&uuid=1213&apikey=' + config.APIKEY + '&fields=EMP_NAME,EMP_ID,DEPT_NAME,DEPT_ID,ORG_NAME,DOJ,STATUS&token=' + this.tokenReponse.result, "").subscribe((res) => {
+            this.empResponse = ((res as any).result) as EmployeeModel;
+            // this.storage.set(this.Config.UserInformation, JSON.stringify(res as EmployeeModel))
+            AppSettings.USERNAME = this.empResponse.EMP_NAME;
+            AppSettings.DEPARTMENT = this.empResponse.DEPT_NAME;
+            debugger;
+          });
+
+        this.Params = {
+          ApiToken: this.tokenReponse.result,
+          ApiKey: config.APIKEY,
+          EmpId: empId
+        }
+        this.storage.set(this.Config.ConnectionParameter, JSON.stringify(this.Params));
+
+        //let temp = this.account.rembmerMe;
+        //debugger;
+        // if (this.account.rembmerMe == true) {
+        //   this.storage.set(this.Config.Username_Key, JSON.stringify(this.account));
+        // }
+        //this.storage.set(this.Config.ConnectionParameter, JSON.stringify(this.Params));
+        this.punchse.GetMapAPIKEY(empId,config.APIKEY,this.tokenReponse.result).subscribe((res) => {
+          this.GetKey(res);
+        })
+        this.loading.dismiss();
+        this.navCtrl.navigateRoot("Dashboard");
       }
-      this.storage.set(this.Config.ConnectionParameter, JSON.stringify(this.Params)); 
-      this.punchse.GetMapAPIKEY().subscribe((res)=>{     
-        this.GetKey(res);                    
-     })
-      this.loading.dismiss();  
-      this.navCtrl.navigateRoot("Dashboard");     
+      else {
+        this.helper.showMessage("Invalid Login", "Login Error");
+      }
     }
-    else {
-      this.helper.showMessage("Invalid Login", "Login Error");
+    catch (Error) {
+      this.helper.showMessage(Error.message + Error.stack, "validate function");
     }
   }
+
+
   doLogin() {
-    debugger;
-    this.presentLoading();
-    if (this.account.empId != undefined || this.account.empId != "") {
-      this.api.callGet('ivmtwebsdk/ea.dll/api/v52/emxauth2/gettoken?emp_id=' + this.account.empId
-        + '&emp_pwd=' + this.account.password + '&uuid=1213&apikey=' + config.APIKEY + '&hash_ver=sha1', "")
-        .subscribe((res) => {
-          this.validate(res);
-
+    try {
+      let temp = AppSettings.API_ENDPOINT;
+      debugger;
+      this.presentLoading();
+      if (this.account.empId != undefined || this.account.empId != "") {
+        this.usrSer.Login(this.account.empId, this.account.password).subscribe((res) => {
+          this.validate(res,this.account.empId, this.account.password);
         });
+      }
     }
-
-  
-
+    catch (Error) {
+      this.helper.showMessage(Error.message, "Login Error");
+    }
   }
 
-async presentLoading() {
+  async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Please wait....', duration: 5000
     });
@@ -152,7 +175,7 @@ async presentLoading() {
 
 
 
-  
+
   // public onLoginForm: FormGroup;
 
   // constructor(
@@ -228,7 +251,7 @@ async presentLoading() {
   // }
 
   // // // //
-  
+
 
   // goToHome() {
   //   this.navCtrl.navigateRoot('/home');
