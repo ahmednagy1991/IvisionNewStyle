@@ -28,7 +28,7 @@
 
     <ion-item class="item-leave-height">
       <ion-label>Reader</ion-label>
-      <ion-select interface="action-sheet" [(ngModel)]="adj.reader_id" name="reader_id">
+      <ion-select style="padding:0px;max-width: 80%;" interface="action-sheet" [(ngModel)]="adj.reader_id" name="reader_id">
         <ion-select-option  *ngFor="let item of readerList" value="{{item.READER_ID}}">{{item.READER_NAME}}</ion-select-option>
       </ion-select>
 
@@ -42,18 +42,18 @@
       </select>
     </ion-item> -->
 
-
+    <!-- style="max-width: 66%;" -->
 
     <ion-item class="item-leave-height">
       <ion-label>Reasons</ion-label>
-      <ion-select interface="action-sheet" [(ngModel)]="adj.reason_id" name="reason_id">
+      <ion-select style="padding:0px;max-width: 76%;" interface="action-sheet" [(ngModel)]="adj.reason_id" name="reason_id">
         <ion-select-option *ngFor="let item of resons" value="{{item.reason_id}}">{{item.reason}}</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item class="item-leave-height">
       <ion-label>Punch Type</ion-label>
-      <ion-select [(ngModel)]="adj.Punch_type" name="Punch_type">
+      <ion-select  [(ngModel)]="adj.Punch_type" name="Punch_type">
         <ion-select-option value="0">OUT</ion-select-option>
         <ion-select-option value="1">IN</ion-select-option>
       </ion-select>

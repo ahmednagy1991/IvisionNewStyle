@@ -34,16 +34,20 @@
 
 
 
+    
+
+
         <ion-item>
           <ion-label class="text-1x fw700">
             <ion-text color="dark">Select Period</ion-text>
           </ion-label>
-          <ion-select [(ngModel)]="Peroid" (ionChange)="ReloadChart()">
+          <!--  -->
+          <ion-select style="padding:0px;" value="29" [(ngModel)]="Peroid" (ionChange)="ReloadChart()">
             <!-- <ion-select-option *ngFor="let location of locationList" [value]="location">
               <ion-text color="light">{{ location.city }}</ion-text>
             </ion-select-option> -->
 
-            <ion-select-option value="0">
+            <!-- <ion-select-option value="0">
               <ion-text color="light">Today</ion-text>
             </ion-select-option>
             <ion-select-option value="1">
@@ -52,10 +56,25 @@
             <ion-select-option value="6">
               <ion-text color="light">Last 7 Days</ion-text>
             </ion-select-option>
-            <ion-select-option value="29">
+            <ion-select-option checked="true" value="29">
               <ion-text color="light">Last 30 Days</ion-text>
             </ion-select-option>
+          
+          -->
 
+
+          <ion-select-option value="0">
+           Today
+          </ion-select-option>
+          <ion-select-option value="1">
+            Yesterday
+          </ion-select-option>
+          <ion-select-option value="6">
+            Last 7 Days
+          </ion-select-option>
+          <ion-select-option value="29">
+            Last 30 Days
+          </ion-select-option>
           </ion-select>
         </ion-item>
 

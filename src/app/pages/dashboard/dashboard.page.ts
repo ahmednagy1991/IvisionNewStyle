@@ -22,6 +22,7 @@ import { AttendanceStatisticsModel } from '../../../models/AttendanceStatisticsM
 import { DecimalPipe } from '@angular/common';
 import { HelperService } from '../../../Services/HelperService';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { parse } from 'url';
 
 @Component({
   selector: 'app-dashboard',
@@ -51,7 +52,7 @@ export class DashboardPage implements OnInit {
   DefaultTimeFormat:string;
   CurrentTab: string = "TimeTable";
   Currentchart: string = "Present";
-  Peroid: number = 29;
+  Peroid: string = "29";
   TTableModel: TimeTableModel[];
   AttendanceTab: AttendanceModel[];
   PunchTable: PunchModel[];
@@ -234,7 +235,7 @@ export class DashboardPage implements OnInit {
   ionViewDidLoad() {
 
   
-    this.AttService.GetAttendanceSummary(this.helper.getLastDaysDate(this.Peroid), this.helper.GetCurrentDate()).then((res) => {
+    this.AttService.GetAttendanceSummary(this.helper.getLastDaysDate(parseInt(this.Peroid)), this.helper.GetCurrentDate()).then((res) => {
       // res.subscribe((ret)=>{
       //  // debugger;
       // });
