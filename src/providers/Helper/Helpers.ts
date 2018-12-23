@@ -61,6 +61,17 @@ export class Heplers {
         return this.storage.get("DateFormat");
     }
 
+    GetServerDateFormat()
+    {
+        debugger;
+        return AppSettings.ServerDateFormat;
+    }
+    GetServerTimeFormat()
+    {
+        debugger;
+        return AppSettings.ServerTimeFormat;
+    }
+
     GetTimeFormat():Promise<string>
     {
         return this.storage.get("TimeFormat");

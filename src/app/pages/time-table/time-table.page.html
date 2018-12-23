@@ -63,12 +63,12 @@
                 <strong>{{att.TT_DATE | date:'EEEE'}}</strong>
               </h2>
           <h2>
-            <strong>{{att.TT_DATE | date:DefaultDateFormat}}</strong>
+            <strong>{{att.TT_DATE | date:helper.GetServerDateFormat()}}</strong>
           </h2>
           <h3>
             <ion-badge slot="start" color="secondary" class="rooms">
-              <strong>From {{att.FROM_DATE_TIME | date:DefaultTimeFormat}} </strong>
-              <strong>To {{att.TO_DATE_TIME | date:DefaultTimeFormat}}</strong>
+              <strong>From {{att.FROM_DATE_TIME | date:helper.GetServerDateFormat()}} </strong>
+              <strong>To {{att.TO_DATE_TIME | date:helper.GetServerTimeFormat()}}</strong>
             </ion-badge>
             <br/>
             <ion-badge *ngIf="helper.GetTimeTableState(att.TT_STATE)=='Off day'" slot="start" color="success" class="rooms">

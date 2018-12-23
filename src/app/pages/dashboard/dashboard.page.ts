@@ -23,7 +23,7 @@ import { DecimalPipe } from '@angular/common';
 import { HelperService } from '../../../Services/HelperService';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { parse } from 'url';
-
+import {AppSettings} from '../../config/globals';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -111,12 +111,16 @@ export class DashboardPage implements OnInit {
     this.helpService.GetDateFormat().subscribe((res)=>{
      
       this.DefaultDateFormat=(res as any).result[0].Date_Format;
+      AppSettings.ServerDateFormat=this.DefaultDateFormat;
+    
+
       this.storage.set("DateFormat",this.DefaultDateFormat);
     });
 
     this.helpService.GetTimeFormat().subscribe((res)=>{
     
       this.DefaultTimeFormat=(res as any).result[0].Time_Format;
+      AppSettings.ServerTimeFormat=this.DefaultTimeFormat;
       this.storage.set("TimeFormat",this.DefaultTimeFormat);
     });
 

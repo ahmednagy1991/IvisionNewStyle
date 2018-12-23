@@ -10,6 +10,8 @@ export class AppSettings {
     public static DOJ='';
     public static floatDOJ='';
     public static STATE='';
+    public static ServerDateFormat='';
+    public static ServerTimeFormat='';
     
     
     
