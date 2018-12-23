@@ -31,7 +31,31 @@ export class Heplers {
     {
         return AppSettings.DEPARTMENT;
     }
-
+    getDepartmentID()
+    {
+        return AppSettings.DEPARTMENT_ID;
+    }
+    getEmpID()
+    {
+        return AppSettings.EMPID;
+    }
+    getORG_NAME()
+    {
+        return AppSettings.ORG_NAME;
+    }
+    getDOJ()
+    {
+        return AppSettings.DOJ;
+    }
+    getfloatDOJ()
+    {
+        return AppSettings.floatDOJ;
+    }
+    getSTATE()
+    {
+        return AppSettings.STATE;
+    }
+    
     GetDateFormat():Promise<string>
     {
         return this.storage.get("DateFormat");

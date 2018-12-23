@@ -104,6 +104,13 @@ export class LoginPage implements OnInit {
             // this.storage.set(this.Config.UserInformation, JSON.stringify(res as EmployeeModel))
             AppSettings.USERNAME = this.empResponse.EMP_NAME;
             AppSettings.DEPARTMENT = this.empResponse.DEPT_NAME;
+            AppSettings.DEPARTMENT_ID = this.empResponse.DEPT_ID;
+            AppSettings.EMPID = this.empResponse.EMP_ID;
+            AppSettings.ORG_NAME=this.empResponse.ORG_NAME;
+            AppSettings.DOJ=this.empResponse.DOJ;
+            AppSettings.floatDOJ=this.empResponse.floatDOJ;
+            AppSettings.STATE=this.empResponse.STATE;
+            
             debugger;
           });
 

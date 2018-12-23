@@ -5,7 +5,7 @@ import { TranslateProvider } from '../../providers';
 import { Storage } from '@ionic/storage';
 import { config } from '../../../providers/Config';
 import { EmployeeModel } from '../../../models/EmployeeModel';
-
+import { Heplers } from '../../../providers/Helper/Helpers';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.page.html',
@@ -20,7 +20,7 @@ export class EditProfilePage implements OnInit {
   //   private translate: TranslateProvider
   //   ) { }
   Employee: EmployeeModel={EMP_ID:"",DEPT_NAME:"",DEPT_ID:"",EMP_NAME:"",ORG_NAME:"",DOJ:"",floatDOJ:"",STATE:""};;
-  constructor(public Config: config,public storage: Storage,public navCtrl: NavController) {
+  constructor(public helper:Heplers,public Config: config,public storage: Storage,public navCtrl: NavController) {
     this.storage.get(this.Config.UserInformation).then(res => this.MapEmp(res));
   }
   MapEmp(res: any) {
