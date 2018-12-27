@@ -16,7 +16,7 @@ import { DatePipe } from '@angular/common';
 import { environment } from '../../../environments/environment'
 import { LoadingController } from '@ionic/angular';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import {LocationAddressModel} from '../../../models/LocationAddressModel';
+import { LocationAddressModel } from '../../../models/LocationAddressModel';
 import {
   trigger,
   style,
@@ -34,7 +34,7 @@ import {
 export class GeoPunchingPage implements OnInit {
 
 
-  MyAddress:LocationAddressModel={administrativeArea:"",countryCode:"",countryName:"",locality:"",subAdministrativeArea:""};
+  MyAddress: LocationAddressModel = { administrativeArea: "", countryCode: "", countryName: "", locality: "", subAdministrativeArea: "" };
   CurrentAddress: string;
   loading: HTMLIonLoadingElement;
   CurrentTime: string;
@@ -52,59 +52,68 @@ export class GeoPunchingPage implements OnInit {
       maxResults: 5
     };
 
-    this.nativeGeocoder.reverseGeocode(30.048819,31.243666, options)
-    // this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
-      .then((result: NativeGeocoderReverseResult[]) =>{
-        this.MyAddress=result[0] as LocationAddressModel;          
-      })
-      .catch((error: any) => console.log(error));
+    // this.nativeGeocoder.reverseGeocode(30.048819, 31.243666, options)
+    //   // this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
+    //   .then((result: NativeGeocoderReverseResult[]) => {
+    //     this.MyAddress = result[0] as LocationAddressModel;
+    //     debugger;
+    //   })
+    //   .catch((error: any) => console.log(error));
 
-  
+
 
 
     this.presentLoading();
     platform.ready().then(() => {
 
-      //this.loading.dismiss();
-      // get position
-      geolocation.getCurrentPosition().then(pos => {
-        debugger;
-        //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
-        this.MyLocation.Latitude = pos.coords.latitude;
-        this.MyLocation.Longitude = pos.coords.longitude;
-        this.enablePunchingButtons = true;
-        this.loading.dismiss();
-        this.nativeGeocoder.reverseGeocode(30.048819,31.243666, options)
-        // this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
-          .then((result: NativeGeocoderReverseResult[]) =>{
-            this.MyAddress=result[0];          
-          })
-          .catch((error: any) => console.log(error));
-        //this.DismissLoadingSpinner();
-        console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
-      });
+      try {
 
 
-      // watch position
-      const watch = geolocation.watchPosition().subscribe(pos => {
-        console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
-        let temp = pos;
-        this.MyLocation.Latitude = pos.coords.latitude;
-        this.MyLocation.Longitude = pos.coords.longitude;
-        this.enablePunchingButtons = true;
-        this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
-          .then((result: NativeGeocoderReverseResult[]) =>{
-            this.MyAddress=result[0] as LocationAddressModel;
-          })
-          .catch((error: any) => console.log(error));
-        //this.DismissLoadingSpinner();
-        this.loading.dismiss();
-        //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
-        debugger;
-      });
+        //this.loading.dismiss();
+        // get position
+        geolocation.getCurrentPosition().then(pos => {
+          debugger;
+          this.nativeGeocoder.reverseGeocode( pos.coords.latitude, pos.coords.longitude, options)
+            // this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
+            .then((result: NativeGeocoderReverseResult[]) => {
+              this.MyAddress = result[0];
+            })
+            .catch((error: any) => console.log(error));
+          //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
+          this.MyLocation.Latitude = pos.coords.latitude;
+          this.MyLocation.Longitude = pos.coords.longitude;
+          this.enablePunchingButtons = true;
+          this.loading.dismiss();
+          
+          //this.DismissLoadingSpinner();
+          console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
+        });
 
-      // to stop watching
-      watch.unsubscribe();
+
+        // watch position
+        // const watch = geolocation.watchPosition().subscribe(pos => {
+        //   console.log(`lat: ${pos.coords.latitude}, lon: ${pos.coords.longitude}`)
+        //   let temp = pos;
+        //   this.MyLocation.Latitude = pos.coords.latitude;
+        //   this.MyLocation.Longitude = pos.coords.longitude;
+        //   this.enablePunchingButtons = true;
+        //   this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
+        //     .then((result: NativeGeocoderReverseResult[]) => {
+        //       this.MyAddress = result[0] as LocationAddressModel;
+        //     })
+        //     .catch((error: any) => console.log(error));
+        //   //this.DismissLoadingSpinner();
+        //   this.loading.dismiss();
+        //   //this.helper.showMessage(pos.coords.latitude.toString(),pos.coords.latitude.toString());
+        //   debugger;
+        // });
+
+        // // to stop watching
+        // watch.unsubscribe();
+      }
+      catch (Error) {
+        this.helper.showMessage(Error.message, "Geo punching error");
+      }
     });
 
 
@@ -125,7 +134,7 @@ export class GeoPunchingPage implements OnInit {
 
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Please wait while loading your location', duration: 5000
+      message: 'Please wait while loading your location', duration: 6000
     });
     return await this.loading.present();
   }

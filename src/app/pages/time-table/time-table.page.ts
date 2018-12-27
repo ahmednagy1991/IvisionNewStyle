@@ -10,6 +10,9 @@ import { TimeTableService } from '../../../Services/TimeTableService';
 import { DateComponent } from '../../../models/DateComponent';
 //import { ModalController, Platform, ViewController } from 'ionic-angular';
 import { NavController, LoadingController, ModalController, NavParams } from '@ionic/angular';
+import { HelperService } from '../../../Services/HelperService';
+import {AppSettings} from '../../config/globals';
+
 
 @Component({
   selector: 'app-time-table',
@@ -23,15 +26,32 @@ export class TimeTablePage implements OnInit {
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
   DefaultDateFormat:string;
   DefaultTimeFormat:string;
-  constructor(public modalCtrl: ModalController, public helper: Heplers, public TTSerivce: TimeTableService, public navCtrl: NavController) {
+  constructor(public helpService: HelperService,public modalCtrl: ModalController, public helper: Heplers, public TTSerivce: TimeTableService, public navCtrl: NavController) {
     this.dateComp.to=this.helper.AddDays(7,new Date()).toISOString();
-    helper.GetDateFormat().then((res)=>{
-      this.DefaultDateFormat=res;
+    // helper.GetDateFormat().then((res)=>{
+    //   this.DefaultDateFormat=res;
+    // });
+
+    // helper.GetTimeFormat().then((res)=>{
+    //   this.DefaultTimeFormat=res;
+    // });
+
+    this.helpService.GetDateFormat().subscribe((res)=>{
+     
+      this.DefaultDateFormat=(res as any).result[0].Date_Format;
+      AppSettings.ServerDateFormat=this.DefaultDateFormat;
+    
+
+      //this.storage.set("DateFormat",this.DefaultDateFormat);
     });
 
-    helper.GetTimeFormat().then((res)=>{
-      this.DefaultTimeFormat=res;
+    this.helpService.GetTimeFormat().subscribe((res)=>{
+    
+      this.DefaultTimeFormat=(res as any).result[0].Time_Format;
+      AppSettings.ServerTimeFormat=this.DefaultTimeFormat;
+      //this.storage.set("TimeFormat",this.DefaultTimeFormat);
     });
+
 
   }
 
