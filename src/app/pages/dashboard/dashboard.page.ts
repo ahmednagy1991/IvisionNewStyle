@@ -89,6 +89,7 @@ export class DashboardPage implements OnInit {
     //this.renderChart();
   }
   MapPunchTable(res: any) {
+    debugger;
     this.PunchTable = res.result as PunchModel[];
   }
 

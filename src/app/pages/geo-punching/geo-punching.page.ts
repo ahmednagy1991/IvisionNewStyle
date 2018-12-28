@@ -59,17 +59,7 @@ export class GeoPunchingPage implements OnInit {
     .then((state) => {
       if (state){
         // do something
-        this.helper.showMessage("GPS Enabled","GPS Enabled");
-      } else {
-        // do something else
-        this.helper.showMessage("GPS Disabled","GPS Disabled");
-      }
-    }).catch(e => console.error(e));
-
-
-
-
-    this.presentLoading();
+        this.presentLoading();
     platform.ready().then(() => {
 
       try {
@@ -122,6 +112,16 @@ export class GeoPunchingPage implements OnInit {
       }
     });
 
+      } else {
+        // do something else
+        this.helper.showMessage("Please enable location in order to get your location","GPS Disabled");
+      }
+    }).catch(e => console.error(e));
+
+
+
+
+  
 
 
 
