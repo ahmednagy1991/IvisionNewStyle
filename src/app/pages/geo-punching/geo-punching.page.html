@@ -49,13 +49,13 @@
 
       <ion-row>
         <ion-col>
-          <ion-button expand="full" shape="round" color="success" (click)="punchIn()">Punch In</ion-button>
+          <ion-button [disabled]="enablePunchingButtons" expand="full" shape="round" color="success" (click)="punchIn()">Punch In</ion-button>
         </ion-col>
 
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button expand="full" shape="round" color="danger" (click)="punchIn()">Punch Out</ion-button>
+          <ion-button [disabled]="enablePunchingButtons" expand="full" shape="round" color="danger" (click)="punchIn()">Punch Out</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

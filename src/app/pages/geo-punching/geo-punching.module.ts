@@ -12,7 +12,7 @@ import { Inject, Injectable } from '@angular/core';
 import { PunchesService } from '../../../Services/PunchesService';
 import { MapKeyModel } from '../../../models/MapKeyModel';
 import {AppSettings} from '../../config/globals';
-
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 @Injectable()
 export class GoogleMapsConfig implements LazyMapsAPILoaderConfigLiteral {
   apiKey: string;
@@ -55,6 +55,7 @@ const routes: Routes = [
 @NgModule({
   providers: [
     Geolocation,
+    Diagnostic,
     NativeGeocoder,
     { provide: LAZY_MAPS_API_CONFIG, useClass: GoogleMapsConfig }
   ],

@@ -17,6 +17,9 @@ import { environment } from '../../../environments/environment'
 import { LoadingController } from '@ionic/angular';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { LocationAddressModel } from '../../../models/LocationAddressModel';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+
+
 import {
   trigger,
   style,
@@ -46,19 +49,22 @@ export class GeoPunchingPage implements OnInit {
   geoPunch: SubmitGeoPunchModel = { lat: "", lng: "", punch_date: "", punch_time: "", Punch_type: 0 };
 
 
-  constructor(private nativeGeocoder: NativeGeocoder, public datepipe: DatePipe, public loadingController: LoadingController, private geolocation: Geolocation, private platform: Platform, public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
+  constructor(private diagnostic: Diagnostic,private nativeGeocoder: NativeGeocoder, public datepipe: DatePipe, public loadingController: LoadingController, private geolocation: Geolocation, private platform: Platform, public helper: Heplers, public punchSer: PunchesService, public navCtrl: NavController) {
     let options: NativeGeocoderOptions = {
       useLocale: true,
       maxResults: 5
     };
 
-    // this.nativeGeocoder.reverseGeocode(30.048819, 31.243666, options)
-    //   // this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude, options)
-    //   .then((result: NativeGeocoderReverseResult[]) => {
-    //     this.MyAddress = result[0] as LocationAddressModel;
-    //     debugger;
-    //   })
-    //   .catch((error: any) => console.log(error));
+    this.diagnostic.isLocationEnabled()
+    .then((state) => {
+      if (state){
+        // do something
+        this.helper.showMessage("GPS Enabled","GPS Enabled");
+      } else {
+        // do something else
+        this.helper.showMessage("GPS Disabled","GPS Disabled");
+      }
+    }).catch(e => console.error(e));
 
 
 
