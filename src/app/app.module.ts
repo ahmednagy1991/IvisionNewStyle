@@ -63,7 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     IonicModule.forRoot(environment.config),
     AppRoutingModule,
     HttpModule,
-    
+ 
     HttpClientModule,
     ImagePageModule,
     LocationPageModule,
@@ -96,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AttendanceService,
     PunchesService,
     LeavesService,
+    
     //Geolocation,
     //AndroidPermissions,
     Api,

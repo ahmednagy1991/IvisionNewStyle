@@ -6,6 +6,7 @@ import { Heplers } from '../../../providers/Helper/Helpers';
 //import { TranslateService } from '@ngx-translate/core';
 import { LeavListModel } from '../../../models/LeavListModel';
 import { NavController, LoadingController, ModalController, NavParams } from '@ionic/angular';
+import {AppSettings} from '../../config/globals';
 
 @Component({
   selector: 'app-leaves',
@@ -20,9 +21,12 @@ export class LeavesPage implements OnInit {
   dateComp: DateComponent = { from: new Date().toISOString(), to: new Date().toISOString() };
   constructor(public modalCtrl: ModalController, public helper: Heplers, public LevService: LeavesService, public navCtrl: NavController) {
     //this.GetLeaves();
-    helper.GetDateFormat().then((res)=>{
-      this.DefaultDateFormat=res;
-    });
+   
+    // helper.GetDateFormat().then((res)=>{
+    //   this.DefaultDateFormat=res;
+    // });
+    this.DefaultDateFormat= AppSettings.ServerDateFormat;
+    debugger;
   }
 
   //, { leavesTab: this.LeavesTab }

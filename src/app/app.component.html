@@ -40,7 +40,13 @@
       <ion-content class="bg-profile">
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="[p.direct]" [routerLink]="[p.url]" color="primary">
+            <!-- <ion-item [routerDirection]="[p.direct]" [routerLink]="[p.url]" color="primary">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item> -->
+            <ion-item (click)="goToPage(p.url)" color="primary">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
                 {{p.title}}

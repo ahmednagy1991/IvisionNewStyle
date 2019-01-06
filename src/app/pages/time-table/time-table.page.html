@@ -60,7 +60,7 @@
         </ion-thumbnail>
         <ion-label>
             <h2>
-                <strong>{{att.TT_DATE | date:'EEEE'}}</strong>
+                <strong>{{att.TT_DATE | date:'EEEE'}}</strong>              
               </h2>
           <h2>
             <strong>{{att.TT_DATE | date:DefaultDateFormat}}</strong>
@@ -72,11 +72,18 @@
             </ion-badge>
             <br/>
             <ion-badge *ngIf="helper.GetTimeTableState(att.TT_STATE)=='Off day'" slot="start" color="success" class="rooms">
-              <strong>{{helper.GetTimeTableState(att.TT_STATE)}}</strong>
+              <strong>
+                <!-- {{helper.GetTimeTableState(att.TT_STATE)}} -->
+                Weekend
+              </strong>
             </ion-badge>
             <ion-badge *ngIf="helper.GetTimeTableState(att.TT_STATE)=='Working day'" slot="start" color="warning" class="rooms">
               <strong>{{helper.GetTimeTableState(att.TT_STATE)}}</strong>
             </ion-badge>
+        
+          </h3>
+          <h3>
+            <ion-badge color="tertiary">Click here to show details</ion-badge>
           </h3>
         </ion-label>
       </ion-item>

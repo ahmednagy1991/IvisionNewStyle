@@ -12,31 +12,32 @@
     <ion-col size="6" class="br bb datetime-btn" text-center>
       <ion-item no-padding text-center>
         <ion-label position="stacked" class="fw700 text-primary">
-            <h2>
-          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
-          From
-        </h2>
+          <h2>
+            <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+            From
+          </h2>
         </ion-label>
-        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2050"
-          [(ngModel)]="dateComp.from"></ion-datetime>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016"
+          max="2050" [(ngModel)]="dateComp.from"></ion-datetime>
       </ion-item>
     </ion-col>
     <ion-col size="6" class="bb datetime-btn" text-center>
       <ion-item no-padding text-center>
         <ion-label position="stacked" class="fw700 text-primary">
           <h2>
-          <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
-          To
-        </h2>
+            <ion-icon name="calendar" slot="start" class="text-primary"></ion-icon>
+            To
+          </h2>
         </ion-label>
-        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016" max="2050"
-          [(ngModel)]="dateComp.to"></ion-datetime>
+        <ion-datetime no-padding class="text-primary" displayFormat="MM/DD/YYYY" pickerFormat="YYYY-MM-DD" min="2016"
+          max="2050" [(ngModel)]="dateComp.to"></ion-datetime>
       </ion-item>
     </ion-col>
   </ion-row>
 
 
-  <ion-button full (click)="GetRequestStatus()" icon-left size="medium" expand="full" shape="round" color="dark" tappable>
+  <ion-button full (click)="GetRequestStatus()" icon-left size="medium" expand="full" shape="round" color="dark"
+    tappable>
     <ion-ripple-effect></ion-ripple-effect>
     <ion-icon name="search"></ion-icon>
     View Request Status
@@ -65,11 +66,61 @@
           </ion-badge>
 
         </h3>
+        <!-- <h3>
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong> {{att.LV_TITLE}}</strong>
+          </ion-badge>
+
+        </h3> -->
         <h3>
           <ion-badge slot="start" color="warning" class="rooms">
-            <strong>Leave Title {{lev.LV_TITLE}}</strong>
+            <strong>Status : {{helper.GetRequestStatus(att.REQUEST_STATUS)}}</strong>
           </ion-badge>
         </h3>
+        <h3 *ngIf="att.REQUEST_NOTE!='' || att.REQUEST_NOTE!='null'">
+          <ion-badge slot="start" color="warning" class="rooms">
+            <strong>{{att.REQUEST_NOTE}}</strong>
+          </ion-badge>
+        </h3>
+        <h3 *ngIf="att.REQUEST_TYPE==0">
+
+          <ion-badge *ngIf="helper.getPunchType(att.REQUEST_PARAM1)=='IN'" slot="start" color="success" class="rooms">
+            <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
+          </ion-badge>
+
+          <ion-badge *ngIf="helper.getPunchType(att.REQUEST_PARAM1)=='OUT'" slot="start" color="danger" class="rooms">
+            <strong>Punch {{helper.getPunchType(att.PUNCH_TYPE)}}</strong>
+          </ion-badge>
+        </h3>
+
+        <h3 *ngIf="att.REQUEST_TYPE==0">
+
+          
+            <strong>{{helper.getPunchType(att.PUNCH_TYPE)}} requested on {{att.REQUEST_DATE}} from
+              {{att.REQUEST_FROM_DATE}} to {{att.REQUEST_TO_DATE}}</strong>
+          
+        </h3>
+
+
+
+  
+          <h3 *ngIf="att.REQUEST_TYPE==4">
+  
+          
+              <strong>Days between {{att.REQUEST_FROM_TIME }} and {{att.REQUEST_TO_DATE}} Request for  {{helper.GetRequestType(att.REQUEST_TYPE)}} for period {{att.REQUEST_FROM_TIME }} and {{att.REQUEST_TO_DATE}}</strong>
+           
+          </h3>
+
+          
+          <h3 *ngIf="att.REQUEST_TYPE==3">
+  
+             
+                <strong>Days between {{att.REQUEST_FROM_TIME }} and {{att.REQUEST_TO_DATE}} Request for {{helper.GetRequestType(att.REQUEST_TYPE)}} for period {{att.REQUEST_FROM_TIME }} and {{att.REQUEST_TO_DATE}}</strong>
+              
+            </h3>
+
+          
+
 
       </ion-label>
     </ion-item>
@@ -105,5 +156,5 @@
         </ion-row>
       </ion-grid>
     </div> -->
- 
+
 </ion-content>

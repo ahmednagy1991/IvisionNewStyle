@@ -16,7 +16,8 @@ import { Storage } from '@ionic/storage';
 import { config } from '../providers/Config';
 import { Heplers } from '../providers/Helper/Helpers';
 
-import {AppSettings} from '../app/config/globals';
+import { AppSettings } from '../app/config/globals';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -27,9 +28,9 @@ export class AppComponent {
   // public listing;
   CurrentEmp: EmployeeModel = { EMP_ID: "", DEPT_NAME: "", DEPT_ID: "", EMP_NAME: "", ORG_NAME: "", DOJ: "", floatDOJ: "", STATE: "" };
   constructor(
-    public helper:Heplers,
+    public helper: Heplers,
     public storage: Storage,
-    public Myconfig: config,    
+    public Myconfig: config,
     //private androidPermissions: AndroidPermissions,
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -37,98 +38,102 @@ export class AppComponent {
     private translate: TranslateProvider,
     private translateService: TranslateService,
     public navCtrl: NavController
+ 
   ) {
-   
+
+
+debugger;
+
     this.appPages = [
       {
         title: 'Dashboard',
-        url: '/Dashboard',
+        url: 'Dashboard',
         direct: 'root',
         icon: 'home'
       }
       ,
       {
         title: 'Attendance',
-        url: '/attendance',
+        url: 'attendance',
         direct: 'forward',
         icon: 'alarm'
       },
-      
+
       {
         title: 'Timetable',
-        url: '/TimeTable',
+        url: 'TimeTable',
         direct: 'forward',
         icon: 'logo-buffer'
       },
       {
         title: 'My Punches',
-        url: '/MyPunches',
+        url: 'MyPunches',
         direct: 'forward',
         icon: 'finger-print'
       },
       {
         title: 'Leaves',
-        url: '/Leaves',
+        url: 'Leaves',
         direct: 'forward',
         icon: 'sunny'
       },
       {
         title: 'Execuses',
-        url: '/Execuses',
+        url: 'Execuses',
         direct: 'forward',
         icon: 'walk'
       }
       ,
       {
         title: 'Duties',
-        url: '/Duties',
+        url: 'Duties',
         direct: 'forward',
         icon: 'briefcase'
       },
       {
         title: 'Request Status',
-        url: '/RequestStatus',
+        url: 'RequestStatus',
         direct: 'forward',
         icon: 'trending-up'
       }
       ,
-      
+
       {
         title: 'Geo Punching',
-        url: '/geo-punching',
+        url: 'geo-punching',
         direct: 'forward',
         icon: 'map'
       },
       {
         title: 'Execuse Request',
-        url: '/submit-execuse',
+        url: 'submit-execuse',
         direct: 'forward',
         icon: 'calendar'
       }
       ,
       {
         title: 'Manual Adjustment Request',
-        url: '/manual-adjustment-request',
+        url: 'manual-adjustment-request',
         direct: 'forward',
         icon: 'clock'
       }
       ,
       {
         title: 'Leave Request',
-        url: '/submit-leave-resuest',
+        url: 'submit-leave-resuest',
         direct: 'forward',
         icon: 'paper'
       }
       ,
       {
         title: 'Change Password',
-        url: '/change-password',
+        url: 'change-password',
         direct: 'forward',
         icon: 'key'
       }
-      
-      
-     
+
+
+
       // },
       // {
       //   title: 'Rent a Car',
@@ -162,7 +167,7 @@ export class AppComponent {
       // }
     ];
     // platform.ready().then(() => {
-      
+
     //   this.statusBar.styleDefault();
     //   this.splashScreen.hide();
 
@@ -181,22 +186,30 @@ export class AppComponent {
 
     this.initializeApp();
 
-    this.CurrentEmp.EMP_NAME=AppSettings.USERNAME;
-    this.CurrentEmp.DEPT_NAME=AppSettings.DEPARTMENT;
+    this.CurrentEmp.EMP_NAME = AppSettings.USERNAME;
+    this.CurrentEmp.DEPT_NAME = AppSettings.DEPARTMENT;
     debugger;
     this.storage.get(this.Myconfig.UserInformation).then(res => this.sh(res));
   }
   sh(res: any) {
 
     //this.CurrentEmp = JSON.parse(res).result as EmployeeModel;
-   
+
     debugger;
 
   }
   initializeApp() {
     this.platform.ready().then(() => {
+
+      this.platform.backButton.subscribe(() => {
+        debugger;
+        this.storage.remove(this.Myconfig.Username_Key);
+        this.navCtrl.navigateRoot('login');
+      });
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
 
       //  this.androidPermissions.requestPermissions(
       // [
@@ -229,8 +242,20 @@ export class AppComponent {
   }
 
   logout() {
-    this.storage.remove(this.Myconfig.Username_Key);
-    this.navCtrl.navigateRoot('login');
+    this.storage.remove(this.Myconfig.Username_Key);    
+    this.navCtrl.navigateRoot('login',false, {replaceUrl: true});
+
+  }
+  goToPage(PageName: string) {
+    // if(AppSettings.IsLogedIn)
+    // {
+      this.navCtrl.navigateRoot(PageName);
+    // }
+    // else
+    // {
+    //   this.navCtrl.navigateRoot('login');
+    // }
+    
   }
 
 }

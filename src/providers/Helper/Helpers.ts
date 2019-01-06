@@ -259,6 +259,9 @@ export class Heplers {
         }
     }
 
+    
+  
+
     GetPnchType(req: number) {
         switch (req) {
             case 0:

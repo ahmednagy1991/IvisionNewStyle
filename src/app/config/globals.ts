@@ -12,6 +12,7 @@ export class AppSettings {
     public static STATE='';
     public static ServerDateFormat='';
     public static ServerTimeFormat='';
+    public static IsLogedIn=false;
     
     
     
