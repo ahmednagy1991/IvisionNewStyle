@@ -36,7 +36,7 @@ export class RequestService {
         // 'emp_id=' + this.parms.EmpId + '&start_date=' + from + '&end_date=' + to + '&apikey=' + this.parms.ApiKey + '&fields=WF_NAME, WF_STOP_POINT, WF_LEVEL, REQUEST_ID, REQUEST_DATE, REQUEST_TYPE, EMP_ID, REQUEST_FROM_DATE, REQUEST_TO_DATE, REQUEST_FROM_TIME, REQUEST_TO_TIME, REQUEST_DURATION, REQUEST_FROM_SITE, REQUEST_PARAM1, REQUEST_PARAM2, REQUEST_PARAM3, REQUEST_PARAM4, REQUEST_NOTE, REQUEST_STATUS, HANDLED_BY, HANDLED_NOTE, HANDLED_DATE, REQUEST_BY, WF_STOP_POINT_ID, WF_ID, EMP_NAME&sort=REQUEST_FROM_DATE&optimize=false&token=' + this.parms.ApiToken)
 
 
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetWebRequestsStatus',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/GetWebRequestsStatus',
         'emp_id=' + this.parms.EmpId + '&start_date=' + from + '&end_date=' + to + '&apikey=' + this.parms.ApiKey + '&fields=WF_NAME, WF_STOP_POINT, WF_LEVEL, REQUEST_ID, REQUEST_DATE, REQUEST_TYPE, EMP_ID, REQUEST_FROM_DATE, REQUEST_TO_DATE, REQUEST_FROM_TIME, REQUEST_TO_TIME, REQUEST_DURATION, REQUEST_FROM_SITE, REQUEST_PARAM1, REQUEST_PARAM2, REQUEST_PARAM3, REQUEST_PARAM4, REQUEST_NOTE, REQUEST_STATUS, HANDLED_BY, HANDLED_NOTE, HANDLED_DATE, REQUEST_BY, WF_STOP_POINT_ID, WF_ID, EMP_NAME&sort=REQUEST_FROM_DATE&optimize=false&token=' + this.parms.ApiToken)
     }
 

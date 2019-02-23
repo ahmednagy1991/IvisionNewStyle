@@ -85,6 +85,36 @@ export class Heplers {
         this.showMessage(this.GetCodeMessage(Code), lable);
     }
 
+    HasPermission(PageName:string)
+    {
+        if(!AppSettings.IsLogedIn)
+        {
+            return false;
+        }
+        if(AppSettings.permissions.Status)
+        {
+            return true
+        }
+        else
+        {
+            if (PageName =="geo_punching" && AppSettings.permissions.AllowGeoPunch=="-1")
+            {
+                return true;
+            }
+            if (PageName == "execuse_request" && AppSettings.permissions.AllowExcReq == "-1") {
+                return true;
+            }
+            if (PageName == "leave_request" && AppSettings.permissions.AllowVacReq  == "-1") {
+                return true;
+            }
+            if (PageName == "manual_adjustment_request" && AppSettings.permissions.AllowPunchReq  == "-1") {
+                return true;
+            }
+            return false;
+        }
+      
+    }
+
     GetCodeMessage(Code: number): string {
         switch (Code) {
             case 1:
@@ -296,6 +326,12 @@ export class Heplers {
     AddDays(noOfDays: number, date: Date) {
         date.setTime(date.getTime() + (noOfDays * (1000 * 60 * 60 * 24)));
         return date;
+    }
+
+
+    AddDaysString(noOfDays: number, date: Date) {
+        date.setTime(date.getTime() + (noOfDays * (1000 * 60 * 60 * 24)));
+        return this.datepipe.transform(date, 'yyyy-MM-dd');;
     }
 
     SubDays(noOfDays: number, date: Date) {

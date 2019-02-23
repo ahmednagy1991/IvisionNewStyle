@@ -33,21 +33,21 @@ export class ExecuseService {
 
     GetExecuseList(from: Date, to: Date) {
         debugger;
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getleavelist',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/getleavelist',
             'emp_id=' + this.parms.EmpId + '&leave_type=1&start_date=' + from + '&end_date=' + to + '&apikey=' + this.parms.ApiKey + '&fields=LV_ID,LV_TITLE,START_DATE,END_DATE,REASON_TITLE,START_TIME,END_TIME&sort=START_DATE&token=' + this.parms.ApiToken)
     }
 
 
     RequestExecuse(ExcModel: ExecuseModel) {
       
-        return this.api.callGet('ivmtwebsdk/ivmtTrans.dll/api/v52/ivmtTrans/requestexcuse',
+        return this.api.callGet('/ivmtTrans.dll/api/v52/ivmtTrans/requestexcuse',
             'emp_id=' + this.parms.EmpId + '&pay_status=' + ExcModel.pay_status + '&excuse_date=' + ExcModel.excuse_date + '&from_time='+this.datepipe.transform(ExcModel.from_time, 'hh:mm:ss')+'&to_time='+this.datepipe.transform(ExcModel.to_time, 'hh:mm:ss')+'&apikey=' + this.parms.ApiKey + '&reason_id=' + ExcModel.reason_id + '&desc=' + ExcModel.desc + '&token=' + this.parms.ApiToken)
     }
 
     GetReasonList() {
         return this.LoadParms().then((res) => {
             this.parms = JSON.parse(res) as ApiParameters;
-            return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getreasonlist',
+            return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/getreasonlist',
                 'apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken + '&reason_type=excuse');
         });
 

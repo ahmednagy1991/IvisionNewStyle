@@ -49,52 +49,60 @@ debugger;
         title: 'Dashboard',
         url: 'Dashboard',
         direct: 'root',
-        icon: 'home'
+        icon: 'home',
+        pageName: 'dashboard'
       }
       ,
       {
         title: 'Attendance',
         url: 'attendance',
         direct: 'forward',
-        icon: 'alarm'
+        icon: 'alarm',
+        pageName: 'attendance'
       },
 
       {
         title: 'Timetable',
         url: 'TimeTable',
         direct: 'forward',
-        icon: 'logo-buffer'
+        icon: 'logo-buffer',
+        pageName: 'timetable'
       },
       {
         title: 'My Punches',
         url: 'MyPunches',
         direct: 'forward',
-        icon: 'finger-print'
+        icon: 'finger-print',
+        pageName: 'my_punches'
       },
       {
         title: 'Leaves',
         url: 'Leaves',
         direct: 'forward',
-        icon: 'sunny'
+        icon: 'sunny',
+        pageName: 'leaves'
       },
       {
         title: 'Execuses',
         url: 'Execuses',
         direct: 'forward',
-        icon: 'walk'
+        icon: 'walk',
+        pageName: 'execuses'
       }
       ,
       {
         title: 'Duties',
         url: 'Duties',
         direct: 'forward',
-        icon: 'briefcase'
+        icon: 'briefcase',
+        pageName: 'duties'
       },
       {
         title: 'Request Status',
         url: 'RequestStatus',
         direct: 'forward',
-        icon: 'trending-up'
+        icon: 'trending-up',
+        pageName: 'request_status'
       }
       ,
 
@@ -102,34 +110,39 @@ debugger;
         title: 'Geo Punching',
         url: 'geo-punching',
         direct: 'forward',
-        icon: 'map'
+        icon: 'map',
+        pageName: 'geo_punching'
       },
       {
         title: 'Execuse Request',
         url: 'submit-execuse',
         direct: 'forward',
-        icon: 'calendar'
+        icon: 'calendar',
+        pageName: 'execuse_request'
       }
       ,
       {
         title: 'Manual Adjustment Request',
         url: 'manual-adjustment-request',
         direct: 'forward',
-        icon: 'clock'
+        icon: 'clock',
+        pageName: 'manual_adjustment_request'
       }
       ,
       {
         title: 'Leave Request',
         url: 'submit-leave-resuest',
         direct: 'forward',
-        icon: 'paper'
+        icon: 'paper',
+        pageName: 'leave_request'
       }
       ,
       {
         title: 'Change Password',
         url: 'change-password',
         direct: 'forward',
-        icon: 'key'
+        icon: 'key',
+        pageName: 'change_password'
       }
 
 

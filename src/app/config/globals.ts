@@ -1,4 +1,4 @@
-
+import { AccessRightsModel } from '../../models/AccessRightsModel'; 
 export class AppSettings {
     public static API_ENDPOINT='http://127.0.0.1:6666/api/';
     public static MAPS_API='';
@@ -13,6 +13,7 @@ export class AppSettings {
     public static ServerDateFormat='';
     public static ServerTimeFormat='';
     public static IsLogedIn=false;
+    public static permissions:AccessRightsModel={AllowExcReq:"",AllowGeoPunch:"",AllowPunchReq:"",AllowVacReq:"",MARID:"",MARName:"",Status:""};
     
     
     

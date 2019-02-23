@@ -27,12 +27,15 @@ export class TimeTableService {
     }
 
     GetTimeTableList(FromDate: string, ToDate: string) {
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/gettimetablelist',
-            'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&start_date=' +FromDate + '&end_date=' + ToDate + '&fields=TT_ID,FROM_DATE_TIME,TO_DATE_TIME,TT_STATE,TT_DATE&sort=from_date_time desc&token=' + this.parms.ApiToken)
+
+        let tttt= 'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&start_date=' +FromDate + '&end_date=' + ToDate + '&fields=TT_ID,FROM_DATE_TIME,TO_DATE_TIME,TT_STATE,TT_DATE&sort=from_date_time desc&token=' + this.parms.ApiToken;
+        debugger;
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/gettimetablelist',
+            'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&start_date=' +FromDate + '&end_date=' + ToDate + '&fields=TT_ID,FROM_DATE_TIME,TO_DATE_TIME,TT_STATE,TT_DATE&sort=TT_DATE&token=' + this.parms.ApiToken)
     }
 
     GetTimeTableDetails(TTID: number) {
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/gettimetable',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/gettimetable',
             'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&ttid=' + TTID + '&fields=TT_ID,TT_DATE,ENTRY_STATE,FROM_DATE_TIME,TO_DATE_TIME,OVERNIGHT_STATUS,DURATION,TT_STATE,ST_ID,ST_TITLE&token=' + this.parms.ApiToken)
     }
 

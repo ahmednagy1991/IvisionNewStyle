@@ -36,20 +36,20 @@ export class LeavesService {
 
     GetLeaveList(from: Date, to: Date) {
         debugger;
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getleavelist',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/getleavelist',
             'emp_id=' + this.parms.EmpId + '&start_date=' + from + '&end_date=' + to + '&apikey=' + this.parms.ApiKey + '&fields=LV_ID,LV_TITLE,START_DATE,END_DATE,REASON_TITLE,START_TIME,END_TIME&sort=START_DATE&token=' + this.parms.ApiToken)
     }
 
 
     GetDutyList(from: Date, to: Date) {
         debugger;
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getleavelist',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/getleavelist',
             'emp_id=' + this.parms.EmpId + '&leave_type=2&start_date=' + from + '&end_date=' + to + '&apikey=' + this.parms.ApiKey + '&fields=LV_ID,LV_TITLE,START_DATE,END_DATE,REASON_TITLE&sort=START_DATE&token=' + this.parms.ApiToken)
     }
 
 
     GetTodayLeaves(LeaveID: number) {
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getleave',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/getleave',
             'emp_id=' + this.parms.EmpId + '&lid=' + LeaveID + '&apikey=' + this.parms.ApiKey + '&fields=LV_NOTE,REASON_TITLE,PAY_STATUS,LV_ID,LV_TITLE, START_DATE,END_DATE&token=' + this.parms.ApiToken)
     }
    
@@ -57,14 +57,14 @@ export class LeavesService {
 
         let temp='emp_id=' + this.parms.EmpId + '&start_date=' + leavModel.StartDate + '&end_date=' + leavModel.EndDate + '&apikey=' + this.parms.ApiKey + '&reason_id='+leavModel.ReasonID+'&desc='+leavModel.Description+'&token=' + this.parms.ApiToken;
         debugger;
-        return this.api.callGet('ivmtwebsdk/ivmtTrans.dll/api/v52/ivmtTrans/requestleave',
+        return this.api.callGet('/ivmtTrans.dll/api/v52/ivmtTrans/requestleave',
         'emp_id=' + this.parms.EmpId + '&pay_status='+leavModel.Paystatus+'&start_date=' + leavModel.StartDate + '&end_date=' + leavModel.EndDate + '&apikey=' + this.parms.ApiKey + '&reason_id='+leavModel.ReasonID+'&desc='+leavModel.Description+'&token=' + this.parms.ApiToken)
     }
     
     GetReasonList() {        
         return this.LoadParms().then((res) => {
             this.parms = JSON.parse(res) as ApiParameters;           
-            return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getreasonlist',
+            return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/getreasonlist',
                 'apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken + '&reason_type=leave');
         });
         

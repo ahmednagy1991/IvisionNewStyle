@@ -84,7 +84,7 @@ export class WalkthroughPage implements OnInit {
 
 
   validate(res: any) {
-    debugger;
+    //debugger;
     this.tokenReponse = res as TokenModel;
     if (this.tokenReponse.code == '0') {
      
@@ -104,7 +104,7 @@ export class WalkthroughPage implements OnInit {
 
 
   ValidateUrl(res: string) {
-    debugger;
+    //debugger;
     if (res == null || res == undefined || res == "") {
       this.helper.presentToast("Please set valid url for service ", 9000);
     }

@@ -34,7 +34,7 @@
 
 
 
-    
+
 
 
         <ion-item>
@@ -63,18 +63,18 @@
           -->
 
 
-          <ion-select-option value="0">
-           Today
-          </ion-select-option>
-          <ion-select-option value="1">
-            Yesterday
-          </ion-select-option>
-          <ion-select-option value="6">
-            Last 7 Days
-          </ion-select-option>
-          <ion-select-option value="29">
-            Last 30 Days
-          </ion-select-option>
+            <ion-select-option value="0">
+              Today
+            </ion-select-option>
+            <ion-select-option value="1">
+              Yesterday
+            </ion-select-option>
+            <ion-select-option value="6">
+              Last 7 Days
+            </ion-select-option>
+            <ion-select-option value="29">
+              Last 30 Days
+            </ion-select-option>
           </ion-select>
         </ion-item>
 
@@ -276,13 +276,28 @@
               <strong>{{att.TT_DATE | date:DefaultDateFormat}}</strong>
             </h3>
             <h3>
-              <div *ngIf="helper.GetTimeTableState(att.TT_STATE)!='Off day'">
+              <div *ngIf="att.TT_STATE!='null'&&helper.GetTimeTableState(att.TT_STATE)!='Off day'">
                 <ion-badge slot="start" color="secondary" class="rooms">
-                  <strong>From {{att.FROM_DATE_TIME | date:DefaultTimeFormat}} </strong>
-                  <strong>To {{att.TO_DATE_TIME | date:DefaultTimeFormat}}</strong>
-                </ion-badge>            
-              <br />
-            </div>
+                  <!-- <strong>From {{att.FROM_DATE_TIME | date:DefaultTimeFormat}} </strong>
+                  <strong>To {{att.TO_DATE_TIME | date:DefaultTimeFormat}}</strong> -->
+                  <strong>From {{att.FROM_DATE_TIME | date:'YYYY-MM-DD'}} </strong>
+                  <strong>To {{att.TO_DATE_TIME | date:'YYYY-MM-DD'}}</strong>
+
+                </ion-badge>
+                <br />
+              </div>
+
+              <div *ngIf="att.TT_STATE=='null'">
+                <ion-badge slot="start" color="secondary" class="rooms">
+                  <!-- <strong>From {{att.FROM_DATE_TIME | date:DefaultTimeFormat}} </strong>
+                                <strong>To {{att.TO_DATE_TIME | date:DefaultTimeFormat}}</strong> -->
+                  <strong>No Timetable </strong>                 
+              
+                </ion-badge>
+                <br />
+              </div>
+
+
               <ion-badge *ngIf="helper.GetTimeTableState(att.TT_STATE)=='Off day'" slot="start" color="success" class="rooms">
                 <strong>
                   <!-- {{helper.GetTimeTableState(att.TT_STATE)}} -->

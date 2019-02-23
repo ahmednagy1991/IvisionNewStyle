@@ -27,20 +27,20 @@ export class HelperService {
 
     GetTimeFormat() {
         
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetTimeFormat',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/GetTimeFormat',
         'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken)
     }
 
     GetDateFormat() {
     
         //                       ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetTimeFormat
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetDateFormat',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/GetDateFormat',
         'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken)
     }
 
     CheckTimeFormat(mainURL:string) {
         debugger;
-        return this.api.callGetWithoutMainURL(mainURL+'/ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetTimeFormat',
+        return this.api.callGetWithoutMainURL(mainURL+'/ivmtReader.dll/api/v52/ivmtReader/GetTimeFormat',
        '')
        // 'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken
     }

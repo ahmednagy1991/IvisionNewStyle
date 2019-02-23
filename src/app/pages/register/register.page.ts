@@ -55,20 +55,23 @@ export class RegisterPage implements OnInit {
   signUp() {
     if (this.passwordConfirm == this.usr.emp_pwd) {
 
+      debugger;
+    
+
       this.uniqueDeviceID.get()
       .then((uuid: any) => {
         //this.deviceId=uuid
-        debugger;
         this.userService.RegisterUser(uuid, this.usr.emp_id, this.usr.emp_pwd).subscribe((res: any) => {
           this.response = res;
           if (this.response.code == 0) {
-            this.helper.showMessage("The request has been submited successfully for device : "+uuid, "Done");
-          } 
+            this.helper.showMessage("The request has been submited successfully for device ", "Done");
+          }
           else {
             this.helper.ShowErrorMessage(res.code);
           }
-    
+
         });
+       
       })
       .catch((error: any) => console.log(error));
       

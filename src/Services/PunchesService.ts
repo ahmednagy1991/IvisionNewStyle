@@ -34,7 +34,7 @@ export class PunchesService {
     GetPunches(FromDate: string, ToDate: string) {
         //.subscribe(res => this.PunchTab=res as PunchModel[]);
         //entry_type=0,3,2
-        return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getpunches',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/getpunches',
             'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey + '&start_date=' + FromDate + '&end_date=' + ToDate + '&fields=PUNCH_DATETIME,PUNCH_TYPE,ENTRY_TYPE,READER_NAME&sort=PUNCH_DATETIME desc&token=' + this.parms.ApiToken);
     }
 
@@ -43,26 +43,26 @@ export class PunchesService {
         //punch type 1 for IN 0 for Out
         let temp= 'emp_id=' + this.parms.EmpId + '&Punch_type=1&punch_date=' + punch.punch_date + '&punch_time=' + punch.punch_time + '&lat=' + punch.lat + '&lng=' + punch.lng + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken;
         debugger;
-        return this.api.callGet('ivmtwebsdk/ivmtTrans.dll/api/v52/ivmtTrans/geopunch',
+        return this.api.callGet('/ivmtTrans.dll/api/v52/ivmtTrans/geopunch',
             'emp_id=' + this.parms.EmpId + '&Punch_type=1&punch_date=' + punch.punch_date + '&punch_time=' + punch.punch_time + '&lat=' + punch.lat + '&lng=' + punch.lng + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken)
     }
 
     PunchOut(punch: SubmitGeoPunchModel) {    
         //punch type 1 for IN 0 for Out
-        return this.api.callGet('ivmtwebsdk/ivmtTrans.dll/api/v52/ivmtTrans/geopunch',
+        return this.api.callGet('/ivmtTrans.dll/api/v52/ivmtTrans/geopunch',
             'emp_id=' + this.parms.EmpId + '&Punch_type=0&punch_date=' + punch.punch_date + '&punch_time=' + punch.punch_time + '&lat=' + punch.lat + '&lng=' + punch.lng + '&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken)
     }
 
     SubmitManulaAdjustment(adj:SubmitAdjustmentModel)
     {
-        return this.api.callGet('ivmtwebsdk/ivmtTrans.dll/api/v52/ivmtTrans/requestpunch',
+        return this.api.callGet('/ivmtTrans.dll/api/v52/ivmtTrans/requestpunch',
         'emp_id=' + this.parms.EmpId + '&Punch_type='+adj.Punch_type+'&punch_date=' + adj.punch_date + '&punch_time=' + adj.punch_time + '&reader_id='+adj.reader_id+'&reason_id='+adj.reason_id+'&apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken)
     }
 
     GetReaderList() {        
         return this.LoadParms().then((res) => {
             this.parms = JSON.parse(res) as ApiParameters;           
-            return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getreaderlist',
+            return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/getreaderlist',
                 'apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken);
         });
         
@@ -71,7 +71,7 @@ export class PunchesService {
     GetReasonList() {        
         return this.LoadParms().then((res) => {
             this.parms = JSON.parse(res) as ApiParameters;           
-            return this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/getreasonlist',
+            return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/getreasonlist',
                 'apikey=' + this.parms.ApiKey + '&token=' + this.parms.ApiToken + '&reason_type=punch');
         });
         
@@ -83,7 +83,7 @@ export class PunchesService {
         // return this.api.callGet('/ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetGMapAPIKey',
         //     'emp_id=' + this.parms.EmpId + '&apikey=' + this.parms.ApiKey +"&token="+ this.parms.ApiToken);
 
-        return this.api.callGet('/ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/GetGMapAPIKey',
+        return this.api.callGet('/ivmtReader.dll/api/v52/ivmtReader/GetGMapAPIKey',
         'emp_id=' +empId + '&apikey=' + Apki +"&token="+ ApiToken);
     }
 

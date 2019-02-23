@@ -46,7 +46,7 @@
                 {{p.title}}
               </ion-label>
             </ion-item> -->
-            <ion-item (click)="goToPage(p.url)" color="primary">
+            <ion-item *ngIf="helper.HasPermission(p.pageName)" (click)="goToPage(p.url)" color="primary">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
                 {{p.title}}

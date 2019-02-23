@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DebugElement } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, MenuController, ToastController, AlertController } from '@ionic/angular';
 import { TranslateProvider } from '../../providers';
@@ -15,6 +15,7 @@ import { TokenModel } from '../../../models/TokenModel';
 import { ApiParameters } from '../../../models/ApiParameters';
 import { AccountModel } from '../../../models/AccountModel';
 import { EmployeeModel } from '../../../models/EmployeeModel';
+import { AccessRightsModel } from '../../../models/AccessRightsModel';
 
 import { Heplers } from '../../../providers/Helper/Helpers';
 import { LoadingController } from '@ionic/angular';
@@ -94,10 +95,11 @@ export class LoginPage implements OnInit {
     try {
 
 
-      debugger;
+      //debugger;
       this.tokenReponse = res as TokenModel;
       if (this.tokenReponse.code == '0') {
 
+        AppSettings.IsLogedIn=true;
         this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtreader/GetEmpInf?emp_id=' + empId
           + '&uuid=1213&apikey=' + config.APIKEY + '&fields=EMP_NAME,EMP_ID,DEPT_NAME,DEPT_ID,ORG_NAME,DOJ,STATUS&token=' + this.tokenReponse.result, "").subscribe((res) => {
             this.empResponse = ((res as any).result) as EmployeeModel;
@@ -110,8 +112,15 @@ export class LoginPage implements OnInit {
             AppSettings.DOJ=this.empResponse.DOJ;
             AppSettings.floatDOJ=this.empResponse.floatDOJ;
             AppSettings.STATE=this.empResponse.STATE;
+
             
-            debugger;
+            
+
+
+
+
+
+            //debugger;
           });
 
         this.Params = {
@@ -127,11 +136,19 @@ export class LoginPage implements OnInit {
         //   this.storage.set(this.Config.Username_Key, JSON.stringify(this.account));
         // }
         //this.storage.set(this.Config.ConnectionParameter, JSON.stringify(this.Params));
+      
         this.punchse.GetMapAPIKEY(empId,config.APIKEY,this.tokenReponse.result).subscribe((res) => {
           this.GetKey(res);
         })
-        this.loading.dismiss();
-        this.navCtrl.navigateRoot("Dashboard");
+
+        this.usrSer.GetRightAccess(empId, config.APIKEY,this.tokenReponse.result).subscribe((res:any) => {        
+          AppSettings.permissions = res.result as AccessRightsModel
+          debugger;
+          this.loading.dismiss();
+          this.navCtrl.navigateRoot("Dashboard");
+        });
+
+      
       }
       else {
         this.helper.showMessage("Invalid Login", "Login Error");
@@ -146,7 +163,7 @@ export class LoginPage implements OnInit {
   doLogin() {
     try {
       let temp = AppSettings.API_ENDPOINT;
-      debugger;
+      //debugger;
       this.presentLoading();
       if (this.account.empId != undefined || this.account.empId != "") {
         this.usrSer.Login(this.account.empId, this.account.password).subscribe((res) => {

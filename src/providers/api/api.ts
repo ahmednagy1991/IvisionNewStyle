@@ -25,7 +25,7 @@ export class Api {
 
     this.url = AppSettings.API_ENDPOINT;
 
-    debugger;
+    //debugger;
 
 
     //this.storage.get(this.config.MainURL_Key).then(res => this.url = res)
@@ -33,7 +33,7 @@ export class Api {
   }
 
   callGetWithoutMainURL(endpoint: string, body: string, params?: any, reqOpts?: any) {
-    debugger;
+    //debugger;
     let headers = new Headers();
     return this.http.post(endpoint, body)
 
@@ -41,7 +41,7 @@ export class Api {
 
   callGet(endpoint: string, body: string, params?: any, reqOpts?: any) {
     this.url = AppSettings.API_ENDPOINT;
-debugger;
+//debugger;
     let headers = new Headers();
     return this.http.post(this.url + '/' + endpoint, body)
 
@@ -62,13 +62,13 @@ debugger;
         reqOpts.params = reqOpts.params.set(k, params[k]);
       }
     }
-    debugger;
+    //debugger;
     //this.url + '/' +
     return this.http.get(endpoint, reqOpts);
   }
 
   post(endpoint: string, body: any, reqOpts?: any) {
-    debugger;
+    //debugger;
     //this.url + '/' + 
     return this.http.post(endpoint, body, reqOpts);
   }

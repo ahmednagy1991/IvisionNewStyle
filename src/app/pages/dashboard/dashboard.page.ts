@@ -24,6 +24,9 @@ import { HelperService } from '../../../Services/HelperService';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { parse } from 'url';
 import {AppSettings} from '../../config/globals';
+import { UserService } from '../../../Services/UserService';
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -67,7 +70,7 @@ export class DashboardPage implements OnInit {
   dashbrd: string;
 
 
-  constructor(public splash: SplashScreen, public helpService: HelperService, public TTSerivce: TimeTableService, public punservice: PunchesService, public AttService: AttendanceService, public navCtrl: NavController, public Config: config,
+  constructor(public usrserv:UserService,public splash: SplashScreen, public helpService: HelperService, public TTSerivce: TimeTableService, public punservice: PunchesService, public AttService: AttendanceService, public navCtrl: NavController, public Config: config,
     public storage: Storage,
     //public setStorage: Settings, 
     public helper: Heplers, public api: Api,
@@ -89,7 +92,7 @@ export class DashboardPage implements OnInit {
     //this.renderChart();
   }
   MapPunchTable(res: any) {
-    debugger;
+    //debugger;
     this.PunchTable = res.result as PunchModel[];
   }
 
@@ -106,6 +109,7 @@ export class DashboardPage implements OnInit {
     this.TodayPunches();
   }
 
+  
   MapEmp(res: any) {
     this.Employee = JSON.parse(res).result as EmployeeModel;
 
@@ -128,11 +132,13 @@ export class DashboardPage implements OnInit {
   }
 
   MapTimeTable(res: any) {
+   // debugger;
     this.TTableModel = res.result as TimeTableModel[];
 
   }
 
   MapTTListTable(res: any) {
+    //debugger;
     this.TTListModel = res.result as TimeTableListModel[];
 
   }
@@ -155,7 +161,8 @@ export class DashboardPage implements OnInit {
     // this.api.callGet('ivmtwebsdk/ivmtReader.dll/api/v52/ivmtReader/gettimetable',
     //   'emp_id=' + this.parms.EmpId + '&&ttid=123&apikey=' + this.parms.ApiKey + '&fields=PG_TITLE,FROM_DATE_TIME,TO_DATE_TIME,TT_DATE&token=' + this.parms.ApiToken).subscribe(res => this.MapTimeTable(res));
 
-    this.TTSerivce.GetTimeTableList(this.helper.getWeekStart(new Date()), this.helper.getWeekEnd(new Date())).subscribe(res => this.MapTTListTable(res));
+    //this.TTSerivce.GetTimeTableList(new Date().toISOString(), this.helper.AddDaysString(8,new Date())).subscribe(res => this.MapTTListTable(res));
+    this.TTSerivce.GetTimeTableList("2019-01-11", "2019-01-18").subscribe(res => this.MapTTListTable(res));
   }
 
   GetAttendance() {
@@ -245,8 +252,9 @@ export class DashboardPage implements OnInit {
       //  // debugger;
       // });
       // this.SummaryModel = res.unsubscribe as AttendanceStatisticsModel;
+    
       res.subscribe((ret) => {
-  
+        //debugger;
         let obj = ret as any;
         let total_days = 0;
 
@@ -306,6 +314,7 @@ export class DashboardPage implements OnInit {
     this.navCtrl.navigateRoot("PunchingPage");
   }
 
+  
 
   ngOnInit() {
 
