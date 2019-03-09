@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 //import { AlertController } from 'ionic-angular';
-import {AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Datetime } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { config } from '../../providers/Config';
 import { DecimalPipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
-import {AppSettings} from '../../app/config/globals';
+import { AppSettings } from '../../app/config/globals';
 
 @Injectable()
 export class Heplers {
@@ -23,57 +23,45 @@ export class Heplers {
         //return temp;
     }
 
-    getEmpName()
-    {
+    getEmpName() {
         return AppSettings.USERNAME;
     }
-    getDepartmentName()
-    {
+    getDepartmentName() {
         return AppSettings.DEPARTMENT;
     }
-    getDepartmentID()
-    {
+    getDepartmentID() {
         return AppSettings.DEPARTMENT_ID;
     }
-    getEmpID()
-    {
+    getEmpID() {
         return AppSettings.EMPID;
     }
-    getORG_NAME()
-    {
+    getORG_NAME() {
         return AppSettings.ORG_NAME;
     }
-    getDOJ()
-    {
+    getDOJ() {
         return AppSettings.DOJ;
     }
-    getfloatDOJ()
-    {
+    getfloatDOJ() {
         return AppSettings.floatDOJ;
     }
-    getSTATE()
-    {
+    getSTATE() {
         return AppSettings.STATE;
     }
-    
-    GetDateFormat():Promise<string>
-    {
+
+    GetDateFormat(): Promise<string> {
         return this.storage.get("DateFormat");
     }
 
-    GetServerDateFormat()
-    {
+    GetServerDateFormat() {
         debugger;
         return AppSettings.ServerDateFormat;
     }
-    GetServerTimeFormat()
-    {
+    GetServerTimeFormat() {
         debugger;
         return AppSettings.ServerTimeFormat;
     }
 
-    GetTimeFormat():Promise<string>
-    {
+    GetTimeFormat(): Promise<string> {
         return this.storage.get("TimeFormat");
     }
 
@@ -81,38 +69,33 @@ export class Heplers {
         this.showMessage(this.GetCodeMessage(Code), "");
     }
 
-    ShowMessage(Code: number,lable:string) {
+    ShowMessage(Code: number, lable: string) {
         this.showMessage(this.GetCodeMessage(Code), lable);
     }
 
-    HasPermission(PageName:string)
-    {
-        if(!AppSettings.IsLogedIn)
-        {
+    HasPermission(PageName: string) {
+        if (!AppSettings.IsLogedIn) {
             return false;
         }
-        if(AppSettings.permissions.Status)
-        {
+        if (AppSettings.permissions.Status) {
             return true
         }
-        else
-        {
-            if (PageName =="geo_punching" && AppSettings.permissions.AllowGeoPunch=="-1")
-            {
+        else {
+            if (PageName == "geo_punching" && AppSettings.permissions.AllowGeoPunch == "-1") {
                 return true;
             }
             if (PageName == "execuse_request" && AppSettings.permissions.AllowExcReq == "-1") {
                 return true;
             }
-            if (PageName == "leave_request" && AppSettings.permissions.AllowVacReq  == "-1") {
+            if (PageName == "leave_request" && AppSettings.permissions.AllowVacReq == "-1") {
                 return true;
             }
-            if (PageName == "manual_adjustment_request" && AppSettings.permissions.AllowPunchReq  == "-1") {
+            if (PageName == "manual_adjustment_request" && AppSettings.permissions.AllowPunchReq == "-1") {
                 return true;
             }
             return false;
         }
-      
+
     }
 
     GetCodeMessage(Code: number): string {
@@ -169,78 +152,93 @@ export class Heplers {
                 return "No records return"
             case 3301:
                 return "Error getting requested information details"
+            case 11001:
+                return "Registration request submitted successfully"
+            case 11002:
+                return "Registration request pending"
+            case 11003:
+                return "Registration request rejected"
+            case 11004:
+                return "Registration request accepted"
             case 21005:
-                return ""
+                return "Error returning employees’ list"
             case 21006:
-                return ""
+                return "Error returning timetable list"
             case 21007:
-                return ""
+                return "Error returning timetable"
             case 21008:
-                return ""
+                return "Error returning leave list"
             case 21009:
-                return ""
+                return "Error returning leave"
             case 21010:
-                return ""
+                return "Error returning punches"
             case 21011:
-                return ""
+                return "Error returning attendance"
             case 21012:
-                return ""
+                return "Error returning attendance punches"
             case 21013:
-                return ""
+                return "Error returning readers list"
             case 21014:
-                return ""
+                return "Error returning reasons list"
             case 3301:
-                return ""
+                return "Error getting requested information details"
             case 41001:
                 return "Geo Punching Not Authorized"
             case 41002:
                 return "Invalid GeoLocation"
             case 41003:
-                return ""
+                return "Invalid LAT\LNG values"
             case 41004:
-                return ""
+                return "Punch already exists"
             case 41005:
                 return "Invalid Punch Type "
             case 41006:
-                return ""
+                return "Geo punch not allowed for user mod calls"
             case 41007:
-                return ""
+                return "Invalid reader ID"
             case 51001:
-                return ""
+                return "Request  not authorized "
             case 51002:
-                return ""
+                return "Invalid reason "
             case 51003:
                 return "The request already submited"
             case 51004:
-                return ""
+                return "Workflow not configured properly "
             case 51005:
-                return ""
+                return "Workflow not active "
             case 51006:
-                return ""
+                return "Request suspended "
             case 51007:
-                return ""
+                return "Workflow not defined "
             case 51008:
-                return ""
+                return "Invalid pay status "
             case 51009:
-                return "Invalid From time or To time format or from time grater than to time"
+                return "Invalid From\To time "
             case 51010:
-                return ""
+                return "Invalid From\To date "
             case 51011:
-                return ""
+                return "Error processing Geo punc"
             case 51012:
-                return ""
+                return "Error processing punch request"
             case 51013:
-                return ""
+                return "Error processing excuse request"
             case 51014:
-                return ""
+                return "Error processing leave request "
             case 51015:
-                return ""
+                return "Internal error submitting request "
             case 51016:
-                return ""
+                return "Request date range is out of authorized period "
             case 51017:
-                return ""
+                return "Request date range is out of authorized period "
             case 51018:
-                return ""
+                return "Error adding punch"
+            case 51019:
+                return "Error getting employee’s web requests"
+            case 61001:
+                return "Wrong old password"
+            case 61002:
+                return "New password is empty"
+
 
 
 
@@ -289,8 +287,8 @@ export class Heplers {
         }
     }
 
-    
-  
+
+
 
     GetPnchType(req: number) {
         switch (req) {
@@ -357,7 +355,7 @@ export class Heplers {
         return this.datepipe.transform(this.AddDays(6, d), 'yyyy-MM-dd');
     }
 
-  
+
 
     getPunchType(punch: number): string {
 
@@ -370,7 +368,7 @@ export class Heplers {
     }
 
     GetCurrentDate() {
-        let Dt = new Date();        
+        let Dt = new Date();
         return this.datepipe.transform(Dt, 'yyyy-MM-dd');
     }
 
@@ -399,7 +397,7 @@ export class Heplers {
     }
 
     GetHours(mins: number): number {
-        return mins/60;
+        return mins / 60;
     }
 
     ToHoursString(Mins: number): string {
@@ -424,7 +422,7 @@ export class Heplers {
     }
 
     async  showMessage(MessageBody: string, MessageTitle: string) {
-        const alert =await this.alertCtrl.create({
+        const alert = await this.alertCtrl.create({
             header: MessageTitle,
             message: MessageBody,
             buttons: ['OK']

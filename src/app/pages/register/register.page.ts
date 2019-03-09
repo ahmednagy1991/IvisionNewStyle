@@ -17,9 +17,9 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 export class RegisterPage implements OnInit {
   public onRegisterForm: FormGroup;
 
-  usr: RegisterUserModel = { emp_id: "", emp_pwd: "", uuid: "" }
+  usr: RegisterUserModel = { emp_id: "B00003", emp_pwd: "1234", uuid: "11223344" }
   response: any;
-  passwordConfirm: string;
+  passwordConfirm: string="1234";
   deviceId:string;
   constructor(
     public navCtrl: NavController,

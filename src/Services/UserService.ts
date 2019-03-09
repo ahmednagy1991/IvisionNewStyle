@@ -37,7 +37,7 @@ export class UserService {
         debugger;
         ///ivmtwebsdk/ea.dll/api/v52/emxauth2/RegisterDevice
         return this.api.callGet('/ea.dll/api/v52/emxauth2/RegisterDevice',
-        'emp_id=' + EMPID + '&access_type=0'+'&emp_pwd='+PASSWORD+'&apikey=' + this.parms.ApiKey)
+        'emp_id=' + EMPID + '&uuid='+UUID+'&access_type=0'+'&emp_pwd='+PASSWORD+'&apikey=' + this.parms.ApiKey)
     }
 
     Login(EMPID:string,PASSWORD:string) {
